@@ -13,12 +13,12 @@ const APP_THEME = 'appTheme';
 // KEPT ANY FOR NOW
 export const AppContext: any = createContext({
   translations,
-  setAppLanguage: () => void,
+  setAppLanguage: () => {},
   appLanguage: DEFAULT_LANGUAGE,
-  initializeAppLanguage: () => void,
+  initializeAppLanguage: () => {},
   appTheme: DEFAULT_THEME,
-  initializeAppTheme: () => void,
-  setAppTheme: () => void,
+  initializeAppTheme: () => {},
+  setAppTheme: () => {},
 });
 interface CustomProps {
   children: JSX.Element;
