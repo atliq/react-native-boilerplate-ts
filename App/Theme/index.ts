@@ -1,0 +1,13 @@
+import LightTheme from './LightTheme';
+import DarkTheme from './DarkTheme';
+export const DEFAULT_THEME = 'light';
+
+export interface ThemeType {
+  light: typeof LightTheme;
+  dark: typeof DarkTheme;
+}
+
+export const Theme: ThemeType = {
+  light: LightTheme,
+  dark: DarkTheme,
+};
