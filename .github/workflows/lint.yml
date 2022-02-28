@@ -25,13 +25,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out Git repository
       - uses: actions/checkout@v2
-
-      - name: Install Dependancy
-        uses: borales/actions-yarn@v2.3.0
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          cmd: install # will run `yarn install` command
-
-      - name: Run Lint
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: lint # will run `yarn lint` command
+          node-version: 16
+      - run: yarn install
+      - run: yarn run lint
