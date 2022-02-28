@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
-import { store, persistor } from "./Stores";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { View } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import axios from 'axios';
 import NetInfo, {
   NetInfoState,
   NetInfoSubscription,
-} from "@react-native-community/netinfo";
-import { ApiConfig } from "./ApiConfig";
-import { getItemFromStorage } from "./Utils/Storage";
-import { configureUrl } from "./Utils/Helper";
-import { AppContextProvider } from "./AppContext";
-import { NoConnection } from "./Screens/SubComponents";
-import CommonStyle from "./Theme/CommonStyle";
-import Routes from "./Routes";
+} from '@react-native-community/netinfo';
+import { store, persistor } from '@Stores/index';
+import { ApiConfig } from '@ApiConfig/index';
+import { getItemFromStorage } from '@Utils/Storage';
+import { configureUrl } from '@Utils/Helper';
+import { AppContextProvider } from '@AppContext/index';
+import { NoConnection } from '@SubComponents/index';
+import CommonStyle from '@Theme/CommonStyle';
+import Routes from '@Routes/index';
 
 axios.interceptors.request.use(
   async config => {
     let request = config;
     let token: string | null = ApiConfig.token;
     if (!token) {
-      token = await getItemFromStorage("token");
+      token = await getItemFromStorage('token');
     }
     request.headers = {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      Accept: "application/json",
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     };
     request.url = configureUrl(config.url!);
     return request;
@@ -57,7 +57,7 @@ const App = (props: CustomProps) => {
 
   // Managed internet connection
   const handleConnectivityChange = (info: NetInfoState) => {
-    if (info.type === "none" || !info.isConnected) {
+    if (info.type === 'none' || !info.isConnected) {
       setIsConnected(false);
     } else {
       setIsConnected(true);

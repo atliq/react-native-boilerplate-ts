@@ -6,4 +6,4 @@ const hi = {
   LOG_OUT: 'लॉग आउट',
 };
 
-export {hi};
+export { hi };

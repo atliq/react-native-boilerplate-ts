@@ -1,5 +1,5 @@
-import {ApiConfig} from '../ApiConfig';
-import {getItemFromStorage} from '../Utils/Storage';
+import { ApiConfig } from '@ApiConfig/index';
+import { getItemFromStorage } from '@Utils/Storage';
 import axios from 'axios';
 
 export const isLoggedIn = async () => {

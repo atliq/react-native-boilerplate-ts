@@ -1,20 +1,19 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import {
   View,
-  Text,
   SafeAreaView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {AppContext} from '../../../AppContext';
-import CommonStyle from '../../../Theme/CommonStyle';
-import {CustomText} from '../../CommonComponent';
-import AppImages from '../../../Theme/AppImages';
-import {BottomView, GradientButton} from '../../SubComponents';
-import {useNavigation, CommonActions} from '@react-navigation/native';
-import {setItemInStorage} from '../../../Utils/Storage';
+import { AppContext } from '@AppContext/index';
+import CommonStyle from '@Theme/CommonStyle';
+import { CustomText } from '@CommonComponent/index';
+import AppImages from '@Theme/AppImages';
+import { BottomView, GradientButton } from '@SubComponents/index';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import { setItemInStorage } from '@Utils/Storage';
 
 const styles = StyleSheet.create({
   outer: {
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
 });
 
 const Login = () => {
-  const {appTheme, translations} = useContext(AppContext);
+  const { appTheme, translations } = useContext(AppContext);
   const navigation = useNavigation();
   const [state, setState] = useState({
     email: '',
@@ -51,13 +50,13 @@ const Login = () => {
     isSecureTextEntry: true,
     isProcessing: false,
   });
-  const {email, password, isSecureTextEntry, isProcessing} = state;
+  const { email, password, isSecureTextEntry, isProcessing } = state;
 
   const refEmail = useRef<any>();
   const refPassword = useRef<any>();
 
-  const {outer, title, btnText, marginTop, flexDirection, flex} = styles;
-  const {input, flexContainer, center, inputIcon, inputImg} = CommonStyle;
+  const { outer, title, btnText, marginTop, flexDirection, flex } = styles;
+  const { input, flexContainer, center, inputIcon, inputImg } = CommonStyle;
   const inputStyle = [
     input,
     {
@@ -108,17 +107,17 @@ const Login = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: page}],
+        routes: [{ name: page }],
       }),
     );
   };
 
   return (
     <SafeAreaView
-      style={[flexContainer, {backgroundColor: appTheme.background}]}>
+      style={[flexContainer, { backgroundColor: appTheme.background }]}>
       <View style={[flexContainer, center]}>
         <View style={outer}>
-          <CustomText xxlarge style={[title, {color: appTheme.text}]}>
+          <CustomText xxlarge style={[title, { color: appTheme.text }]}>
             {translations.SIGN_IN}
           </CustomText>
           <TextInput
@@ -166,7 +165,7 @@ const Login = () => {
               </View>
             </TouchableOpacity>
           </View>
-          <CustomText style={[btnText, {color: appTheme.lightText}]}>
+          <CustomText style={[btnText, { color: appTheme.lightText }]}>
             Forgot Password?
           </CustomText>
           <GradientButton

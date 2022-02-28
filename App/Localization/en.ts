@@ -6,4 +6,4 @@ const en = {
   LOG_OUT: 'Log out',
 };
 
-export {en};
+export { en };

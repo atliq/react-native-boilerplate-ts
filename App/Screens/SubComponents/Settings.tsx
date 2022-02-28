@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,25 +8,25 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-} from "react-native";
-import { CustomText } from "../CommonComponent";
-import { AppContext } from "../../AppContext";
-import AppImages from "../../Theme/AppImages";
+} from 'react-native';
+import { CustomText } from '@CommonComponent/index';
+import { AppContext } from '@AppContext/index';
+import AppImages from '@Theme/AppImages';
 
 const styles = StyleSheet.create({
   outer: {
     height: 60,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   header: {
     paddingHorizontal: 15,
     paddingTop: 25,
     paddingBottom: 10,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   icon: {
     width: 20,

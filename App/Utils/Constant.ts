@@ -1,18 +1,18 @@
-import {Platform, Dimensions} from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 
 export const isIOS = Platform.OS === 'ios';
 
-export const {height, width} = Dimensions.get('window');
+export const { height, width } = Dimensions.get('window');
 
 export const aspectRatio = height / width;
 export const isiPad = aspectRatio < 1.6;
 
 // Custom Fonts
 export const fonts = {
-  Regular: {fontFamily: 'Regular'},
-  Light: {fontFamily: 'Light'},
-  Medium: {fontFamily: 'Medium'},
-  oBold: {fontFamily: 'Bold'},
+  Regular: { fontFamily: 'Regular' },
+  Light: { fontFamily: 'Light' },
+  Medium: { fontFamily: 'Medium' },
+  oBold: { fontFamily: 'Bold' },
 };
 
 // Font Sizes
