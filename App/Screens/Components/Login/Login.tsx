@@ -85,10 +85,10 @@ const Login = () => {
     });
   };
 
-  const manageProcessing = (isProcessing: boolean) => {
+  const manageProcessing = (isProcessingState: boolean) => {
     setState({
       ...state,
-      isProcessing,
+      isProcessing: isProcessingState,
     });
   };
 

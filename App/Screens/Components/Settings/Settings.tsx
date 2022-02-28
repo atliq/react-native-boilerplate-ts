@@ -14,10 +14,7 @@ const LANGUAGES = [
   { title: 'German', value: 'de' },
 ];
 
-interface CustomProps {
-  //YOUR PROPS WITH TYPES
-}
-const Settings = (props: CustomProps) => {
+const Settings = () => {
   const { appTheme, setAppTheme, appLanguage, setAppLanguage, translations } =
     useContext(AppContext);
   const [darkMode, setDarkMode] = useState(appTheme.type === 'dark');

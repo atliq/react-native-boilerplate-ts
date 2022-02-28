@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
   },
 });
-interface CustomProps {}
-const Users = (props: CustomProps) => {
+const Users = () => {
   const { appTheme } = useContext(AppContext);
   const { btnTitle, btnBorder } = styles;
 

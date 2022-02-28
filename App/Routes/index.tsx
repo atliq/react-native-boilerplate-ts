@@ -19,7 +19,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="InitialScreen"
-          screenOptions={({ route, navigation }) => ({
+          screenOptions={({}) => ({
             headerShown: true,
             cardOverlayEnabled: true,
             headerBackTitleVisible: false,
