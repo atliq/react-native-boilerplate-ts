@@ -1,5 +1,5 @@
-import LightTheme from './LightTheme';
-import DarkTheme from './DarkTheme';
+import LightTheme from '@Theme/LightTheme';
+import DarkTheme from '@Theme/DarkTheme';
 export const DEFAULT_THEME = 'light';
 
 export interface ThemeType {

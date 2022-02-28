@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -7,10 +7,10 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import {CustomText} from '../CommonComponent';
-import {AppContext} from '../../AppContext';
 import LinearGradient from 'react-native-linear-gradient';
-import CommonStyle from '../../Theme/CommonStyle';
+import { CustomText } from '@CommonComponent/index';
+import { AppContext } from '@AppContext/index';
+import CommonStyle from '@Theme/CommonStyle';
 
 const styles = StyleSheet.create({
   outer: {
@@ -49,20 +49,20 @@ const GradientButton = (props: GradientButtonProps) => {
     isProcessing = false,
     textOnly = false,
   } = props;
-  const {appTheme} = useContext(AppContext);
-  const {gradientBtn, alignSelf} = styles;
+  const { appTheme } = useContext(AppContext);
+  const { gradientBtn, alignSelf } = styles;
   return (
     <View
       style={[
         CommonStyle.shadow,
         alignSelf,
-        {opacity: (isProcessing && 0.6) || 1},
+        { opacity: (isProcessing && 0.6) || 1 },
         exStyle && exStyle,
       ]}>
       <TouchableOpacity onPress={() => onPress()} disabled={isProcessing}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
-            <CustomText large style={[{color: appTheme.tint}]}>
+            <CustomText large style={[{ color: appTheme.tint }]}>
               {title}
             </CustomText>
           )) || <ActivityIndicator color={appTheme.tint} />}
@@ -83,10 +83,10 @@ interface ButtonComponentProps {
   icon?: string;
 }
 const ButtonComponent = (props: ButtonComponentProps) => {
-  const {title, onPress, style, border, backColor, textColor, isProcessing} =
+  const { title, onPress, style, border, backColor, textColor, isProcessing } =
     props;
-  const {outer} = styles;
-  const {appTheme} = useContext(AppContext);
+  const { outer } = styles;
+  const { appTheme } = useContext(AppContext);
   return (
     <TouchableOpacity onPress={() => onPress!()} disabled={isProcessing}>
       <View
@@ -99,7 +99,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
           style,
         ]}>
         {(!isProcessing && (
-          <CustomText large style={{color: textColor || appTheme.tint}}>
+          <CustomText large style={{ color: textColor || appTheme.tint }}>
             {title}
           </CustomText>
         )) || <ActivityIndicator color={textColor || appTheme.tint} />}
@@ -108,4 +108,4 @@ const ButtonComponent = (props: ButtonComponentProps) => {
   );
 };
 
-export {GradientButton, ButtonComponent};
+export { GradientButton, ButtonComponent };

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,9 +8,9 @@ import {
   ViewStyle,
   TextProps,
 } from 'react-native';
-import {CustomText} from '../CommonComponent';
-import {AppContext} from '../../AppContext';
-import CommonStyle from '../../Theme/CommonStyle';
+import { CustomText } from '@CommonComponent/index';
+import { AppContext } from '@AppContext/index';
+import CommonStyle from '@Theme/CommonStyle';
 
 const styles = StyleSheet.create({
   outer: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     flexDirection: 'row',
   },
-  space: {padding: 5},
+  space: { padding: 5 },
 });
 
 interface BottomViewProps {
@@ -46,9 +46,9 @@ interface BottomViewProps {
   exTextStyle?: StyleProp<TextProps>;
 }
 const BottomView = (props: BottomViewProps) => {
-  const {title, subTitle, onSubTitle, exStyle, exTextStyle = {}} = props;
-  const {outer, flexDirection, paddingVertical, padding} = styles;
-  const {appTheme} = useContext(AppContext);
+  const { title, subTitle, onSubTitle, exStyle, exTextStyle = {} } = props;
+  const { outer, flexDirection, paddingVertical, padding } = styles;
+  const { appTheme } = useContext(AppContext);
   return (
     <View style={[outer, exStyle && exStyle]}>
       <View style={flexDirection}>
@@ -87,8 +87,8 @@ interface FooterProps {
   page: number;
 }
 const ShowFooter = (props: FooterProps) => {
-  const {appTheme} = useContext(AppContext);
-  const {isPageCalling, events, page} = props;
+  const { appTheme } = useContext(AppContext);
+  const { isPageCalling, events, page } = props;
   if (isPageCalling && events.length && page !== 1) {
     return (
       <View style={styles.footer}>
@@ -97,7 +97,9 @@ const ShowFooter = (props: FooterProps) => {
           size={'small'}
           color={appTheme.themeColor}
         />
-        <CustomText style={[styles.space, {color: appTheme.lightText}]} medium>
+        <CustomText
+          style={[styles.space, { color: appTheme.lightText }]}
+          medium>
           Loading Data...
         </CustomText>
       </View>
@@ -107,4 +109,4 @@ const ShowFooter = (props: FooterProps) => {
   }
 };
 
-export {BottomView, ShowFooter};
+export { BottomView, ShowFooter };

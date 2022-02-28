@@ -1,4 +1,4 @@
-import ThemeColor from './Colors';
+import ThemeColor from '@Theme/Colors';
 
 const LightTheme = {
   type: 'light',
@@ -15,6 +15,7 @@ const LightTheme = {
   tab: ThemeColor.white,
   statusBar: 'dark-content',
   red: 'red',
+  transparent: 'transparent',
 };
 
 export default LightTheme;

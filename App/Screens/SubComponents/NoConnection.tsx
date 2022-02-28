@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
-import {View, StyleSheet} from 'react-native';
-import CommonStyle from '../../Theme/CommonStyle';
-import {AppContext} from '../../AppContext';
-import {CustomText} from '../CommonComponent';
-import {ButtonComponent} from './AppButton';
+import React, { useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
+import CommonStyle from '@Theme/CommonStyle';
+import { AppContext } from '@AppContext/index';
+import { CustomText } from '@CommonComponent/index';
+import { ButtonComponent } from '@SubComponents/index';
 
 const styles = StyleSheet.create({
   outer: {
@@ -36,20 +36,20 @@ interface CustomProps {
   retryConnection: Function;
 }
 const NoConnection = (props: CustomProps) => {
-  const {appTheme} = useContext(AppContext);
-  const {textAlign, btnStyle, inner, outer, subTitle} = styles;
-  const {retryConnection} = props;
+  const { appTheme } = useContext(AppContext);
+  const { textAlign, btnStyle, inner, outer, subTitle } = styles;
+  const { retryConnection } = props;
   return (
     <View style={outer}>
       <View
         style={[
           inner,
-          {backgroundColor: appTheme.card, borderColor: appTheme.border},
+          { backgroundColor: appTheme.card, borderColor: appTheme.border },
         ]}>
-        <CustomText large style={[textAlign, {color: appTheme.text}]}>
+        <CustomText large style={[textAlign, { color: appTheme.text }]}>
           Oops!
         </CustomText>
-        <CustomText large style={[subTitle, {color: appTheme.lightText}]}>
+        <CustomText large style={[subTitle, { color: appTheme.lightText }]}>
           {'No Internet Connection!\n Check your connection.'}
         </CustomText>
         <ButtonComponent
@@ -63,4 +63,4 @@ const NoConnection = (props: CustomProps) => {
   );
 };
 
-export {NoConnection};
+export { NoConnection };

@@ -1,15 +1,15 @@
-import React, {useContext} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import Settings from '../Screens/Components/Settings/Settings';
-import {AppContext} from '../AppContext';
+import React, { useContext } from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import Settings from '@Components/Settings/Settings';
+import { AppContext } from '@AppContext/index';
 
 const Stack = createStackNavigator();
 
 const SettingsStack = () => {
-  const {appTheme, translations} = useContext(AppContext);
+  const { appTheme, translations } = useContext(AppContext);
   return (
     <Stack.Navigator
-      screenOptions={({route, navigation, theme}) => ({
+      screenOptions={({ route, navigation, theme }) => ({
         headerShown: true,
         cardOverlayEnabled: true,
         headerBackTitleVisible: false,

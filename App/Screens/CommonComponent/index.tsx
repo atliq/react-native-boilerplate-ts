@@ -1,1 +1,1 @@
-export * from './CustomText';
+export * from '@CommonComponent/CustomText';

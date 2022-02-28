@@ -1,4 +1,4 @@
-import ThemeColor from './Colors';
+import ThemeColor from '@Theme/Colors';
 
 const DarkTheme = {
   type: 'dark',
@@ -15,6 +15,7 @@ const DarkTheme = {
   tab: ThemeColor.gray5,
   statusBar: 'light-content',
   red: 'red',
+  transparent: 'transparent',
 };
 
 export default DarkTheme;

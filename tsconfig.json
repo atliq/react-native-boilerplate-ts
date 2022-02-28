@@ -1,11 +1,70 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./App/*"
+      ],
+      "redux": [
+        "./node_modules/redux"
+      ],
+      "@Actions/*": [
+        "./App/Actions/*"
+      ],
+      "@Keys/*": [
+        "./App/Actions/Keys/*"
+      ],
+      "@ApiConfig/*": [
+        "./App/ApiConfig/*"
+      ],
+      "@AppContext/*": [
+        "./App/AppContext/*"
+      ],
+      "@Reducers/*": [
+        "./App/Reducers/*"
+      ],
+      "@Default/*": [
+        "./App/Reducers/Default/*"
+      ],
+      "@Routes/*": [
+        "./App/Routes/*"
+      ],
+      "@Sagas/*": [
+        "./App/Sagas/*"
+      ],
+      "@Components/*": [
+        "./App/Screens/Components/*"
+      ],
+      "@CommonComponent/*": [
+        "./App/Screens/CommonComponent/*"
+      ],
+      "@SubComponents/*": [
+        "./App/Screens/SubComponents/*"
+      ],
+      "@Stores/*": [
+        "./App/Stores/*"
+      ],
+      "@Theme/*": [
+        "./App/Theme/*"
+      ],
+      "@Services/*": [
+        "./App/Services/*"
+      ],
+      "@Utils/*": [
+        "./App/Utils/*"
+      ],
+      "@Localization/*": [
+        "./App/Localization/*"
+      ]
+    },
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react-native",
-    "lib": ["es2017"],
+    "lib": [
+      "es2017"
+    ],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,

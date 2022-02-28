@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
-import {View} from 'react-native';
-import {useNavigation, CommonActions} from '@react-navigation/native';
-import {isLoggedIn} from '../../Services/UserService';
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import { isLoggedIn } from '@Services/UserService';
 
 const Initial = () => {
   const navigation = useNavigation();
@@ -24,7 +24,7 @@ const Initial = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: nextScreen}],
+        routes: [{ name: nextScreen }],
       }),
     );
   };
