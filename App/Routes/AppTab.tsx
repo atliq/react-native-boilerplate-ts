@@ -4,13 +4,14 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { ParamListBase, RouteProp } from '@react-navigation/native';
+// import { ParamListBase, RouteProp } from '@react-navigation/native';
 import Home from '@Components/Home/Home';
 import Search from '@Components/Search/Search';
 import Users from '@Components/User/User';
 import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext/index';
+import ThemeColor from 'Theme/Colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -48,7 +49,7 @@ const AppTab = () => {
       screenOptions={{
         tabBarHideOnKeyboard: true,
         headerShown: false,
-        tabBarInactiveTintColor: appTheme.gray1,
+        tabBarInactiveTintColor: ThemeColor.gray,
         tabBarStyle: {
           backgroundColor: appTheme.tab,
         },
@@ -62,13 +63,10 @@ const AppTab = () => {
             key={tab.title}
             name={tab.name}
             component={tab.screen}
-            options={(props: {
-              route: RouteProp<ParamListBase, string>;
-              navigation: any;
-            }): BottomTabNavigationOptions => {
+            options={(): BottomTabNavigationOptions => {
               return {
                 headerShown: false,
-                tabBarIcon: ({ focused, color, size }) => (
+                tabBarIcon: ({ focused, size }) => (
                   <Image
                     resizeMode={'contain'}
                     source={tab.icon}

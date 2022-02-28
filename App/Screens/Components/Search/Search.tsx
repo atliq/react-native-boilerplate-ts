@@ -4,10 +4,7 @@ import { CustomText } from '@CommonComponent/index';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext/index';
 
-interface CustomProps {
-  //YOUR PROPS WITH TYPES
-}
-const Search = (props: CustomProps) => {
+const Search = () => {
   const { appTheme } = useContext(AppContext);
 
   return (

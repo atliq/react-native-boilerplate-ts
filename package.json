@@ -8,7 +8,8 @@
     "start": "react-native start",
     "postinstall": "sh postinstall",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
