@@ -1,16 +1,16 @@
-import React, {useContext} from 'react';
-import {Image} from 'react-native';
+import React, { useContext } from 'react';
+import { Image } from 'react-native';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import Home from '../Screens/Components/Home/Home';
-import Search from '../Screens/Components/Search/Search';
-import Users from '../Screens/Components/User/User';
-import SettingsStack from './SettingsStack';
-import AppImages from '../Theme/AppImages';
-import {AppContext} from '../AppContext';
-import {ParamListBase, RouteProp} from '@react-navigation/native';
+import { ParamListBase, RouteProp } from '@react-navigation/native';
+import Home from '@Components/Home/Home';
+import Search from '@Components/Search/Search';
+import Users from '@Components/User/User';
+import SettingsStack from '@Routes/SettingsStack';
+import AppImages from '@Theme/AppImages';
+import { AppContext } from '@AppContext/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +42,7 @@ const TABS = [
 ];
 
 const AppTab = () => {
-  const {appTheme} = useContext(AppContext);
+  const { appTheme } = useContext(AppContext);
   return (
     <Tab.Navigator
       screenOptions={{
@@ -68,7 +68,7 @@ const AppTab = () => {
             }): BottomTabNavigationOptions => {
               return {
                 headerShown: false,
-                tabBarIcon: ({focused, color, size}) => (
+                tabBarIcon: ({ focused, color, size }) => (
                   <Image
                     resizeMode={'contain'}
                     source={tab.icon}

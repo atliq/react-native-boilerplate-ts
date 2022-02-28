@@ -1,17 +1,27 @@
-import React, {Context, createContext, useEffect, useState} from 'react';
-import translations, {DEFAULT_LANGUAGE} from '../Localization';
+import React, { Context, createContext, useEffect, useState } from 'react';
+import { Appearance } from 'react-native';
+import { omit } from 'lodash';
 import * as RNLocalize from 'react-native-localize';
-import {DEFAULT_THEME, Theme, ThemeType} from '../Theme';
-import {setItemInStorage, getItemFromStorage} from '../Utils/Storage';
-import {Appearance} from 'react-native';
-import {omit} from 'lodash';
-import {LocalizedStrings} from 'react-native-localization';
+import translations, { DEFAULT_LANGUAGE } from '@Localization/index';
+import { DEFAULT_THEME, Theme, ThemeType } from '@Theme/index';
+import { setItemInStorage, getItemFromStorage } from '@Utils/Storage';
+import LightTheme from '@Theme/LightTheme';
+import DarkTheme from '@Theme/DarkTheme';
 
 const APP_LANGUAGE = 'appLanguage';
 const APP_THEME = 'appTheme';
 
-// KEPT ANY FOR NOW
-export const AppContext: any = createContext({
+export interface AppContext {
+  translations: any;
+  setAppLanguage: (language: string) => void;
+  appLanguage: string;
+  initializeAppLanguage: () => void;
+  appTheme: typeof LightTheme | typeof DarkTheme;
+  initializeAppTheme: () => void;
+  setAppTheme: (theme?: string) => void;
+}
+
+export const AppContext: Context<AppContext> = createContext({
   translations,
   setAppLanguage: () => {},
   appLanguage: DEFAULT_LANGUAGE,
@@ -19,7 +29,7 @@ export const AppContext: any = createContext({
   appTheme: DEFAULT_THEME,
   initializeAppTheme: () => {},
   setAppTheme: () => {},
-});
+}) as any;
 interface CustomProps {
   children: JSX.Element;
 }

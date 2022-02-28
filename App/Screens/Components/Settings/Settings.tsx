@@ -1,24 +1,24 @@
-import React, {useState, useContext} from 'react';
-import {SafeAreaView, Alert} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {useNavigation, CommonActions} from '@react-navigation/native';
-import CommonStyle from '../../../Theme/CommonStyle';
-import {AppContext} from '../../../AppContext';
-import {userLogout} from '../../../Actions/UserActions';
-import {SettingHeader, SettingRow} from '../../SubComponents';
-import {removeStoreItem} from '../../../Utils/Storage';
+import React, { useState, useContext } from 'react';
+import { SafeAreaView, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import CommonStyle from '@Theme/CommonStyle';
+import { AppContext } from '@AppContext/index';
+import { userLogout } from '@Actions/UserActions';
+import { SettingHeader, SettingRow } from '@SubComponents/index';
+import { removeStoreItem } from '@Utils/Storage';
 
 const LANGUAGES = [
-  {title: 'Hindi', value: 'hi'},
-  {title: 'English', value: 'en'},
-  {title: 'German', value: 'de'},
+  { title: 'Hindi', value: 'hi' },
+  { title: 'English', value: 'en' },
+  { title: 'German', value: 'de' },
 ];
 
 interface CustomProps {
   //YOUR PROPS WITH TYPES
 }
 const Settings = (props: CustomProps) => {
-  const {appTheme, setAppTheme, appLanguage, setAppLanguage, translations} =
+  const { appTheme, setAppTheme, appLanguage, setAppLanguage, translations } =
     useContext(AppContext);
   const [darkMode, setDarkMode] = useState(appTheme.type === 'dark');
   const navigation = useNavigation();
@@ -44,7 +44,7 @@ const Settings = (props: CustomProps) => {
           onPress: onLogout,
         },
       ],
-      {cancelable: true},
+      { cancelable: true },
     );
   };
 
@@ -52,7 +52,7 @@ const Settings = (props: CustomProps) => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: 'Login'}],
+        routes: [{ name: 'Login' }],
       }),
     );
     dispatch(userLogout());
@@ -67,7 +67,7 @@ const Settings = (props: CustomProps) => {
     <SafeAreaView
       style={[
         CommonStyle.flexContainer,
-        {backgroundColor: appTheme.background},
+        { backgroundColor: appTheme.background },
       ]}>
       <SettingHeader title={translations.THEME} />
       <SettingRow
@@ -91,7 +91,7 @@ const Settings = (props: CustomProps) => {
         title={translations.LOG_OUT}
         onPress={logout}
         value={darkMode}
-        textStyle={{color: appTheme.red}}
+        textStyle={{ color: appTheme.red }}
       />
     </SafeAreaView>
   );

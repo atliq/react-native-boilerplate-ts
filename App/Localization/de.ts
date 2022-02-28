@@ -6,4 +6,4 @@ const de = {
   LOG_OUT: 'Ausloggen',
 };
 
-export {de};
+export { de };

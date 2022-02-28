@@ -1,0 +1,22 @@
+{
+  "root":".",
+  "base": "App",
+  "modules": [
+    "Actions",
+    "Actions/Keys",
+    "ApiConfig",
+    "AppContext",
+    "Reducers",
+    "Reducers/Default",
+    "Routes",
+    "Sagas",
+    "Screens/Components",
+    "Screens/CommonComponent",
+    "Screens/SubComponents",
+    "Stores",
+    "Theme",
+    "Services",
+    "Utils",
+    "Localization"
+  ]
+}

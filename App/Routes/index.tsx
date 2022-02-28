@@ -1,25 +1,25 @@
-import React, {useContext} from 'react';
-import {StatusBar, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import Routes from './AppRoutes';
-import {AppContext} from '../AppContext';
-import CommonStyle from '../Theme/CommonStyle';
+import React, { useContext } from 'react';
+import { StatusBar, StatusBarStyle, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Routes from '@Routes/AppRoutes';
+import { AppContext } from '@AppContext/index';
+import CommonStyle from '@Theme/CommonStyle';
 
 const Stack = createStackNavigator();
 
 const App = () => {
-  const {appTheme} = useContext(AppContext);
+  const { appTheme } = useContext(AppContext);
   return (
     <View style={CommonStyle.flexContainer}>
       <StatusBar
         backgroundColor={appTheme.background}
-        barStyle={appTheme.statusBar}
+        barStyle={appTheme.statusBar as StatusBarStyle}
       />
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="InitialScreen"
-          screenOptions={({route, navigation}) => ({
+          screenOptions={({ route, navigation }) => ({
             headerShown: true,
             cardOverlayEnabled: true,
             headerBackTitleVisible: false,

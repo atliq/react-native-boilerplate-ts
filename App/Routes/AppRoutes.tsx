@@ -1,6 +1,6 @@
-import InitialScreen from '../Screens/Components/Initial';
-import Login from '../Screens/Components/Login/Login';
-import AppTab from './AppTab';
+import InitialScreen from '@Components/Initial';
+import Login from '@Components/Login/Login';
+import AppTab from '@Routes/AppTab';
 
 const Routes = [
   {

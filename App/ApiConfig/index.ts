@@ -30,4 +30,4 @@ let ApiConfig: {
   user: `${baseUrlApi}users`,
 };
 
-export {ApiConfig};
+export { ApiConfig };

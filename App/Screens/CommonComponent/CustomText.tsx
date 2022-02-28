@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleProp, Text, TextStyle} from 'react-native';
-import {fontSizes} from '../../Utils/Constant';
+import { StyleProp, Text, TextStyle } from 'react-native';
+import { fontSizes } from '@Utils/Constant';
 
 interface CustomProps {
   size?: number;
@@ -19,7 +19,6 @@ const CustomText = (props: CustomProps) => {
     size,
     xsmall,
     small,
-    medium,
     large,
     xlarge,
     xxlarge,
@@ -55,4 +54,4 @@ const CustomText = (props: CustomProps) => {
   );
 };
 
-export {CustomText};
+export { CustomText };

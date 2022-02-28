@@ -1,14 +1,14 @@
-import { createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-import { persistStore, persistReducer } from "redux-persist";
-import AsyncStorage from "@react-native-community/async-storage";
-import DefaultState from "../Reducers/Default";
-import Reducer from "../Reducers";
-import rootSaga from "../Sagas";
-import { LOG_OUT } from "../Actions/Keys";
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-community/async-storage';
+import DefaultState from '@Default/index';
+import Reducer from '@Reducers/index';
+import rootSaga from '@Sagas/index';
+import { LOG_OUT } from '@Keys/index';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage: AsyncStorage,
 };
 
