@@ -11,7 +11,7 @@ import Users from '@Components/User/User';
 import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext/index';
-import ThemeColor from 'Theme/Colors';
+import ThemeColor from '@Theme/Colors';
 
 const Tab = createBottomTabNavigator();
 
