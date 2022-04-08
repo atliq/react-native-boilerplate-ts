@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Switch,
   Image,
   StyleProp,
@@ -66,7 +66,7 @@ const SettingRow = (props: CustomProps) => {
   } = props;
   const { outer, icon } = styles;
   return (
-    <TouchableOpacity onPress={() => onPress(value)} activeOpacity={0.6}>
+    <Pressable onPress={() => onPress(value)}>
       <View
         style={[
           outer,
@@ -88,7 +88,7 @@ const SettingRow = (props: CustomProps) => {
         )) ||
           null}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

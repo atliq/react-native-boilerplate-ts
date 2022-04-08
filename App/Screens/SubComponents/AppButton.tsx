@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   ActivityIndicator,
   StyleProp,
   ViewStyle,
@@ -59,7 +59,7 @@ const GradientButton = (props: GradientButtonProps) => {
         { opacity: (isProcessing && 0.6) || 1 },
         exStyle && exStyle,
       ]}>
-      <TouchableOpacity onPress={() => onPress()} disabled={isProcessing}>
+      <Pressable onPress={() => onPress()} disabled={isProcessing}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
             <CustomText large style={[{ color: appTheme.tint }]}>
@@ -67,7 +67,7 @@ const GradientButton = (props: GradientButtonProps) => {
             </CustomText>
           )) || <ActivityIndicator color={appTheme.tint} />}
         </LinearGradient>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
@@ -88,7 +88,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
   return (
-    <TouchableOpacity onPress={() => onPress!()} disabled={isProcessing}>
+    <Pressable onPress={() => onPress!()} disabled={isProcessing}>
       <View
         style={[
           outer,
@@ -104,7 +104,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
           </CustomText>
         )) || <ActivityIndicator color={textColor || appTheme.tint} />}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
