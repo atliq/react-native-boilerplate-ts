@@ -12,6 +12,7 @@ import {
 import { CustomText } from '@CommonComponent/index';
 import { AppContext } from '@AppContext/index';
 import AppImages from '@Theme/AppImages';
+import CommonStyle from '@Theme/CommonStyle';
 
 const styles = StyleSheet.create({
   outer: {
@@ -66,7 +67,9 @@ const SettingRow = (props: CustomProps) => {
   } = props;
   const { outer, icon } = styles;
   return (
-    <Pressable onPress={() => onPress(value)}>
+    <Pressable
+      onPress={() => onPress(value)}
+      android_ripple={CommonStyle.androidRipple}>
       <View
         style={[
           outer,

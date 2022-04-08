@@ -147,7 +147,9 @@ const Login = () => {
               ref={refPassword}
               onSubmitEditing={onLogin}
             />
-            <Pressable onPress={onShowPassword}>
+            <Pressable
+              onPress={onShowPassword}
+              android_ripple={CommonStyle.androidRipple}>
               <View
                 style={{
                   ...center,

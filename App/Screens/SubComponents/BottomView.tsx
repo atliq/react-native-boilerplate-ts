@@ -63,7 +63,9 @@ const BottomView = (props: BottomViewProps) => {
           ]}>
           {title}
         </CustomText>
-        <Pressable onPress={() => onSubTitle()}>
+        <Pressable
+          onPress={() => onSubTitle()}
+          android_ripple={CommonStyle.androidRipple}>
           <CustomText
             large
             style={[

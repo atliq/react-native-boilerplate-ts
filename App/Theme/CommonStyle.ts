@@ -49,6 +49,10 @@ const CommonStyle = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  androidRipple: {
+    color: 'white',
+    foreground: true,
+  },
 });
 
 export default CommonStyle;

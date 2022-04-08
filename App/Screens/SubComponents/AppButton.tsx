@@ -59,7 +59,10 @@ const GradientButton = (props: GradientButtonProps) => {
         { opacity: (isProcessing && 0.6) || 1 },
         exStyle && exStyle,
       ]}>
-      <Pressable onPress={() => onPress()} disabled={isProcessing}>
+      <Pressable
+        onPress={() => onPress()}
+        disabled={isProcessing}
+        android_ripple={CommonStyle.androidRipple}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
             <CustomText large style={[{ color: appTheme.tint }]}>
@@ -88,7 +91,10 @@ const ButtonComponent = (props: ButtonComponentProps) => {
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
   return (
-    <Pressable onPress={() => onPress!()} disabled={isProcessing}>
+    <Pressable
+      onPress={() => onPress!()}
+      disabled={isProcessing}
+      android_ripple={CommonStyle.androidRipple}>
       <View
         style={[
           outer,
