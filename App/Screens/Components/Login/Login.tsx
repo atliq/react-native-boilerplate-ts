@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
+  Pressable,
   Image,
 } from 'react-native';
 import { AppContext } from '@AppContext/index';
@@ -147,7 +147,9 @@ const Login = () => {
               ref={refPassword}
               onSubmitEditing={onLogin}
             />
-            <TouchableOpacity onPress={onShowPassword} activeOpacity={1}>
+            <Pressable
+              onPress={onShowPassword}
+              android_ripple={CommonStyle.androidRipple}>
               <View
                 style={{
                   ...center,
@@ -163,7 +165,7 @@ const Login = () => {
                   style={inputImg}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
           </View>
           <CustomText style={[btnText, { color: appTheme.lightText }]}>
             Forgot Password?
