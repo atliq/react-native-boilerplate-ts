@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { isLoggedIn } from '@Services/UserService';
+import { Route } from '@Routes/AppRoutes';
 
 const Initial = () => {
   const navigation = useNavigation();
@@ -14,10 +15,10 @@ const Initial = () => {
   const isUserLogin = async () => {
     const isUserLoggedIn = await isLoggedIn();
     if (!isUserLoggedIn) {
-      goToNextScreen('Login');
+      goToNextScreen(Route.LoginScreen);
       return;
     }
-    goToNextScreen('Home');
+    goToNextScreen(Route.HomeScreen);
   };
 
   const goToNextScreen = async (nextScreen: string) => {

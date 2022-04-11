@@ -15,7 +15,7 @@ export const isValidUserName = (email: string) => {
   return format.test(email);
 };
 
-export const isEmpty = (text: any) => {
+export const isEmpty = (text: string) => {
   return text.toString().trim().length > 0 && text.toString().trim() !== '0';
 };
 

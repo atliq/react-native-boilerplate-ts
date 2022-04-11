@@ -14,6 +14,7 @@ import AppImages from '@Theme/AppImages';
 import { BottomView, GradientButton } from '@SubComponents/index';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { setItemInStorage } from '@Utils/Storage';
+import { Route } from '@Routes/AppRoutes';
 
 const styles = StyleSheet.create({
   outer: {
@@ -96,7 +97,7 @@ const Login = () => {
     try {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
-      goToNextScreen('Home');
+      goToNextScreen(Route.HomeScreen);
       await setItemInStorage('token', 'set login token');
     } catch (error) {
       manageProcessing(false);
@@ -121,7 +122,7 @@ const Login = () => {
             {translations.SIGN_IN}
           </CustomText>
           <TextInput
-            onChangeText={text => onChangeText(text, 'email')}
+            onChangeText={(text: string) => onChangeText(text, 'email')}
             value={email}
             autoCapitalize={'none'}
             placeholder={'Email'}
@@ -135,7 +136,7 @@ const Login = () => {
           />
           <View style={flexDirection}>
             <TextInput
-              onChangeText={text => onChangeText(text, 'password')}
+              onChangeText={(text: string) => onChangeText(text, 'password')}
               value={password}
               autoCapitalize={'none'}
               placeholder={'Password'}

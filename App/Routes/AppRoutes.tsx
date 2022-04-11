@@ -1,24 +1,30 @@
 import InitialScreen from '@Components/Initial';
 import Login from '@Components/Login/Login';
-import AppTab from '@Routes/AppTab';
+import { AppTab } from '@Routes/AppTab';
+
+enum Route {
+  Initial = 'InitialScreen',
+  LoginScreen = 'Login',
+  HomeScreen = 'Home',
+}
 
 const Routes = [
   {
-    name: 'InitialScreen',
+    name: Route.Initial,
     screen: InitialScreen,
     navigationOptions: {
       headerShown: false,
     },
   },
   {
-    name: 'Login',
+    name: Route.LoginScreen,
     screen: Login,
     navigationOptions: {
       headerShown: false,
     },
   },
   {
-    name: 'Home',
+    name: Route.HomeScreen,
     screen: AppTab,
     navigationOptions: {
       headerShown: false,
@@ -26,4 +32,4 @@ const Routes = [
   },
 ];
 
-export default Routes;
+export { Routes, Route };
