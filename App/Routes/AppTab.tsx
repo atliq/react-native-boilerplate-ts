@@ -15,27 +15,34 @@ import ThemeColor from '@Theme/Colors';
 
 const Tab = createBottomTabNavigator();
 
+enum tabs {
+  HomeTab = 'Home',
+  SearchTab = 'Search',
+  UsersTab = 'Users',
+  SettingsTab = 'Settings',
+}
+
 const TABS = [
   {
-    title: 'Home',
+    title: tabs.HomeTab,
     icon: AppImages.home,
     screen: Home,
     name: 'home',
   },
   {
-    title: 'Search',
+    title: tabs.SearchTab,
     icon: AppImages.search,
     screen: Search,
     name: 'search',
   },
   {
-    title: 'User',
+    title: tabs.UsersTab,
     icon: AppImages.user,
     screen: Users,
     name: 'user',
   },
   {
-    title: 'Settings',
+    title: tabs.SettingsTab,
     icon: AppImages.settings,
     screen: SettingsStack,
     name: 'setting',
@@ -87,4 +94,4 @@ const AppTab = () => {
   );
 };
 
-export default AppTab;
+export { AppTab, tabs };
