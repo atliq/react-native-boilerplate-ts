@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Image } from 'react-native';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
@@ -12,6 +11,7 @@ import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext/index';
 import ThemeColor from '@Theme/Colors';
+import { AssetImage } from '@CommonComponent/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -74,10 +74,10 @@ const AppTab = () => {
               return {
                 headerShown: false,
                 tabBarIcon: ({ focused, size }) => (
-                  <Image
+                  <AssetImage
                     resizeMode={'contain'}
                     source={tab.icon}
-                    style={{
+                    imageStyle={{
                       height: size,
                       width: size,
                       tintColor:
