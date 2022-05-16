@@ -1,11 +1,11 @@
 const AppImages = {
-  passwordOpen: require('./Images/password_open.png'),
-  passwordClosed: require('./Images/password_closed.png'),
-  home: require('./Images/home.png'),
-  search: require('./Images/search.png'),
-  settings: require('./Images/settings.png'),
-  user: require('./Images/profile.png'),
-  tick: require('./Images/tick.png'),
+  passwordOpen: 'password_open.png',
+  passwordClosed: 'password_closed.png',
+  home: 'home.png',
+  search: 'search.png',
+  settings: 'settings.png',
+  user: 'profile.png',
+  tick: 'tick.png',
 };
 
 export default AppImages;

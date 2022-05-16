@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext/index';
-import { CustomText } from '@CommonComponent/index';
+import { AssetImage, CustomText, NetworkImage } from '@CommonComponent/index';
 import { ButtonComponent } from '@SubComponents/index';
+import AppImages from '@Theme/AppImages';
 
 const styles = StyleSheet.create({
   btnTitle: {
@@ -55,6 +56,13 @@ const Users = () => {
         style={btnBorder}
         onPress={() => null}
       />
+      <NetworkImage
+        source={
+          'https://www.cameraegg.org/wp-content/uploads/2015/06/canon-powershot-g3-x-sample-images-1.jpg'
+        }
+        placeholder={AppImages.home}
+      />
+      <AssetImage source={AppImages.search} />
     </SafeAreaView>
   );
 };
