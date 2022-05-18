@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
   alignSelf: {
     alignSelf: 'center',
   },
+  overFlowHidden: { overflow: 'hidden' },
+  pressableContainer: {
+    overflow: 'hidden',
+    padding: 0,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  },
 });
 
 interface GradientButtonProps {
@@ -56,13 +63,14 @@ const GradientButton = (props: GradientButtonProps) => {
       style={[
         CommonStyle.shadow,
         alignSelf,
-        { opacity: (isProcessing && 0.6) || 1, overflow: 'hidden' },
+        { opacity: (isProcessing && 0.6) || 1 },
+        styles.overFlowHidden,
         exStyle && exStyle,
       ]}>
       <Pressable
         onPress={() => onPress()}
         disabled={isProcessing}
-        style={{ overflow: 'hidden' }}
+        style={styles.overFlowHidden}
         android_ripple={CommonStyle.androidRipple}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
@@ -101,15 +109,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
   return (
-    <View
-      style={[
-        {
-          overflow: 'hidden',
-          padding: 0,
-          paddingHorizontal: 0,
-          paddingVertical: 0,
-        },
-      ]}>
+    <View style={styles.pressableContainer}>
       <Pressable
         onPress={() => onPress!()}
         disabled={isProcessing}

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { CustomText, Layout } from '@CommonComponent/index';
 import { ButtonComponent } from '@SubComponents/index';
 import BottomModalContainer from '@CommonComponent/BottommodalContainer';
-import EmptyComponent from '@CommonComponent/EmptyComponent';
 
 const Home = () => {
   const [isShowModal, setShowModal] = useState(false);
