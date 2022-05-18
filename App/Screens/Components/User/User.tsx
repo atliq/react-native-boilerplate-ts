@@ -58,9 +58,8 @@ const Users = () => {
       />
       <NetworkImage
         source={
-          'https://www.cameraegg.org/wp-content/uploads/2015/06/canon-powershot-g3-x-sample-images-1.jpg'
+          'https://www.tompetty.com/sites/g/files/g2000007521/f/Sample-image10-highres.jpg'
         }
-        placeholder={AppImages.home}
       />
       <AssetImage source={AppImages.search} />
     </SafeAreaView>

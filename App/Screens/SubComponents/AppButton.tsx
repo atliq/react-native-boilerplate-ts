@@ -56,12 +56,13 @@ const GradientButton = (props: GradientButtonProps) => {
       style={[
         CommonStyle.shadow,
         alignSelf,
-        { opacity: (isProcessing && 0.6) || 1 },
+        { opacity: (isProcessing && 0.6) || 1, overflow: 'hidden' },
         exStyle && exStyle,
       ]}>
       <Pressable
         onPress={() => onPress()}
         disabled={isProcessing}
+        style={{ overflow: 'hidden' }}
         android_ripple={CommonStyle.androidRipple}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
@@ -84,23 +85,42 @@ interface ButtonComponentProps {
   textColor?: string;
   isProcessing?: boolean;
   icon?: string;
+  borderRadius?: number;
 }
 const ButtonComponent = (props: ButtonComponentProps) => {
-  const { title, onPress, style, border, backColor, textColor, isProcessing } =
-    props;
+  const {
+    title,
+    onPress,
+    style,
+    border,
+    backColor,
+    textColor,
+    isProcessing,
+    borderRadius = 10,
+  } = props;
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
   return (
-    <Pressable
-      onPress={() => onPress!()}
-      disabled={isProcessing}
-      android_ripple={CommonStyle.androidRipple}>
-      <View
+    <View
+      style={[
+        {
+          overflow: 'hidden',
+          padding: 0,
+          paddingHorizontal: 0,
+          paddingVertical: 0,
+        },
+      ]}>
+      <Pressable
+        onPress={() => onPress!()}
+        disabled={isProcessing}
+        android_ripple={CommonStyle.androidRipple}
         style={[
           outer,
           {
             backgroundColor: backColor || appTheme.themeColor,
             borderColor: border || appTheme.border,
+            borderRadius: borderRadius,
+            overflow: 'hidden',
           },
           style,
         ]}>
@@ -109,8 +129,8 @@ const ButtonComponent = (props: ButtonComponentProps) => {
             {title}
           </CustomText>
         )) || <ActivityIndicator color={textColor || appTheme.tint} />}
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 

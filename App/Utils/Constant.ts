@@ -12,7 +12,7 @@ export const fonts = {
   Regular: { fontFamily: 'Regular' },
   Light: { fontFamily: 'Light' },
   Medium: { fontFamily: 'Medium' },
-  oBold: { fontFamily: 'Bold' },
+  Bold: { fontFamily: 'Bold' },
 };
 
 // Font Sizes

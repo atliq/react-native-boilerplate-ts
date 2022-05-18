@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleProp, Text, TextStyle } from 'react-native';
 import { fontSizes } from '@Utils/Constant';
+import { AppContext } from '@AppContext/index';
 
 interface CustomProps {
   size?: number;
@@ -13,8 +14,11 @@ interface CustomProps {
   xxxlarge?: boolean;
   style?: StyleProp<TextStyle>;
   children: JSX.Element | string;
+  numberOfLines?: number | undefined;
 }
 const CustomText = (props: CustomProps) => {
+  const { appTheme } = useContext(AppContext);
+
   const {
     size,
     xsmall,
@@ -25,6 +29,7 @@ const CustomText = (props: CustomProps) => {
     xxxlarge,
     style,
     children,
+    numberOfLines = 0,
   } = props;
 
   const getFontSize = () => {
@@ -48,7 +53,10 @@ const CustomText = (props: CustomProps) => {
   };
 
   return (
-    <Text {...props} style={[getFontSize(), style && style]}>
+    <Text
+      {...props}
+      numberOfLines={numberOfLines}
+      style={[getFontSize(), { color: appTheme.text }, style && style]}>
       {children}
     </Text>
   );

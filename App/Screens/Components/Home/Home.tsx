@@ -1,23 +1,27 @@
-import React, { useContext } from 'react';
-import { SafeAreaView } from 'react-native';
-import { CustomText } from '@CommonComponent/index';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext/index';
+import React, { useState } from 'react';
+import { CustomText, Layout } from '@CommonComponent/index';
+import { ButtonComponent } from '@SubComponents/index';
+import BottomModalContainer from '@CommonComponent/BottommodalContainer';
+import EmptyComponent from '@CommonComponent/EmptyComponent';
 
 const Home = () => {
-  const { appTheme } = useContext(AppContext);
-
+  const [isShowModal, setShowModal] = useState(false);
   return (
-    <SafeAreaView
-      style={[
-        CommonStyle.flexContainer,
-        CommonStyle.center,
-        { backgroundColor: appTheme.background },
-      ]}>
-      <CustomText xlarge style={{ color: appTheme.text }}>
-        Welcome...
-      </CustomText>
-    </SafeAreaView>
+    <Layout title="Widgets" padding={20}>
+      <CustomText large>Home screen</CustomText>
+      <ButtonComponent
+        onPress={() => {
+          setShowModal(true);
+        }}
+        title={'Show Modal'}
+      />
+      <BottomModalContainer
+        title={'Modal'}
+        onClose={() => setShowModal(false)}
+        show={isShowModal}>
+        <CustomText large>Modal</CustomText>
+      </BottomModalContainer>
+    </Layout>
   );
 };
 
