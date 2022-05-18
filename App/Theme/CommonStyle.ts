@@ -53,6 +53,7 @@ const CommonStyle = StyleSheet.create({
     color: 'white',
     foreground: true,
   },
+  flex1: { flex: 1 },
 });
 
 export default CommonStyle;
