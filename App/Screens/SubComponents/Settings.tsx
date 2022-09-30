@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Switch,
   Image,
   StyleProp,
@@ -12,6 +12,7 @@ import {
 import { CustomText } from '@CommonComponent/index';
 import { AppContext } from '@AppContext/index';
 import AppImages from '@Theme/AppImages';
+import CommonStyle from '@Theme/CommonStyle';
 
 const styles = StyleSheet.create({
   outer: {
@@ -66,7 +67,9 @@ const SettingRow = (props: CustomProps) => {
   } = props;
   const { outer, icon } = styles;
   return (
-    <TouchableOpacity onPress={() => onPress(value)} activeOpacity={0.6}>
+    <Pressable
+      onPress={() => onPress(value)}
+      android_ripple={CommonStyle.androidRipple}>
       <View
         style={[
           outer,
@@ -88,7 +91,7 @@ const SettingRow = (props: CustomProps) => {
         )) ||
           null}
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

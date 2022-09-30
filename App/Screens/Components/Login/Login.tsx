@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
+  Pressable,
   Image,
 } from 'react-native';
 import { AppContext } from '@AppContext/index';
@@ -14,6 +14,7 @@ import AppImages from '@Theme/AppImages';
 import { BottomView, GradientButton } from '@SubComponents/index';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { setItemInStorage } from '@Utils/Storage';
+import { Route } from '@Routes/AppRoutes';
 
 const styles = StyleSheet.create({
   outer: {
@@ -85,10 +86,10 @@ const Login = () => {
     });
   };
 
-  const manageProcessing = (isProcessing: boolean) => {
+  const manageProcessing = (isProcessingState: boolean) => {
     setState({
       ...state,
-      isProcessing,
+      isProcessing: isProcessingState,
     });
   };
 
@@ -96,7 +97,7 @@ const Login = () => {
     try {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
-      goToNextScreen('Home');
+      goToNextScreen(Route.HomeScreen);
       await setItemInStorage('token', 'set login token');
     } catch (error) {
       manageProcessing(false);
@@ -121,7 +122,7 @@ const Login = () => {
             {translations.SIGN_IN}
           </CustomText>
           <TextInput
-            onChangeText={text => onChangeText(text, 'email')}
+            onChangeText={(text: string) => onChangeText(text, 'email')}
             value={email}
             autoCapitalize={'none'}
             placeholder={'Email'}
@@ -135,7 +136,7 @@ const Login = () => {
           />
           <View style={flexDirection}>
             <TextInput
-              onChangeText={text => onChangeText(text, 'password')}
+              onChangeText={(text: string) => onChangeText(text, 'password')}
               value={password}
               autoCapitalize={'none'}
               placeholder={'Password'}
@@ -147,7 +148,9 @@ const Login = () => {
               ref={refPassword}
               onSubmitEditing={onLogin}
             />
-            <TouchableOpacity onPress={onShowPassword} activeOpacity={1}>
+            <Pressable
+              onPress={onShowPassword}
+              android_ripple={CommonStyle.androidRipple}>
               <View
                 style={{
                   ...center,
@@ -163,7 +166,7 @@ const Login = () => {
                   style={inputImg}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
           </View>
           <CustomText style={[btnText, { color: appTheme.lightText }]}>
             Forgot Password?

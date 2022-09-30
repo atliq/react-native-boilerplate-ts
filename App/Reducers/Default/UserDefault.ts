@@ -1,4 +1,7 @@
-const userDefault = {
+export interface UserDefault {
+  user: any;
+}
+const userDefault: UserDefault = {
   user: {},
 };
 

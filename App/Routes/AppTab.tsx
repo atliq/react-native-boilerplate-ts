@@ -1,40 +1,48 @@
 import React, { useContext } from 'react';
-import { Image } from 'react-native';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { ParamListBase, RouteProp } from '@react-navigation/native';
+// import { ParamListBase, RouteProp } from '@react-navigation/native';
 import Home from '@Components/Home/Home';
 import Search from '@Components/Search/Search';
 import Users from '@Components/User/User';
 import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext/index';
+import ThemeColor from '@Theme/Colors';
+import { AssetImage } from '@CommonComponent/index';
 
 const Tab = createBottomTabNavigator();
 
+enum tabs {
+  HomeTab = 'Home',
+  SearchTab = 'Search',
+  UsersTab = 'Users',
+  SettingsTab = 'Settings',
+}
+
 const TABS = [
   {
-    title: 'Home',
+    title: tabs.HomeTab,
     icon: AppImages.home,
     screen: Home,
     name: 'home',
   },
   {
-    title: 'Search',
+    title: tabs.SearchTab,
     icon: AppImages.search,
     screen: Search,
     name: 'search',
   },
   {
-    title: 'User',
+    title: tabs.UsersTab,
     icon: AppImages.user,
     screen: Users,
     name: 'user',
   },
   {
-    title: 'Settings',
+    title: tabs.SettingsTab,
     icon: AppImages.settings,
     screen: SettingsStack,
     name: 'setting',
@@ -48,7 +56,7 @@ const AppTab = () => {
       screenOptions={{
         tabBarHideOnKeyboard: true,
         headerShown: false,
-        tabBarInactiveTintColor: appTheme.gray1,
+        tabBarInactiveTintColor: ThemeColor.gray,
         tabBarStyle: {
           backgroundColor: appTheme.tab,
         },
@@ -62,17 +70,14 @@ const AppTab = () => {
             key={tab.title}
             name={tab.name}
             component={tab.screen}
-            options={(props: {
-              route: RouteProp<ParamListBase, string>;
-              navigation: any;
-            }): BottomTabNavigationOptions => {
+            options={(): BottomTabNavigationOptions => {
               return {
                 headerShown: false,
-                tabBarIcon: ({ focused, color, size }) => (
-                  <Image
+                tabBarIcon: ({ focused, size }) => (
+                  <AssetImage
                     resizeMode={'contain'}
                     source={tab.icon}
-                    style={{
+                    imageStyle={{
                       height: size,
                       width: size,
                       tintColor:
@@ -89,4 +94,4 @@ const AppTab = () => {
   );
 };
 
-export default AppTab;
+export { AppTab, tabs };

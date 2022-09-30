@@ -34,14 +34,19 @@ axios.interceptors.request.use(
   error => error,
 );
 
-interface CustomProps {
-  // ADD IF ANY PROPS HERE WITH THEIR RESPECTIVE TYPES
-}
-const App = (props: CustomProps) => {
+const App = () => {
   const [isConnected, setIsConnected] = useState(true);
-  let netInfoSubscription: NetInfoSubscription | null = null;
 
   useEffect(() => {
+    let netInfoSubscription: NetInfoSubscription | null = null;
+    const manageConnection = () => {
+      retryConnection();
+      netInfoSubscription = NetInfo.addEventListener(handleConnectivityChange);
+    };
+    // Check network connection
+    const retryConnection = async () => {
+      handleConnectivityChange(await NetInfo.fetch());
+    };
     manageConnection();
     return () => {
       if (netInfoSubscription) {
@@ -50,9 +55,8 @@ const App = (props: CustomProps) => {
     };
   }, []);
 
-  const manageConnection = () => {
-    retryConnection();
-    netInfoSubscription = NetInfo.addEventListener(handleConnectivityChange);
+  const retryConnection = async () => {
+    handleConnectivityChange(await NetInfo.fetch());
   };
 
   // Managed internet connection
@@ -62,11 +66,6 @@ const App = (props: CustomProps) => {
     } else {
       setIsConnected(true);
     }
-  };
-
-  // Check network connection
-  const retryConnection = async () => {
-    handleConnectivityChange(await NetInfo.fetch());
   };
 
   return (

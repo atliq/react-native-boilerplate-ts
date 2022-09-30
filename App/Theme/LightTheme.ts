@@ -16,6 +16,7 @@ const LightTheme = {
   statusBar: 'dark-content',
   red: 'red',
   transparent: 'transparent',
+  textBorder: ThemeColor.lightGray4,
 };
 
 export default LightTheme;

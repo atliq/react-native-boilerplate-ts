@@ -23,15 +23,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Check out Git repository
       - uses: actions/checkout@v2
 
-      - name: Install Dependancy
-        uses: borales/actions-yarn@v2.3.0
+      # Runs a single command using the runners shell
+      - name: Setup node
+        uses: actions/setup-node@v2
         with:
-          cmd: install # will run `yarn install` command
+          node-version: 16
+          cache: 'yarn'
 
-      - name: Run Lint
-        uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: lint # will run `yarn lint` command
+      # Runs a set of commands using the runners shell
+      - name: Run Install
+        run: yarn install
+        
+      - name: Run lint
+        run: yarn run lint

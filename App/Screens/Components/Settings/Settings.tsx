@@ -7,6 +7,7 @@ import { AppContext } from '@AppContext/index';
 import { userLogout } from '@Actions/UserActions';
 import { SettingHeader, SettingRow } from '@SubComponents/index';
 import { removeStoreItem } from '@Utils/Storage';
+import { Route } from '@Routes/AppRoutes';
 
 const LANGUAGES = [
   { title: 'Hindi', value: 'hi' },
@@ -14,10 +15,7 @@ const LANGUAGES = [
   { title: 'German', value: 'de' },
 ];
 
-interface CustomProps {
-  //YOUR PROPS WITH TYPES
-}
-const Settings = (props: CustomProps) => {
+const Settings = () => {
   const { appTheme, setAppTheme, appLanguage, setAppLanguage, translations } =
     useContext(AppContext);
   const [darkMode, setDarkMode] = useState(appTheme.type === 'dark');
@@ -52,7 +50,7 @@ const Settings = (props: CustomProps) => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{ name: 'Login' }],
+        routes: [{ name: Route.LoginScreen }],
       }),
     );
     dispatch(userLogout());

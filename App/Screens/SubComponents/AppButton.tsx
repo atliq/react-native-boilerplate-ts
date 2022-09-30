@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   ActivityIndicator,
   StyleProp,
   ViewStyle,
@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
   alignSelf: {
     alignSelf: 'center',
   },
+  overFlowHidden: { overflow: 'hidden' },
+  pressableContainer: {
+    overflow: 'hidden',
+    padding: 0,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+  },
 });
 
 interface GradientButtonProps {
@@ -57,9 +64,14 @@ const GradientButton = (props: GradientButtonProps) => {
         CommonStyle.shadow,
         alignSelf,
         { opacity: (isProcessing && 0.6) || 1 },
+        styles.overFlowHidden,
         exStyle && exStyle,
       ]}>
-      <TouchableOpacity onPress={() => onPress()} disabled={isProcessing}>
+      <Pressable
+        onPress={() => onPress()}
+        disabled={isProcessing}
+        style={styles.overFlowHidden}
+        android_ripple={CommonStyle.androidRipple}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
             <CustomText large style={[{ color: appTheme.tint }]}>
@@ -67,7 +79,7 @@ const GradientButton = (props: GradientButtonProps) => {
             </CustomText>
           )) || <ActivityIndicator color={appTheme.tint} />}
         </LinearGradient>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
@@ -81,20 +93,34 @@ interface ButtonComponentProps {
   textColor?: string;
   isProcessing?: boolean;
   icon?: string;
+  borderRadius?: number;
 }
 const ButtonComponent = (props: ButtonComponentProps) => {
-  const { title, onPress, style, border, backColor, textColor, isProcessing } =
-    props;
+  const {
+    title,
+    onPress,
+    style,
+    border,
+    backColor,
+    textColor,
+    isProcessing,
+    borderRadius = 10,
+  } = props;
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
   return (
-    <TouchableOpacity onPress={() => onPress!()} disabled={isProcessing}>
-      <View
+    <View style={styles.pressableContainer}>
+      <Pressable
+        onPress={() => onPress!()}
+        disabled={isProcessing}
+        android_ripple={CommonStyle.androidRipple}
         style={[
           outer,
           {
             backgroundColor: backColor || appTheme.themeColor,
             borderColor: border || appTheme.border,
+            borderRadius: borderRadius,
+            overflow: 'hidden',
           },
           style,
         ]}>
@@ -103,8 +129,8 @@ const ButtonComponent = (props: ButtonComponentProps) => {
             {title}
           </CustomText>
         )) || <ActivityIndicator color={textColor || appTheme.tint} />}
-      </View>
-    </TouchableOpacity>
+      </Pressable>
+    </View>
   );
 };
 

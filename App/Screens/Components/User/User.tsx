@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext/index';
-import { CustomText } from '@CommonComponent/index';
+import { AssetImage, CustomText, NetworkImage } from '@CommonComponent/index';
 import { ButtonComponent } from '@SubComponents/index';
+import AppImages from '@Theme/AppImages';
 
 const styles = StyleSheet.create({
   btnTitle: {
@@ -13,8 +14,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
   },
 });
-interface CustomProps {}
-const Users = (props: CustomProps) => {
+const Users = () => {
   const { appTheme } = useContext(AppContext);
   const { btnTitle, btnBorder } = styles;
 
@@ -56,6 +56,12 @@ const Users = (props: CustomProps) => {
         style={btnBorder}
         onPress={() => null}
       />
+      <NetworkImage
+        source={
+          'https://www.tompetty.com/sites/g/files/g2000007521/f/Sample-image10-highres.jpg'
+        }
+      />
+      <AssetImage source={AppImages.search} />
     </SafeAreaView>
   );
 };

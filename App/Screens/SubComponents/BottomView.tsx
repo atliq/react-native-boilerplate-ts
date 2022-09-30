@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   ActivityIndicator,
   StyleProp,
   ViewStyle,
@@ -63,7 +63,9 @@ const BottomView = (props: BottomViewProps) => {
           ]}>
           {title}
         </CustomText>
-        <TouchableOpacity onPress={() => onSubTitle()}>
+        <Pressable
+          onPress={() => onSubTitle()}
+          android_ripple={CommonStyle.androidRipple}>
           <CustomText
             large
             style={[
@@ -75,7 +77,7 @@ const BottomView = (props: BottomViewProps) => {
             ]}>
             {subTitle}
           </CustomText>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   );

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StatusBar, StatusBarStyle, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Routes from '@Routes/AppRoutes';
+import { Route, Routes } from '@Routes/AppRoutes';
 import { AppContext } from '@AppContext/index';
 import CommonStyle from '@Theme/CommonStyle';
 
@@ -18,8 +18,8 @@ const App = () => {
       />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="InitialScreen"
-          screenOptions={({ route, navigation }) => ({
+          initialRouteName={Route.Initial}
+          screenOptions={({}) => ({
             headerShown: true,
             cardOverlayEnabled: true,
             headerBackTitleVisible: false,
