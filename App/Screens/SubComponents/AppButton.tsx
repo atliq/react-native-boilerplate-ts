@@ -93,6 +93,7 @@ interface ButtonComponentProps {
   isProcessing?: boolean;
   icon?: string;
   borderRadius?: number;
+  numberOfLines?: number;
 }
 const ButtonComponent = (props: ButtonComponentProps) => {
   const {
@@ -104,6 +105,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
     textColor,
     isProcessing,
     borderRadius = 10,
+    numberOfLines,
   } = props;
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
@@ -124,7 +126,10 @@ const ButtonComponent = (props: ButtonComponentProps) => {
           style,
         ]}>
         {(!isProcessing && (
-          <CustomText large style={{ color: textColor || appTheme.tint }}>
+          <CustomText
+            large
+            numberOfLines={numberOfLines}
+            style={{ color: textColor || appTheme.tint }}>
             {title}
           </CustomText>
         )) || <ActivityIndicator color={textColor || appTheme.tint} />}

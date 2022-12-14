@@ -6,6 +6,9 @@ import {
   View,
   SafeAreaView,
   RefreshControl,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { isIOS } from '@Utils/Constant';
@@ -16,10 +19,15 @@ import CommonStyle from '@Theme/CommonStyle';
 interface LayoutProps {
   children: React.ReactNode;
   title?: string;
+  titleCenter?: boolean;
+  titleTextStyle?: StyleProp<TextStyle>;
+  titleNumberOfLines?: number;
+  titleMaxLength?: number;
   padding?: number;
   onSubmit?: () => void;
   isSubmitProcessing?: boolean;
   submitTitle?: string;
+  submitBtnStyle?: StyleProp<ViewStyle>;
   scrollable?: boolean;
   backgroundColor?: string;
   showBack?: boolean;
@@ -27,6 +35,7 @@ interface LayoutProps {
     refreshing: boolean;
     onRefresh: () => void;
   };
+  navBarContainerStyle?: StyleProp<ViewStyle>;
 }
 
 const Layout = (props: LayoutProps) => {
@@ -34,14 +43,20 @@ const Layout = (props: LayoutProps) => {
   const {
     children,
     title,
+    titleCenter,
+    titleTextStyle,
+    titleNumberOfLines = 1,
+    titleMaxLength,
     padding = 0,
     onSubmit,
     isSubmitProcessing = false,
     submitTitle,
+    submitBtnStyle,
     scrollable = false,
     backgroundColor,
     showBack = false,
     refreshControl,
+    navBarContainerStyle,
   } = props;
 
   return (
@@ -55,17 +70,21 @@ const Layout = (props: LayoutProps) => {
         behavior={'padding'}
         style={styles.keyboardView}
         keyboardVerticalOffset={isIOS ? 0 : -500}>
-        {(title && (
-          <NavigationBar
-            title={title}
-            submitTitle={submitTitle}
-            onSubmit={onSubmit}
-            isProcessing={isSubmitProcessing}
-            backgroundColor={backgroundColor}
-            showBack={showBack}
-          />
-        )) ||
-          null}
+        <NavigationBar
+          title={title}
+          submitTitle={submitTitle}
+          titleCenter={titleCenter}
+          titleTextStyle={titleTextStyle}
+          titleNumberOfLines={titleNumberOfLines}
+          titleMaxLength={titleMaxLength}
+          onSubmit={onSubmit}
+          isProcessing={isSubmitProcessing}
+          backgroundColor={backgroundColor}
+          showBack={showBack}
+          exStyle={navBarContainerStyle}
+          paddingHorizontal={padding}
+          submitBtnStyle={submitBtnStyle}
+        />
         {(scrollable && (
           <ScrollView
             showsVerticalScrollIndicator={false}
