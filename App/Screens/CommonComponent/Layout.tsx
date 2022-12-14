@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import {
-  GestureResponderEvent,
   KeyboardAvoidingView,
   StatusBar,
   StyleSheet,
   View,
   SafeAreaView,
+  RefreshControl,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { isIOS } from '@Utils/Constant';
@@ -17,12 +17,16 @@ interface LayoutProps {
   children: React.ReactNode;
   title?: string;
   padding?: number;
-  onSubmit?: (event: GestureResponderEvent) => any | undefined;
+  onSubmit?: () => void;
   isSubmitProcessing?: boolean;
   submitTitle?: string;
   scrollable?: boolean;
   backgroundColor?: string;
   showBack?: boolean;
+  refreshControl?: {
+    refreshing: boolean;
+    onRefresh: () => void;
+  };
 }
 
 const Layout = (props: LayoutProps) => {
@@ -37,6 +41,7 @@ const Layout = (props: LayoutProps) => {
     scrollable = false,
     backgroundColor,
     showBack = false,
+    refreshControl,
   } = props;
 
   return (
@@ -65,7 +70,17 @@ const Layout = (props: LayoutProps) => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps={'always'}
-            contentContainerStyle={[styles.scrollContainer, { padding }]}>
+            contentContainerStyle={[styles.scrollContainer, { padding }]}
+            refreshControl={
+              (refreshControl && (
+                <RefreshControl
+                  refreshing={refreshControl.refreshing}
+                  onRefresh={refreshControl.onRefresh}
+                  tintColor={appTheme.themeColor}
+                />
+              )) ||
+              undefined
+            }>
             {children}
           </ScrollView>
         )) || <View style={[CommonStyle.flex1, { padding }]}>{children}</View>}

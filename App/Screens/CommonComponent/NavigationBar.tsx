@@ -1,12 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import {
-  GestureResponderEvent,
-  Image,
-  Pressable,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 import AppImages from '@Theme/AppImages';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext/index';
@@ -15,7 +9,7 @@ import { ButtonComponent } from '@SubComponents/index';
 
 interface NavigationBarProps {
   title: string;
-  onSubmit?: (event: GestureResponderEvent) => any | undefined;
+  onSubmit?: () => void;
   isProcessing?: boolean;
   submitTitle?: string;
   backgroundColor?: string;

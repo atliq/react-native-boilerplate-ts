@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 });
 
 interface CustomProps {
-  retryConnection: Function;
+  retryConnection: () => void;
 }
 const NoConnection = (props: CustomProps) => {
   const { appTheme } = useContext(AppContext);

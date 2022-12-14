@@ -49,7 +49,7 @@ interface CustomProps {
   title: string | JSX.Element;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
-  onPress: Function;
+  onPress: (value: any) => void;
   value: any;
   isSwitch?: boolean;
   isSelected?: boolean;

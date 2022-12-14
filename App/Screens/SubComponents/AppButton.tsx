@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 interface GradientButtonProps {
   title: string | JSX.Element;
-  onPress: Function;
+  onPress: () => void;
   exStyle?: StyleProp<ViewStyle>;
   isProcessing?: boolean;
   textOnly?: boolean;
@@ -86,7 +86,7 @@ const GradientButton = (props: GradientButtonProps) => {
 
 interface ButtonComponentProps {
   title: string | JSX.Element;
-  onPress?: Function;
+  onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   border?: string;
   backColor?: string;
