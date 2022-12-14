@@ -159,10 +159,11 @@ const Login = () => {
                 }}>
                 <Image
                   resizeMode={'contain'}
-                  source={
-                    (isSecureTextEntry && AppImages.passwordOpen) ||
-                    AppImages.passwordClosed
-                  }
+                  source={{
+                    uri:
+                      (isSecureTextEntry && AppImages.passwordOpen) ||
+                      AppImages.passwordClosed,
+                  }}
                   style={inputImg}
                 />
               </View>

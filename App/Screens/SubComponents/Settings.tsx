@@ -85,7 +85,7 @@ const SettingRow = (props: CustomProps) => {
           null}
         {(isSelected && (
           <Image
-            source={AppImages.tick}
+            source={{ uri: AppImages.tick }}
             style={[icon, { tintColor: appTheme.themeColor }]}
           />
         )) ||
