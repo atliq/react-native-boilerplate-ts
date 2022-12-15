@@ -11,3 +11,5 @@ export const Theme: ThemeType = {
   light: LightTheme,
   dark: DarkTheme,
 };
+
+export type AppThemeType = typeof LightTheme | typeof DarkTheme;

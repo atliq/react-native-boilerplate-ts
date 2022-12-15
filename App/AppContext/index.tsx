@@ -6,25 +6,23 @@ import translations, {
   DEFAULT_LANGUAGE,
   Translation,
 } from '@Localization/index';
-import { DEFAULT_THEME, Theme, ThemeType } from '@Theme/index';
+import { AppThemeType, DEFAULT_THEME, Theme, ThemeType } from '@Theme/index';
 import { setItemInStorage, getItemFromStorage } from '@Utils/Storage';
-import LightTheme from '@Theme/LightTheme';
-import DarkTheme from '@Theme/DarkTheme';
 
 const APP_LANGUAGE = 'appLanguage';
 const APP_THEME = 'appTheme';
 
-export interface AppContext {
+export interface AppContextInterface {
   translations: Translation;
   setAppLanguage: (language: string) => void;
   appLanguage: string;
   initializeAppLanguage: () => void;
-  appTheme: typeof LightTheme | typeof DarkTheme;
+  appTheme: AppThemeType;
   initializeAppTheme: () => void;
   setAppTheme: (theme?: string) => void;
 }
 
-export const AppContext: Context<AppContext> = createContext({
+export const AppContext: Context<AppContextInterface> = createContext({
   translations,
   setAppLanguage: () => {},
   appLanguage: DEFAULT_LANGUAGE,
