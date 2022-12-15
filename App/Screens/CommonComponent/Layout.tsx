@@ -24,10 +24,15 @@ interface LayoutProps {
   titleNumberOfLines?: number;
   titleMaxLength?: number;
   padding?: number;
-  onSubmit?: () => void;
-  isSubmitProcessing?: boolean;
-  submitTitle?: string;
-  submitBtnStyle?: StyleProp<ViewStyle>;
+  submit?: {
+    onSubmit?: () => void;
+    isSubmitProcessing?: boolean;
+    submitTitle?: string;
+    submitBtnStyle?: StyleProp<ViewStyle>;
+    onSubmitBtnType?: 'btn' | 'img' | 'text' | 'custom';
+    customSubmitComponent?: JSX.Element;
+    submitImage?: string;
+  };
   scrollable?: boolean;
   backgroundColor?: string;
   showBack?: boolean;
@@ -48,15 +53,12 @@ const Layout = (props: LayoutProps) => {
     titleNumberOfLines = 1,
     titleMaxLength,
     padding = 0,
-    onSubmit,
-    isSubmitProcessing = false,
-    submitTitle,
-    submitBtnStyle,
     scrollable = false,
     backgroundColor,
     showBack = false,
     refreshControl,
     navBarContainerStyle,
+    submit,
   } = props;
 
   return (
@@ -72,18 +74,15 @@ const Layout = (props: LayoutProps) => {
         keyboardVerticalOffset={isIOS ? 0 : -500}>
         <NavigationBar
           title={title}
-          submitTitle={submitTitle}
           titleCenter={titleCenter}
           titleTextStyle={titleTextStyle}
           titleNumberOfLines={titleNumberOfLines}
           titleMaxLength={titleMaxLength}
-          onSubmit={onSubmit}
-          isProcessing={isSubmitProcessing}
           backgroundColor={backgroundColor}
           showBack={showBack}
           exStyle={navBarContainerStyle}
           paddingHorizontal={padding}
-          submitBtnStyle={submitBtnStyle}
+          submit={submit}
         />
         {(scrollable && (
           <ScrollView

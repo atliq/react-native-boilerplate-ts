@@ -15,6 +15,7 @@ import { AppContext } from '@AppContext/index';
 import { CustomText } from '@CommonComponent/CustomText';
 import { ButtonComponent } from '@SubComponents/index';
 import { width } from '@Utils/Constant';
+import { getSize } from '@Utils/Helper';
 
 interface NavigationBarProps {
   title?: string;
@@ -22,23 +23,25 @@ interface NavigationBarProps {
   titleCenter?: boolean;
   titleTextStyle?: StyleProp<TextStyle>;
   titleMaxLength?: number;
-  onSubmit?: () => void;
-  isProcessing?: boolean;
-  submitTitle?: string;
   backgroundColor?: string;
   showBack?: boolean;
   exStyle?: StyleProp<ViewStyle>;
   paddingHorizontal?: number;
-  submitBtnStyle?: StyleProp<ViewStyle>;
+  submit?: {
+    onSubmit?: () => void;
+    isSubmitProcessing?: boolean;
+    submitTitle?: string;
+    submitBtnStyle?: StyleProp<ViewStyle>;
+    onSubmitBtnType?: 'btn' | 'img' | 'text' | 'custom';
+    customSubmitComponent?: JSX.Element;
+    submitImage?: string;
+  };
 }
 
 const NavigationBar = (props: NavigationBarProps) => {
   const { appTheme } = useContext(AppContext);
   const {
     title,
-    onSubmit,
-    isProcessing = false,
-    submitTitle = 'Submit',
     titleMaxLength,
     titleNumberOfLines,
     titleTextStyle,
@@ -47,8 +50,19 @@ const NavigationBar = (props: NavigationBarProps) => {
     titleCenter = false,
     showBack,
     paddingHorizontal = 0,
-    submitBtnStyle,
+    submit,
   } = props;
+
+  const {
+    onSubmit,
+    isSubmitProcessing = false,
+    submitTitle = 'Submit',
+    submitBtnStyle,
+    onSubmitBtnType = 'btn',
+    customSubmitComponent,
+    submitImage,
+  } = submit || {};
+
   const navigation = useNavigation();
 
   const renderTitle = () => (
@@ -66,19 +80,60 @@ const NavigationBar = (props: NavigationBarProps) => {
     </CustomText>
   );
 
-  const renderSubmit = () => (
-    <ButtonComponent
-      onPress={onSubmit}
-      title={submitTitle}
-      style={[
-        styles.submit,
-        titleCenter && CommonStyle.alignSelfEnd,
-        submitBtnStyle,
-      ]}
-      isProcessing={isProcessing}
-      borderRadius={5}
-    />
-  );
+  const renderSubmit = () => {
+    if (onSubmit) {
+      switch (onSubmitBtnType) {
+        case 'btn':
+          return (
+            <ButtonComponent
+              onPress={onSubmit}
+              title={submitTitle}
+              style={[
+                styles.submit,
+                titleCenter && CommonStyle.alignSelfEnd,
+                submitBtnStyle,
+              ]}
+              isProcessing={isSubmitProcessing}
+              borderRadius={5}
+            />
+          );
+        case 'custom':
+          return (
+            <View style={[titleCenter && CommonStyle.alignSelfEnd]}>
+              {customSubmitComponent}
+            </View>
+          );
+        case 'text':
+          return (
+            <CustomText
+              onPress={onSubmit}
+              style={[titleCenter && CommonStyle.alignSelfEnd, submitBtnStyle]}>
+              {submitTitle}
+            </CustomText>
+          );
+        case 'img':
+          return (
+            <Pressable
+              style={[titleCenter && CommonStyle.alignSelfEnd, submitBtnStyle]}
+              onPress={onSubmit}>
+              <Image
+                resizeMode="contain"
+                source={{ uri: submitImage }}
+                style={getSize(25)}
+              />
+            </Pressable>
+          );
+        default:
+          return null;
+      }
+    } else if (onSubmitBtnType === 'custom') {
+      return (
+        <View style={[titleCenter && CommonStyle.alignSelfEnd]}>
+          {customSubmitComponent}
+        </View>
+      );
+    }
+  };
 
   return (
     <View
@@ -108,12 +163,10 @@ const NavigationBar = (props: NavigationBarProps) => {
       )) ||
         renderTitle()}
 
-      {(onSubmit &&
-        ((titleCenter && (
-          <View style={CommonStyle.flex1}>{renderSubmit()}</View>
-        )) ||
-          renderSubmit())) ||
-        null}
+      {(titleCenter && (
+        <View style={[CommonStyle.flex1]}>{renderSubmit()}</View>
+      )) ||
+        renderSubmit()}
     </View>
   );
 };
