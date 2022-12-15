@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
 import {
   Image,
+  ImageStyle,
   Pressable,
   StyleProp,
   StyleSheet,
@@ -31,10 +32,11 @@ interface NavigationBarProps {
     onSubmit?: () => void;
     isSubmitProcessing?: boolean;
     submitTitle?: string;
-    submitBtnStyle?: StyleProp<ViewStyle>;
+    submitBtnStyle?: StyleProp<ViewStyle> | StyleProp<TextStyle>;
     onSubmitBtnType?: 'btn' | 'img' | 'text' | 'custom';
     customSubmitComponent?: JSX.Element;
     submitImage?: string;
+    submitImageStyle?: StyleProp<ImageStyle>;
   };
 }
 
@@ -61,6 +63,7 @@ const NavigationBar = (props: NavigationBarProps) => {
     onSubmitBtnType = 'btn',
     customSubmitComponent,
     submitImage,
+    submitImageStyle,
   } = submit || {};
 
   const navigation = useNavigation();
@@ -107,19 +110,25 @@ const NavigationBar = (props: NavigationBarProps) => {
           return (
             <CustomText
               onPress={onSubmit}
-              style={[titleCenter && CommonStyle.alignSelfEnd, submitBtnStyle]}>
+              style={[
+                titleCenter && CommonStyle.alignSelfEnd,
+                submitBtnStyle as StyleProp<TextStyle>,
+              ]}>
               {submitTitle}
             </CustomText>
           );
         case 'img':
           return (
             <Pressable
-              style={[titleCenter && CommonStyle.alignSelfEnd, submitBtnStyle]}
+              style={[
+                titleCenter && CommonStyle.alignSelfEnd,
+                submitBtnStyle as StyleProp<ViewStyle>,
+              ]}
               onPress={onSubmit}>
               <Image
                 resizeMode="contain"
                 source={{ uri: submitImage }}
-                style={getSize(25)}
+                style={[getSize(25), submitImageStyle]}
               />
             </Pressable>
           );
