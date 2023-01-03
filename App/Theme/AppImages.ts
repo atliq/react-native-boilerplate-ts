@@ -1,6 +1,6 @@
 const AppImages = {
   passwordOpen: 'password_open',
-  passwordClosed: 'password_closedng',
+  passwordClosed: 'password_closed',
   home: 'home',
   search: 'search',
   settings: 'settings',

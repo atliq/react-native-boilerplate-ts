@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
   alignSelf: {
     alignSelf: 'center',
   },
-  overFlowHidden: { overflow: 'hidden' },
   pressableContainer: {
     overflow: 'hidden',
     padding: 0,
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
 
 interface GradientButtonProps {
   title: string | JSX.Element;
-  onPress: Function;
+  onPress: () => void;
   exStyle?: StyleProp<ViewStyle>;
   isProcessing?: boolean;
   textOnly?: boolean;
@@ -64,13 +63,13 @@ const GradientButton = (props: GradientButtonProps) => {
         CommonStyle.shadow,
         alignSelf,
         { opacity: (isProcessing && 0.6) || 1 },
-        styles.overFlowHidden,
+        CommonStyle.overFlowHidden,
         exStyle && exStyle,
       ]}>
       <Pressable
         onPress={() => onPress()}
         disabled={isProcessing}
-        style={styles.overFlowHidden}
+        style={CommonStyle.overFlowHidden}
         android_ripple={CommonStyle.androidRipple}>
         <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
           {((!isProcessing || textOnly) && (
@@ -86,7 +85,7 @@ const GradientButton = (props: GradientButtonProps) => {
 
 interface ButtonComponentProps {
   title: string | JSX.Element;
-  onPress?: Function;
+  onPress?: () => void;
   style?: StyleProp<ViewStyle>;
   border?: string;
   backColor?: string;
@@ -94,6 +93,7 @@ interface ButtonComponentProps {
   isProcessing?: boolean;
   icon?: string;
   borderRadius?: number;
+  numberOfLines?: number;
 }
 const ButtonComponent = (props: ButtonComponentProps) => {
   const {
@@ -105,6 +105,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
     textColor,
     isProcessing,
     borderRadius = 10,
+    numberOfLines,
   } = props;
   const { outer } = styles;
   const { appTheme } = useContext(AppContext);
@@ -120,12 +121,15 @@ const ButtonComponent = (props: ButtonComponentProps) => {
             backgroundColor: backColor || appTheme.themeColor,
             borderColor: border || appTheme.border,
             borderRadius: borderRadius,
-            overflow: 'hidden',
           },
+          CommonStyle.overFlowHidden,
           style,
         ]}>
         {(!isProcessing && (
-          <CustomText large style={{ color: textColor || appTheme.tint }}>
+          <CustomText
+            large
+            numberOfLines={numberOfLines}
+            style={{ color: textColor || appTheme.tint }}>
             {title}
           </CustomText>
         )) || <ActivityIndicator color={textColor || appTheme.tint} />}

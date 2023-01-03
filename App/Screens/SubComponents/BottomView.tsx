@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 interface BottomViewProps {
   title: string | JSX.Element;
   subTitle: string | JSX.Element;
-  onSubTitle: Function;
+  onSubTitle: () => void;
   exStyle?: StyleProp<ViewStyle>;
   exTextStyle?: StyleProp<TextProps>;
 }

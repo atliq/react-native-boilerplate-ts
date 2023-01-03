@@ -17,14 +17,14 @@ import { Loading } from '@CommonComponent/Loading';
 
 interface CustomProps {
   show: boolean;
-  onClose: Function;
+  onClose: () => void;
   titleStyle?: StyleProp<TextStyle>;
   title: string;
   modalContainerStyle?: StyleProp<ViewStyle>;
   mainContainerStyle?: StyleProp<ViewStyle>;
   animationType?: 'none' | 'slide' | 'fade' | undefined;
   secondaryBtn?: {
-    onPress: Function;
+    onPress: () => void;
     title: string;
     titleStyle?: StyleProp<TextStyle>;
     style?: StyleProp<ViewStyle>;

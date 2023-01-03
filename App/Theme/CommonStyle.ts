@@ -54,6 +54,10 @@ const CommonStyle = StyleSheet.create({
     foreground: true,
   },
   flex1: { flex: 1 },
+  overFlowHidden: { overflow: 'hidden' },
+  alignSelfEnd: {
+    alignSelf: 'flex-end',
+  },
 });
 
 export default CommonStyle;

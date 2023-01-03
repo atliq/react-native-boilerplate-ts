@@ -28,7 +28,7 @@ const AssetImage = (props: AssetImageProps) => {
       return (
         <Image
           style={[styles.imageStyle, props.imageStyle]}
-          source={props.placeholder as any}
+          source={{ uri: props.placeholder }}
         />
       );
     } else {
@@ -41,7 +41,7 @@ const AssetImage = (props: AssetImageProps) => {
       return (
         <Image
           style={[styles.imageStyle, props.imageStyle]}
-          source={props.errorImage as any}
+          source={{ uri: props.errorImage }}
         />
       );
     } else {

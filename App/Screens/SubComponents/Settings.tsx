@@ -49,7 +49,7 @@ interface CustomProps {
   title: string | JSX.Element;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
-  onPress: Function;
+  onPress: (value: any) => void;
   value: any;
   isSwitch?: boolean;
   isSelected?: boolean;
@@ -85,7 +85,7 @@ const SettingRow = (props: CustomProps) => {
           null}
         {(isSelected && (
           <Image
-            source={AppImages.tick}
+            source={{ uri: AppImages.tick }}
             style={[icon, { tintColor: appTheme.themeColor }]}
           />
         )) ||

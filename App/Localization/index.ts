@@ -4,6 +4,14 @@ import { en } from '@Localization/en';
 import { de } from '@Localization/de';
 import { hi } from '@Localization/hi';
 
+export type Translation = {
+  SETTINGS: string;
+  LANGUAGE: string;
+  THEME: string;
+  DARK_MODE: string;
+  LOG_OUT: string;
+};
+
 const translations = {
   en,
   de,

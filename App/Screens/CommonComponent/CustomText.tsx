@@ -1,5 +1,10 @@
 import React, { useContext } from 'react';
-import { StyleProp, Text, TextStyle } from 'react-native';
+import {
+  GestureResponderEvent,
+  StyleProp,
+  Text,
+  TextStyle,
+} from 'react-native';
 import { fontSizes } from '@Utils/Constant';
 import { AppContext } from '@AppContext/index';
 
@@ -15,6 +20,8 @@ interface CustomProps {
   style?: StyleProp<TextStyle>;
   children: JSX.Element | string;
   numberOfLines?: number | undefined;
+  onPress?: (event: GestureResponderEvent) => void;
+  maxLength?: number;
 }
 const CustomText = (props: CustomProps) => {
   const { appTheme } = useContext(AppContext);
@@ -52,12 +59,22 @@ const CustomText = (props: CustomProps) => {
     };
   };
 
+  const renderChildren = () => {
+    if (typeof children === 'string' && props.maxLength) {
+      return (
+        (children?.length < props.maxLength && `${children}`) ||
+        `${children.substring(0, props.maxLength).trim()}...`
+      );
+    }
+    return children;
+  };
+
   return (
     <Text
       {...props}
       numberOfLines={numberOfLines}
       style={[getFontSize(), { color: appTheme.text }, style && style]}>
-      {children}
+      {renderChildren()}
     </Text>
   );
 };
