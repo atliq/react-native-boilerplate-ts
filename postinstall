@@ -1,1 +1,7 @@
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    cd ios 
+    pod install 
+    cd ..
+fi
+
 node ./moduleResolver.js

@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { ApiConfig } from '@ApiConfig/index';
 import { getItemFromStorage } from '@Utils/Storage';
-import axios from 'axios';
 
 export const isLoggedIn = async () => {
   const token = await getItemFromStorage('token');

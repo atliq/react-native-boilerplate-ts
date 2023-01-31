@@ -8,9 +8,9 @@ import {
   ViewStyle,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import CommonStyle from '@Theme/CommonStyle';
 import { CustomText } from '@CommonComponent/index';
 import { AppContext } from '@AppContext/index';
-import CommonStyle from '@Theme/CommonStyle';
 
 const styles = StyleSheet.create({
   outer: {
@@ -60,7 +60,7 @@ const GradientButton = (props: GradientButtonProps) => {
   return (
     <View
       style={[
-        CommonStyle.shadow,
+        // CommonStyle.shadow,
         alignSelf,
         { opacity: (isProcessing && 0.6) || 1 },
         CommonStyle.overFlowHidden,

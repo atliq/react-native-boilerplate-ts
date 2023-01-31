@@ -28,7 +28,7 @@ export const removeStoreItem = async (key: string) => {
   }
 };
 
-export const setObjectInStore = async (key: string, data: string) => {
+export const setObjectInStore = async (key: string, data: any) => {
   try {
     return await AsyncStorage.setItem(key, JSON.stringify(data));
   } catch (error) {

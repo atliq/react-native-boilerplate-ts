@@ -7,14 +7,15 @@ import {
   Pressable,
   Image,
 } from 'react-native';
-import { AppContext } from '@AppContext/index';
 import CommonStyle from '@Theme/CommonStyle';
+import { AppContext } from '@AppContext/index';
 import { CustomText } from '@CommonComponent/index';
 import AppImages from '@Theme/AppImages';
 import { BottomView, GradientButton } from '@SubComponents/index';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { setItemInStorage } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
+import { goToNextScreen } from '@Utils/Helper';
 
 const styles = StyleSheet.create({
   outer: {
@@ -97,20 +98,11 @@ const Login = () => {
     try {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
-      goToNextScreen(Route.HomeScreen);
+      goToNextScreen(navigation, Route.HomeScreen);
       await setItemInStorage('token', 'set login token');
     } catch (error) {
       manageProcessing(false);
     }
-  };
-
-  const goToNextScreen = (page: string) => {
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: page }],
-      }),
-    );
   };
 
   return (

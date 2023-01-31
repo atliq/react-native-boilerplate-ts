@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { SafeAreaView } from 'react-native';
-import { CustomText } from '@CommonComponent/index';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext/index';
 import Simmer from '@CommonComponent/Simmer';
+import CommonStyle from '@Theme/CommonStyle';
+import { CustomText } from '@CommonComponent/index';
+import { AppContext } from '@AppContext/index';
 
 const Search = () => {
   const { appTheme } = useContext(AppContext);

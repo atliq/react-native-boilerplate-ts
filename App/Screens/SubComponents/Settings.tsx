@@ -9,10 +9,10 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import { CustomText } from '@CommonComponent/index';
-import { AppContext } from '@AppContext/index';
 import AppImages from '@Theme/AppImages';
 import CommonStyle from '@Theme/CommonStyle';
+import { CustomText } from '@CommonComponent/index';
+import { AppContext } from '@AppContext/index';
 
 const styles = StyleSheet.create({
   outer: {

@@ -1,5 +1,5 @@
 export * from '@CommonComponent/AssetImage';
-export * from '@CommonComponent/BottommodalContainer';
+export * from '@CommonComponent/BottomModalContainer';
 export * from '@CommonComponent/CustomText';
 export * from '@CommonComponent/CustomTextInput';
 export * from '@CommonComponent/EmptyComponent';

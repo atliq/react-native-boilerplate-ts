@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { isLoggedIn } from '@Services/UserService';
 import { Route } from '@Routes/AppRoutes';
+import { goToNextScreen } from '@Utils/Helper';
 
 const Initial = () => {
   const navigation = useNavigation();
@@ -15,20 +16,12 @@ const Initial = () => {
   const isUserLogin = async () => {
     const isUserLoggedIn = await isLoggedIn();
     if (!isUserLoggedIn) {
-      goToNextScreen(Route.LoginScreen);
+      goToNextScreen(navigation, Route.LoginScreen);
       return;
     }
-    goToNextScreen(Route.HomeScreen);
+    goToNextScreen(navigation, Route.HomeScreen);
   };
 
-  const goToNextScreen = async (nextScreen: string) => {
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: nextScreen }],
-      }),
-    );
-  };
   return <View />;
 };
 
