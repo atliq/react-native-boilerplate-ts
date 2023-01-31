@@ -65,6 +65,7 @@
     "lib": [
       "es2017"
     ],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,

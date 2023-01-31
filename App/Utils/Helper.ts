@@ -1,3 +1,9 @@
+import { CommonActions } from '@react-navigation/native';
+import { ApiConfig } from '@ApiConfig/index';
+import { AxiosHeaders } from 'axios';
+import { getItemFromStorage } from '@Utils/Storage';
+import { STORAGE } from '@Utils/Enums';
+
 export const isValidPhoneNo = (phoneNo: string) => {
   const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
   return phoneNumberPattern.test(phoneNo);
@@ -50,4 +56,39 @@ export const getSize = (size: number) => {
     height: size,
     width: size,
   };
+};
+
+export const getRound = (size: number) => {
+  return {
+    height: size,
+    width: size,
+    borderRadius: size,
+  };
+};
+
+export const navigateToNextScreen = (
+  navigation: any,
+  params: { name: string; params?: any },
+) => navigation.navigate(params);
+
+export const goToNextScreen = async (navigation: any, nextScreen: string) => {
+  navigation.dispatch(
+    CommonActions.reset({
+      index: 0,
+      routes: [{ name: nextScreen }],
+    }),
+  );
+};
+
+export const getHeaders = async () => {
+  let token: string | null = ApiConfig.token;
+  if (!token) {
+    token = await getItemFromStorage(STORAGE.TOKEN);
+  }
+  const headers = new AxiosHeaders();
+
+  headers.set('Authorization', `Bearer ${token}`);
+  headers.set('Content-Type', 'application/json');
+  headers.set('Accept', 'application/json');
+  return headers;
 };

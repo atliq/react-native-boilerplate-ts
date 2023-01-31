@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { SafeAreaView, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext/index';
 import { userLogout } from '@Actions/UserActions';
 import { SettingHeader, SettingRow } from '@SubComponents/index';
 import { removeStoreItem } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
+import { goToNextScreen } from '@Utils/Helper';
 
 const LANGUAGES = [
   { title: 'Hindi', value: 'hi' },
@@ -47,12 +48,7 @@ const Settings = () => {
   };
 
   const onLogout = async () => {
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: Route.LoginScreen }],
-      }),
-    );
+    goToNextScreen(navigation, Route.LoginScreen);
     dispatch(userLogout());
     await removeStoreItem('token');
   };

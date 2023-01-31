@@ -9,30 +9,40 @@ import NetInfo, {
 } from '@react-native-community/netinfo';
 import { store, persistor } from '@Stores/index';
 import { ApiConfig } from '@ApiConfig/index';
-import { getItemFromStorage } from '@Utils/Storage';
-import { configureUrl } from '@Utils/Helper';
+import { removeStoreItem } from '@Utils/Storage';
+import { configureUrl, getHeaders } from '@Utils/Helper';
 import { AppContextProvider } from '@AppContext/index';
 import { NoConnection } from '@SubComponents/index';
 import CommonStyle from '@Theme/CommonStyle';
+import { STORAGE } from '@Utils/Enums';
 import Routes from '@Routes/index';
+import { userLogout } from '@Actions/UserActions';
 
 axios.interceptors.request.use(
   async config => {
     let request = config;
-    let token: string | null = ApiConfig.token;
-    if (!token) {
-      token = await getItemFromStorage('token');
-    }
-    request.headers = {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    };
+    request.headers = await getHeaders();
     request.url = configureUrl(config.url!);
     return request;
   },
   error => error,
 );
+
+axios.interceptors.response.use(
+  async response => response,
+  error => {
+    if (error.response.status === 401) {
+      handleInvalidToken();
+    }
+    throw error;
+  },
+);
+
+const handleInvalidToken = async () => {
+  await removeStoreItem(STORAGE.TOKEN);
+  ApiConfig.token = null as any;
+  store.dispatch(userLogout());
+};
 
 const App = () => {
   const [isConnected, setIsConnected] = useState(true);
