@@ -1,6 +1,6 @@
+import { AxiosHeaders } from 'axios';
 import { CommonActions } from '@react-navigation/native';
 import { ApiConfig } from '@ApiConfig/index';
-import { AxiosHeaders } from 'axios';
 import { getItemFromStorage } from '@Utils/Storage';
 import { STORAGE } from '@Utils/Enums';
 
