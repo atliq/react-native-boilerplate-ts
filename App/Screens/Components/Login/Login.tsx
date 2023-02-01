@@ -8,11 +8,11 @@ import {
   Image,
 } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
+import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '@AppContext/index';
 import { CustomText } from '@CommonComponent/index';
 import AppImages from '@Theme/AppImages';
 import { BottomView, GradientButton } from '@SubComponents/index';
-import { useNavigation } from '@react-navigation/native';
 import { setItemInStorage } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
 import { goToNextScreen } from '@Utils/Helper';
