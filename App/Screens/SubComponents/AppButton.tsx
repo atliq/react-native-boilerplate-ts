@@ -60,7 +60,7 @@ const GradientButton = (props: GradientButtonProps) => {
   return (
     <View
       style={[
-        // CommonStyle.shadow,
+        CommonStyle.shadow,
         alignSelf,
         { opacity: (isProcessing && 0.6) || 1 },
         CommonStyle.overFlowHidden,

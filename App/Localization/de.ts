@@ -6,7 +6,7 @@ const de: Translation = {
   THEME: 'THEMA',
   DARK_MODE: 'Dunkler Modus',
   LOG_OUT: 'Ausloggen',
-  SIGN_IN: 'Angeline',
+  SIGN_IN: 'Anmeldung',
 };
 
 export { de };
