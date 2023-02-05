@@ -9,10 +9,10 @@ import {
   ViewStyle,
 } from 'react-native';
 import React, { useContext } from 'react';
+import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext/index';
 import { CustomText } from '@CommonComponent/CustomText';
 import AppImages from '@Theme/AppImages';
-import CommonStyle from '@Theme/CommonStyle';
 import { Loading } from '@CommonComponent/Loading';
 
 interface CustomProps {

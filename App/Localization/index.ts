@@ -9,6 +9,7 @@ export type Translation = {
   LANGUAGE: string;
   THEME: string;
   DARK_MODE: string;
+  SIGN_IN: string;
   LOG_OUT: string;
 };
 

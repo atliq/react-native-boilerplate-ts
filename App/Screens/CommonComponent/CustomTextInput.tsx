@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useContext, useState } from 'react';
-import { useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   TextInput,
   StyleSheet,
@@ -14,9 +13,9 @@ import {
   TextInputSubmitEditingEventData,
   TextInputFocusEventData,
 } from 'react-native';
+import AppImages from '@Theme/AppImages';
 import { CustomText, AssetImage } from '@CommonComponent/index';
 import { AppContext } from '@AppContext/index';
-import AppImages from '@Theme/AppImages';
 import { fontSizes } from '@Utils/Constant';
 
 interface CustomTextInputProps {

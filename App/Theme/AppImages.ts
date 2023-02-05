@@ -6,8 +6,8 @@ const AppImages = {
   settings: 'settings',
   user: 'profile',
   tick: 'tick',
-  icBack: 'ic_back.png',
-  icClose: 'ic_close.png',
+  icBack: 'ic_back',
+  icClose: 'ic_close',
 };
 
 export default AppImages;

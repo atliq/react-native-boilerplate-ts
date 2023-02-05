@@ -5,6 +5,7 @@ const hi: Translation = {
   LANGUAGE: 'भाषा',
   THEME: 'थीम',
   DARK_MODE: 'डार्क मोड',
+  SIGN_IN: 'लॉग इन',
   LOG_OUT: 'लॉग आउट',
 };
 

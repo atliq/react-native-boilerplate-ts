@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
+import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext/index';
 import { AssetImage, CustomText, NetworkImage } from '@CommonComponent/index';
 import { ButtonComponent } from '@SubComponents/index';
-import AppImages from '@Theme/AppImages';
 
 const styles = StyleSheet.create({
   btnTitle: {
