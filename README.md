@@ -83,13 +83,13 @@ root
 
 <br>
 <p align="center">
-  <img alt="Image Capture" src="https://iili.io/H1D2Q6v.png" width="28%"
+  <img alt="Image Capture" src="https://iili.io/H1D2Q6v.png" width="25%"
   >
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Image Capture" src="https://iili.io/H1DFNrx.png" width="28%"
+  <img alt="Image Capture" src="https://iili.io/H1DFNrx.png" width="25%"
   >
   &nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Image Capture" src="https://iili.io/H1DKr92.png" width="28%"
+  <img alt="Image Capture" src="https://iili.io/H1DKr92.png" width="25%"
   >
 </p>
 
