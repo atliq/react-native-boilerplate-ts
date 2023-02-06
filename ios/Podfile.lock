@@ -407,6 +407,8 @@ PODS:
     - React-Core
   - RNCMaskedView (0.2.8):
     - React-Core
+  - RNDeviceInfo (10.3.0):
+    - React-Core
   - RNFastImage (8.6.3):
     - React-Core
     - SDWebImage (~> 5.11.1)
@@ -495,6 +497,7 @@ DEPENDENCIES:
   - ReactNativeLocalization (from `../node_modules/react-native-localization`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNLocalize (from `../node_modules/react-native-localize`)
@@ -603,6 +606,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-masked-view/masked-view"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
   RNGestureHandler:
@@ -669,6 +674,7 @@ SPEC CHECKSUMS:
   ReactNativeLocalization: 076497d7ca70341c751cd3b3e7c86187332a182d
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
   RNCMaskedView: bc0170f389056201c82a55e242e5d90070e18e5a
+  RNDeviceInfo: 4701f0bf2a06b34654745053db0ce4cb0c53ada7
   RNFastImage: 5c9c9fed9c076e521b3f509fe79e790418a544e8
   RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   RNLocalize: 0df7970cfc60389f00eb62fd7c097dc75af3fb4f

@@ -1,5 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { SafeAreaView, Alert } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import {
+  SafeAreaView,
+  Alert,
+  DeviceEventEmitter,
+  EmitterSubscription,
+  StyleSheet,
+} from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import CommonStyle from '@Theme/CommonStyle';
@@ -8,13 +14,24 @@ import { userLogout } from '@Actions/UserActions';
 import { SettingHeader, SettingRow } from '@SubComponents/index';
 import { removeStoreItem } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
-import { goToNextScreen } from '@Utils/Helper';
+import { getVersionName, goToNextScreen } from '@Utils/Helper';
+import { CustomText } from '@CommonComponent/index';
+import { Authentication, ThemeEnums } from '@Utils/Enums';
 
 const LANGUAGES = [
   { title: 'Hindi', value: 'hi' },
   { title: 'English', value: 'en' },
   { title: 'German', value: 'de' },
 ];
+
+const styles = StyleSheet.create({
+  versionText: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 20,
+    fontStyle: 'italic',
+  },
+});
 
 const Settings = () => {
   const { appTheme, setAppTheme, appLanguage, setAppLanguage, translations } =
@@ -23,8 +40,12 @@ const Settings = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
+  const { versionText } = styles;
+
+  let isLogout: EmitterSubscription | null = null;
+
   const onValueChange = () => {
-    setAppTheme((!darkMode && 'dark') || 'light');
+    setAppTheme((!darkMode && ThemeEnums.DARK) || ThemeEnums.LIGHT);
     setDarkMode(!darkMode);
   };
 
@@ -50,12 +71,24 @@ const Settings = () => {
   const onLogout = async () => {
     goToNextScreen(navigation, Route.LoginScreen);
     dispatch(userLogout());
-    await removeStoreItem('token');
+    await removeStoreItem(Authentication.TOKEN);
   };
 
   const onSelectLanguage = (value?: any) => {
     setAppLanguage(value);
   };
+
+  useEffect(() => {
+    // getAppVersion();
+    if (isLogout) {
+      isLogout.remove();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    isLogout = DeviceEventEmitter.addListener(
+      Authentication.REDIRECT_LOGIN,
+      onLogout,
+    );
+  }, []);
 
   return (
     <SafeAreaView
@@ -87,6 +120,9 @@ const Settings = () => {
         value={darkMode}
         textStyle={{ color: appTheme.red }}
       />
+      <CustomText xlarge style={[versionText, { color: appTheme.text }]}>
+        {getVersionName()}
+      </CustomText>
     </SafeAreaView>
   );
 };

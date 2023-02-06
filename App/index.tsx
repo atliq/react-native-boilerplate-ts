@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { DeviceEventEmitter, View } from 'react-native';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -15,8 +15,7 @@ import { configureUrl, getHeaders } from '@Utils/Helper';
 import { AppContextProvider } from '@AppContext/index';
 import { NoConnection } from '@SubComponents/index';
 import CommonStyle from '@Theme/CommonStyle';
-import { STORAGE } from '@Utils/Enums';
-import { userLogout } from '@Actions/UserActions';
+import { Authentication } from '@Utils/Enums';
 
 axios.interceptors.request.use(
   async config => {
@@ -39,9 +38,9 @@ axios.interceptors.response.use(
 );
 
 const handleInvalidToken = async () => {
-  await removeStoreItem(STORAGE.TOKEN);
+  await removeStoreItem(Authentication.TOKEN);
   ApiConfig.token = null as any;
-  store.dispatch(userLogout());
+  DeviceEventEmitter.emit(Authentication.REDIRECT_LOGIN);
 };
 
 const App = () => {

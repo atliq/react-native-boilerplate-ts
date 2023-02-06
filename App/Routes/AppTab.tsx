@@ -3,7 +3,6 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-// import { ParamListBase, RouteProp } from '@react-navigation/native';
 import Home from '@Components/Home/Home';
 import Search from '@Components/Search/Search';
 import Users from '@Components/User/User';
@@ -73,6 +72,7 @@ const AppTab = () => {
             options={(): BottomTabNavigationOptions => {
               return {
                 headerShown: false,
+                // eslint-disable-next-line react/no-unstable-nested-components
                 tabBarIcon: ({ focused, size }) => (
                   <AssetImage
                     resizeMode={'contain'}
