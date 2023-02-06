@@ -57,9 +57,7 @@ const Users = () => {
         onPress={() => null}
       />
       <NetworkImage
-        source={
-          'https://www.tompetty.com/sites/g/files/g2000007521/f/Sample-image10-highres.jpg'
-        }
+        source={'https://iili.io/H1D3eDX.jpg'}
       />
       <AssetImage source={AppImages.search} />
     </SafeAreaView>
