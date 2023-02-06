@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { StatusBar, StatusBarStyle, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import CommonStyle from '@Theme/CommonStyle';
 import { Route, Routes } from '@Routes/AppRoutes';
 import { AppContext } from '@AppContext/index';
-import CommonStyle from '@Theme/CommonStyle';
+import { ThemeEnums } from '@Utils/Enums';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,14 @@ const App = () => {
         backgroundColor={appTheme.background}
         barStyle={appTheme.statusBar as StatusBarStyle}
       />
-      <NavigationContainer>
+      <NavigationContainer
+        theme={{
+          dark: (appTheme.type === ThemeEnums.DARK && true) || false,
+          colors: {
+            ...DefaultTheme.colors,
+            background: appTheme.background,
+          },
+        }}>
         <Stack.Navigator
           initialRouteName={Route.Initial}
           screenOptions={({}) => ({

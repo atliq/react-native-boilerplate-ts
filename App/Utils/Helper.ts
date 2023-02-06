@@ -1,12 +1,19 @@
+import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
 import { CommonActions } from '@react-navigation/native';
 import { ApiConfig } from '@ApiConfig/index';
 import { getItemFromStorage } from '@Utils/Storage';
-import { STORAGE } from '@Utils/Enums';
+import { Authentication } from '@Utils/Enums';
 
 export const isValidPhoneNo = (phoneNo: string) => {
   const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
   return phoneNumberPattern.test(phoneNo);
+};
+
+export const getVersionName = () => {
+  const buildNumber = DeviceInfo.getBuildNumber();
+  const versionName = DeviceInfo.getVersion();
+  return `v${versionName} (${buildNumber})`;
 };
 
 export const isValidEmail = (email: string) => {
@@ -83,7 +90,7 @@ export const goToNextScreen = async (navigation: any, nextScreen: string) => {
 export const getHeaders = async () => {
   let token: string | null = ApiConfig.token;
   if (!token) {
-    token = await getItemFromStorage(STORAGE.TOKEN);
+    token = await getItemFromStorage(Authentication.TOKEN);
   }
   const headers = new AxiosHeaders();
 

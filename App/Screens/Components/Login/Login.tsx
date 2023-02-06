@@ -16,6 +16,7 @@ import { BottomView, GradientButton } from '@SubComponents/index';
 import { setItemInStorage } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
 import { goToNextScreen } from '@Utils/Helper';
+import { Authentication } from '@Utils/Enums';
 
 const styles = StyleSheet.create({
   outer: {
@@ -99,7 +100,7 @@ const Login = () => {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
       goToNextScreen(navigation, Route.HomeScreen);
-      await setItemInStorage('token', 'set login token');
+      await setItemInStorage(Authentication.TOKEN, 'set login token');
     } catch (error) {
       manageProcessing(false);
     }
