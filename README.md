@@ -79,3 +79,15 @@ root
 
 <br/>
 
+## Predefined UI
+
+<br>
+<p align="center">
+  <img alt="Image Capture" src="https://freeimage.host/i/H1tbhSn" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Video Capture" src="https://freeimage.host/i/H1tbvol" width="45%">
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Video Capture" src="https://freeimage.host/i/H1tbet4" width="45%">
+</p>
+
+<br>
