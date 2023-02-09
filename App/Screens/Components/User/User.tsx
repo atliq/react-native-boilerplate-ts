@@ -56,9 +56,7 @@ const Users = () => {
         style={btnBorder}
         onPress={() => null}
       />
-      <NetworkImage
-        source={'https://iili.io/H1D3eDX.jpg'}
-      />
+      <NetworkImage source={'https://iili.io/H1D3eDX.jpg'} />
       <AssetImage source={AppImages.search} />
     </SafeAreaView>
   );
