@@ -22,4 +22,4 @@ const EmptyComponent = (props: CustomProps) => {
   );
 };
 
-export default EmptyComponent;
+export { EmptyComponent };
