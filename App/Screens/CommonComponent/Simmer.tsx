@@ -87,6 +87,7 @@ export default function Simmer({
 
           let style = {};
           if (child.type && child.type.displayName === 'SkeletonItem') {
+            // eslint-disable-next-line @typescript-eslint/no-shadow
             const { children, ...styles } = child.props;
             style = styles;
           } else if (child.props && child.props.style) {

@@ -61,6 +61,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+    "resolveJsonModule": true,
     "jsx": "react-native",
     "lib": [
       "es2017"
