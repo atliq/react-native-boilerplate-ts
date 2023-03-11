@@ -25,6 +25,7 @@ const checkDeep = fPath => {
 let paths = { ...extraPaths };
 modules.forEach(module => {
   const { path, target } = checkDeep(module);
+  paths[`@${target}`] = [`${root}/${base}/${path}/index`];
   paths[`@${target}/*`] = [`${root}/${base}/${path}/*`];
 });
 tsConf.compilerOptions.paths = paths;
