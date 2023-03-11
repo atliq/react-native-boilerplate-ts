@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import AppImages from '@Theme/AppImages';
 import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent/CustomText';
-import { ButtonComponent } from '@SubComponents/index';
+import { ButtonComponent } from '@SubComponents';
 import { width } from '@Utils/Constant';
 import { getSize } from '@Utils/Helper';
 

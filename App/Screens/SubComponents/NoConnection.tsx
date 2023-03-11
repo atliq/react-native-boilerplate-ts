@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext/index';
-import { CustomText } from '@CommonComponent/index';
-import { ButtonComponent } from '@SubComponents/index';
+import { AppContext } from '@AppContext';
+import { CustomText } from '@CommonComponent';
+import { ButtonComponent } from '@SubComponents';
 
 const styles = StyleSheet.create({
   outer: {

@@ -11,8 +11,8 @@ import {
 } from 'react-native';
 import AppImages from '@Theme/AppImages';
 import CommonStyle from '@Theme/CommonStyle';
-import { CustomText } from '@CommonComponent/index';
-import { AppContext } from '@AppContext/index';
+import { CustomText } from '@CommonComponent';
+import { AppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
   outer: {

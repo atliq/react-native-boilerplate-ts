@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Settings from '@Components/Settings/Settings';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 
 const Stack = createStackNavigator();
 

@@ -7,7 +7,7 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native';
-import { CustomText } from '@CommonComponent/index';
+import { CustomText } from '@CommonComponent';
 
 interface TouchableTextProps {
   onPress: (event: GestureResponderEvent) => void;

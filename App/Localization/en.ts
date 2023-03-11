@@ -1,4 +1,4 @@
-import { Translation } from '@Localization/index';
+import { Translation } from '@Localization';
 
 const en: Translation = {
   SETTINGS: 'Settings',

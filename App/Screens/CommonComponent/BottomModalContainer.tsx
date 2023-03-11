@@ -9,11 +9,10 @@ import {
   ViewStyle,
 } from 'react-native';
 import React, { useContext } from 'react';
+import { CustomText, Loading } from '@CommonComponent';
 import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext/index';
-import { CustomText } from '@CommonComponent/CustomText';
+import { AppContext } from '@AppContext';
 import AppImages from '@Theme/AppImages';
-import { Loading } from '@CommonComponent/Loading';
 
 interface CustomProps {
   show: boolean;
@@ -133,4 +132,4 @@ const styles = StyleSheet.create({
   boldFont: { fontWeight: 'bold' },
 });
 
-export default BottomModalContainer;
+export { BottomModalContainer };

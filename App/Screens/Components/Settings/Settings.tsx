@@ -9,13 +9,13 @@ import {
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 import { userLogout } from '@Actions/UserActions';
-import { SettingHeader, SettingRow } from '@SubComponents/index';
+import { SettingHeader, SettingRow } from '@SubComponents';
 import { removeStoreItem } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
 import { getVersionName, goToNextScreen } from '@Utils/Helper';
-import { CustomText } from '@CommonComponent/index';
+import { CustomText } from '@CommonComponent';
 import { Authentication, ThemeEnums } from '@Utils/Enums';
 
 const LANGUAGES = [

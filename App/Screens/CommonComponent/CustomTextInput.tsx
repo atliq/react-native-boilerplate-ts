@@ -14,8 +14,8 @@ import {
   TextInputFocusEventData,
 } from 'react-native';
 import AppImages from '@Theme/AppImages';
-import { CustomText, AssetImage } from '@CommonComponent/index';
-import { AppContext } from '@AppContext/index';
+import { CustomText, AssetImage } from '@CommonComponent';
+import { AppContext } from '@AppContext';
 import { fontSizes } from '@Utils/Constant';
 
 interface CustomTextInputProps {

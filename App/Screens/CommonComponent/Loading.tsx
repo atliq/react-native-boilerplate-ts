@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ActivityIndicator, StyleProp, ViewStyle } from 'react-native';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 
 interface LoadingProps {
   size?: number | 'small' | 'large' | undefined;

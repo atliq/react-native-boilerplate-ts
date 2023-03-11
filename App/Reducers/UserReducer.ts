@@ -1,5 +1,5 @@
-import { SET_USER } from '@Keys/index';
-import DefaultState from '@Default/index';
+import { SET_USER } from '@Keys';
+import DefaultState from '@Default';
 import { UserDefault } from '@Default/UserDefault';
 
 const INIT_STATE = DefaultState.user;

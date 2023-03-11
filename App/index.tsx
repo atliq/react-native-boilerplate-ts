@@ -7,13 +7,13 @@ import NetInfo, {
   NetInfoState,
   NetInfoSubscription,
 } from '@react-native-community/netinfo';
-import Routes from '@Routes/index';
-import { store, persistor } from '@Stores/index';
-import { ApiConfig } from '@ApiConfig/index';
+import Routes from '@Routes';
+import { store, persistor } from '@Stores';
+import { ApiConfig } from '@ApiConfig';
 import { removeStoreItem } from '@Utils/Storage';
 import { configureUrl, getHeaders } from '@Utils/Helper';
-import { AppContextProvider } from '@AppContext/index';
-import { NoConnection } from '@SubComponents/index';
+import { AppContextProvider } from '@AppContext';
+import { NoConnection } from '@SubComponents';
 import CommonStyle from '@Theme/CommonStyle';
 import { Authentication } from '@Utils/Enums';
 
