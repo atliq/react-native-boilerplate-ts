@@ -8,50 +8,98 @@
       "redux": [
         "./node_modules/redux"
       ],
+      "@Actions": [
+        "./App/Actions/index"
+      ],
       "@Actions/*": [
         "./App/Actions/*"
+      ],
+      "@Keys": [
+        "./App/Actions/Keys/index"
       ],
       "@Keys/*": [
         "./App/Actions/Keys/*"
       ],
+      "@ApiConfig": [
+        "./App/ApiConfig/index"
+      ],
       "@ApiConfig/*": [
         "./App/ApiConfig/*"
+      ],
+      "@AppContext": [
+        "./App/AppContext/index"
       ],
       "@AppContext/*": [
         "./App/AppContext/*"
       ],
+      "@Reducers": [
+        "./App/Reducers/index"
+      ],
       "@Reducers/*": [
         "./App/Reducers/*"
+      ],
+      "@Default": [
+        "./App/Reducers/Default/index"
       ],
       "@Default/*": [
         "./App/Reducers/Default/*"
       ],
+      "@Routes": [
+        "./App/Routes/index"
+      ],
       "@Routes/*": [
         "./App/Routes/*"
+      ],
+      "@Sagas": [
+        "./App/Sagas/index"
       ],
       "@Sagas/*": [
         "./App/Sagas/*"
       ],
+      "@Components": [
+        "./App/Screens/Components/index"
+      ],
       "@Components/*": [
         "./App/Screens/Components/*"
+      ],
+      "@CommonComponent": [
+        "./App/Screens/CommonComponent/index"
       ],
       "@CommonComponent/*": [
         "./App/Screens/CommonComponent/*"
       ],
+      "@SubComponents": [
+        "./App/Screens/SubComponents/index"
+      ],
       "@SubComponents/*": [
         "./App/Screens/SubComponents/*"
+      ],
+      "@Stores": [
+        "./App/Stores/index"
       ],
       "@Stores/*": [
         "./App/Stores/*"
       ],
+      "@Theme": [
+        "./App/Theme/index"
+      ],
       "@Theme/*": [
         "./App/Theme/*"
+      ],
+      "@Services": [
+        "./App/Services/index"
       ],
       "@Services/*": [
         "./App/Services/*"
       ],
+      "@Utils": [
+        "./App/Utils/index"
+      ],
       "@Utils/*": [
         "./App/Utils/*"
+      ],
+      "@Localization": [
+        "./App/Localization/index"
       ],
       "@Localization/*": [
         "./App/Localization/*"

@@ -1,7 +1,7 @@
 import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
 import { CommonActions } from '@react-navigation/native';
-import { ApiConfig } from '@ApiConfig/index';
+import { ApiConfig } from '@ApiConfig';
 import { getItemFromStorage } from '@Utils/Storage';
 import { Authentication } from '@Utils/Enums';
 

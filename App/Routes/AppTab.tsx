@@ -8,9 +8,9 @@ import Search from '@Components/Search/Search';
 import Users from '@Components/User/User';
 import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 import ThemeColor from '@Theme/Colors';
-import { AssetImage } from '@CommonComponent/index';
+import { AssetImage } from '@CommonComponent';
 
 const Tab = createBottomTabNavigator();
 

@@ -13,8 +13,8 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { isIOS } from '@Utils/Constant';
-import { AppContext } from '@AppContext/index';
-import { NavigationBar } from '@CommonComponent/NavigationBar';
+import { AppContext } from '@AppContext';
+import { NavigationBar } from '@CommonComponent';
 import CommonStyle from '@Theme/CommonStyle';
 
 interface LayoutProps {

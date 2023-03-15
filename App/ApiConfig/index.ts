@@ -1,8 +1,8 @@
 import Config from 'react-native-config';
 
-const productionUrl = Config.API_URL;
+const productionUrl = Config.API_URL!;
 
-const developmentUrl = Config.API_TEST_URL;
+const developmentUrl = Config.API_TEST_URL!;
 
 const ENVIRONMENT = {
   PROD: 'PROD',

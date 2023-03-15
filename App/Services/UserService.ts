@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ApiConfig } from '@ApiConfig/index';
+import { ApiConfig } from '@ApiConfig';
 import { getItemFromStorage } from '@Utils/Storage';
 import { Authentication } from '@Utils/Enums';
 

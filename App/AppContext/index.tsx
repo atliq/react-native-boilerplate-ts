@@ -2,11 +2,8 @@ import React, { Context, createContext, useEffect, useState } from 'react';
 import { Appearance } from 'react-native';
 import { omit } from 'lodash';
 import * as RNLocalize from 'react-native-localize';
-import translations, {
-  DEFAULT_LANGUAGE,
-  Translation,
-} from '@Localization/index';
-import { AppThemeType, DEFAULT_THEME, Theme, ThemeType } from '@Theme/index';
+import translations, { DEFAULT_LANGUAGE, Translation } from '@Localization';
+import { AppThemeType, DEFAULT_THEME, Theme, ThemeType } from '@Theme';
 import { setItemInStorage, getItemFromStorage } from '@Utils/Storage';
 
 const APP_LANGUAGE = 'appLanguage';

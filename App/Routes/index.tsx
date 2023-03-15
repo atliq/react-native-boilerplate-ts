@@ -4,7 +4,7 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CommonStyle from '@Theme/CommonStyle';
 import { Route, Routes } from '@Routes/AppRoutes';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 import { ThemeEnums } from '@Utils/Enums';
 
 const Stack = createStackNavigator();

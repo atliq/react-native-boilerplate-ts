@@ -6,7 +6,7 @@ import {
   TextStyle,
 } from 'react-native';
 import { fontSizes } from '@Utils/Constant';
-import { AppContext } from '@AppContext/index';
+import { AppContext } from '@AppContext';
 
 interface CustomProps {
   size?: number;

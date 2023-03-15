@@ -35,7 +35,7 @@ interface SimmerProps {
   speed?: number;
 }
 
-export default function Simmer({
+export function Simmer({
   children,
   backgroundColor,
   speed,
