@@ -10,7 +10,19 @@
     "test": "jest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "bundle-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
+    "bundle-ios": "npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle",
+    "release-ios-changelog": "yarn install && yarn run generate-changelog && fastlane ios beta",
+    "release-android-changelog": "yarn install && yarn run generate-changelog && fastlane android beta",
+    "release-ios-changelog-bump": "yarn install && yarn run generate-changelog-bump && fastlane ios beta",
+    "release-android-changelog-bump": "yarn install && yarn run generate-changelog-bump && fastlane android beta",
+    "generate-changelog": "fastlane changelog build_changelog bump_type:\"patch\"",
+    "generate-changelog-bump": "fastlane changelog build_changelog",
+    "release-ios": "yarn install && fastlane ios beta",
+    "release-android": "yarn install && fastlane android beta",
+    "release": "yarn run generate-changelog && yarn run release-android && yarn run release-ios",
+    "release-bump": "yarn run generate-changelog-bump && yarn run release-android && yarn run release-ios"
   },
   "dependencies": {
     "@react-native-community/netinfo": "^9.3.7",

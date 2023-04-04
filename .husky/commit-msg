@@ -3,7 +3,7 @@
 
 COMMIT_MSG=`cat $1`
 TEST=`head $INPUT_FILE`
-PATTERN="((Added|Removed|Deprecated|Fixed|Security|Changed): .{5}(.|\n)*|Merge)"
+PATTERN="((Added|Removed|Deprecated|Fixed|Security|Changed|Released): .{5}(.|\n)*|Merge)"
 echo "Checking commit message:" $COMMIT_MSG
 
 if ! [[ "$COMMIT_MSG" =~ $PATTERN ]]; then
@@ -15,6 +15,7 @@ if ! [[ "$COMMIT_MSG" =~ $PATTERN ]]; then
 		Removed: for now removed features.
 		Fixed: for any bug fixes.
 		Security: in case of vulnerabilities.
+		Released: for new releases.
 	Eg: ('Added: minimum five characters in message')"
   exit 1
 fi
