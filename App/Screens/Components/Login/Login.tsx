@@ -95,12 +95,12 @@ const Login = () => {
     });
   };
 
-  const onLogin = async () => {
+  const onLogin = () => {
     try {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
       goToNextScreen(navigation, Route.HomeScreen);
-      await setItemInStorage(Authentication.TOKEN, 'set login token');
+      setItemInStorage(Authentication.TOKEN, 'set login token');
     } catch (error) {
       manageProcessing(false);
     }

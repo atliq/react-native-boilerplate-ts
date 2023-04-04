@@ -1,16 +1,25 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Config from 'react-native-config';
+import { MMKV } from 'react-native-mmkv';
 
-export const setItemInStorage = async (key: string, data: string) => {
+export const storage = new MMKV({
+  id: Config.STORAGE_ID || 'react-native-boilerplate-ts',
+  encryptionKey: Config.STORAGE_KEY || '',
+});
+
+export const setItemInStorage = (
+  key: string,
+  data: string | number | boolean,
+) => {
   try {
-    return await AsyncStorage.setItem(key, data);
+    return storage.set(key, data);
   } catch (error) {
     return null;
   }
 };
 
-export const getItemFromStorage = async (key: string) => {
+export const getItemFromStorage = (key: string) => {
   try {
-    const value = await AsyncStorage.getItem(key);
+    const value = storage.getString(key);
     if (value) {
       return value;
     }
@@ -20,25 +29,49 @@ export const getItemFromStorage = async (key: string) => {
   }
 };
 
-export const removeStoreItem = async (key: string) => {
+export const getNumberFromStorage = (key: string) => {
   try {
-    return await AsyncStorage.removeItem(key);
+    const value = storage.getNumber(key);
+    if (value) {
+      return value;
+    }
+    return null;
   } catch (error) {
     return null;
   }
 };
 
-export const setObjectInStore = async (key: string, data: any) => {
+export const getBoolFromStorage = (key: string) => {
   try {
-    return await AsyncStorage.setItem(key, JSON.stringify(data));
+    const value = storage.getBoolean(key);
+    if (value) {
+      return value;
+    }
+    return null;
   } catch (error) {
     return null;
   }
 };
 
-export const getObjectFromStore = async (key: string) => {
+export const removeStoreItem = (key: string) => {
   try {
-    const value = await AsyncStorage.getItem(key);
+    return storage.delete(key);
+  } catch (error) {
+    return null;
+  }
+};
+
+export const setObjectInStore = (key: string, data: any) => {
+  try {
+    return storage.set(key, JSON.stringify(data));
+  } catch (error) {
+    return null;
+  }
+};
+
+export const getObjectFromStore = (key: string) => {
+  try {
+    const value = storage.getString(key);
     if (value) {
       return JSON.parse(value);
     }
@@ -48,18 +81,9 @@ export const getObjectFromStore = async (key: string) => {
   }
 };
 
-//KEPT THE TYPE ANY FOR NOW. CHANGE ACCORDINGLY
-export const storeMultiDelete = async (keyArray: any) => {
+export const clearStorage = () => {
   try {
-    return await AsyncStorage.multiRemove(keyArray);
-  } catch (error) {
-    return null;
-  }
-};
-
-export const clearStorage = async () => {
-  try {
-    return await AsyncStorage.clear();
+    return storage.clearAll();
   } catch (error: any) {
     return null;
   }

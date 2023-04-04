@@ -18,9 +18,9 @@ import CommonStyle from '@Theme/CommonStyle';
 import { Authentication } from '@Utils/Enums';
 
 axios.interceptors.request.use(
-  async config => {
+  config => {
     let request = config;
-    request.headers = await getHeaders();
+    request.headers = getHeaders();
     request.url = configureUrl(config.url!);
     return request;
   },
@@ -37,8 +37,8 @@ axios.interceptors.response.use(
   },
 );
 
-const handleInvalidToken = async () => {
-  await removeStoreItem(Authentication.TOKEN);
+const handleInvalidToken = () => {
+  removeStoreItem(Authentication.TOKEN);
   ApiConfig.token = null as any;
   DeviceEventEmitter.emit(Authentication.REDIRECT_LOGIN);
 };

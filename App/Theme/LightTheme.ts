@@ -17,6 +17,8 @@ const LightTheme = {
   red: 'red',
   transparent: 'transparent',
   textBorder: ThemeColor.lightGray4,
+  gray: ThemeColor.gray,
+  overlay: ThemeColor.overlay,
 };
 
 export default LightTheme;

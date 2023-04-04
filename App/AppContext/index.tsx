@@ -55,8 +55,8 @@ export const AppContextProvider = (props: CustomProps) => {
     setItemInStorage(APP_LANGUAGE, language!);
   };
 
-  const initializeAppLanguage = async (languageCode = null) => {
-    const currentLanguage = await getItemFromStorage(APP_LANGUAGE);
+  const initializeAppLanguage = (languageCode = null) => {
+    const currentLanguage = getItemFromStorage(APP_LANGUAGE);
     if (!currentLanguage && !languageCode) {
       let localeCode = DEFAULT_LANGUAGE;
       const supportedLocaleCodes = translations.getAvailableLanguages();
@@ -85,8 +85,8 @@ export const AppContextProvider = (props: CustomProps) => {
     setItemInStorage(APP_THEME, theme!);
   };
 
-  const initializeAppTheme = async (themeType?: string) => {
-    const currentTheme = await getItemFromStorage(APP_THEME);
+  const initializeAppTheme = (themeType?: string) => {
+    const currentTheme = getItemFromStorage(APP_THEME);
     if (!currentTheme && !themeType) {
       const colorScheme = Appearance.getColorScheme();
       setAppTheme((colorScheme && colorScheme) || DEFAULT_THEME);

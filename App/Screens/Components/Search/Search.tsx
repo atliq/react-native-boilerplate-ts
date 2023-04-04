@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { SafeAreaView } from 'react-native';
-import { Simmer } from '@CommonComponent';
 import CommonStyle from '@Theme/CommonStyle';
 import { CustomText } from '@CommonComponent';
 import { AppContext } from '@AppContext';
@@ -18,30 +17,6 @@ const Search = () => {
       <CustomText xlarge style={{ color: appTheme.text }}>
         Search Tab
       </CustomText>
-      <Simmer>
-        <Simmer.Item flexDirection={'row'} marginTop={30}>
-          <Simmer.Item
-            height={70}
-            width={70}
-            marginRight={20}
-            borderRadius={5}
-          />
-          <Simmer.Item flexDirection={'column'} marginTop={10}>
-            <Simmer.Item
-              height={20}
-              width={250}
-              alignSelf={'center'}
-              borderRadius={20}
-            />
-            <Simmer.Item
-              height={20}
-              width={200}
-              borderRadius={20}
-              marginTop={10}
-            />
-          </Simmer.Item>
-        </Simmer.Item>
-      </Simmer>
     </SafeAreaView>
   );
 };

@@ -1,16 +1,31 @@
 import { createStore, applyMiddleware } from 'redux';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import createSagaMiddleware from 'redux-saga';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore, persistReducer, Storage } from 'redux-persist';
 import Reducer from '@Reducers';
 import rootSaga from '@Sagas';
 import DefaultState from '@Default';
 import { LOG_OUT } from '@Keys';
+import { storage } from '@Utils/Storage';
+
+export const reduxStorage: Storage = {
+  setItem: (key, value) => {
+    storage.set(key, value);
+    return Promise.resolve(true);
+  },
+  getItem: key => {
+    const value = storage.getString(key);
+    return Promise.resolve(value);
+  },
+  removeItem: key => {
+    storage.delete(key);
+    return Promise.resolve();
+  },
+};
 
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage,
+  storage: reduxStorage,
 };
 
 const rootReducer = (state: any, action: any) => {

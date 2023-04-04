@@ -2,8 +2,12 @@ import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
 import { CommonActions } from '@react-navigation/native';
 import { ApiConfig } from '@ApiConfig';
-import { getItemFromStorage } from '@Utils/Storage';
+import { getItemFromStorage, removeStoreItem } from '@Utils/Storage';
 import { Authentication } from '@Utils/Enums';
+import { Route } from '@Routes/AppRoutes';
+import { store } from '@Stores';
+import { userLogout } from '@Actions/UserActions';
+import { Linking } from 'react-native';
 
 export const isValidPhoneNo = (phoneNo: string) => {
   const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
@@ -87,10 +91,10 @@ export const goToNextScreen = async (navigation: any, nextScreen: string) => {
   );
 };
 
-export const getHeaders = async () => {
+export const getHeaders = () => {
   let token: string | null = ApiConfig.token;
   if (!token) {
-    token = await getItemFromStorage(Authentication.TOKEN);
+    token = getItemFromStorage(Authentication.TOKEN);
   }
   const headers = new AxiosHeaders();
 
@@ -98,4 +102,46 @@ export const getHeaders = async () => {
   headers.set('Content-Type', 'application/json');
   headers.set('Accept', 'application/json');
   return headers;
+};
+
+export const onLogout = (navigation: any) => {
+  goToNextScreen(navigation, Route.LoginScreen);
+  store.dispatch(userLogout());
+  removeStoreItem(Authentication.TOKEN);
+};
+
+export const compareAppVersions = ({
+  version,
+  minimumVersion,
+}: {
+  version: string;
+  minimumVersion: string;
+}) => {
+  const currentVersion = version?.split(' ')[0].split('v')[1]; // v1.0.0
+  let minRequiredVersion = minimumVersion?.split('v')[1]!; // v1.0.2
+  if (!minRequiredVersion?.length) {
+    return false;
+  }
+  const currentVersionArray = currentVersion.split('.');
+  const minRequiredVersionArray = minRequiredVersion.split('.');
+  for (let i = 0; i < currentVersionArray.length; i++) {
+    if (Number(currentVersionArray[i]) < Number(minRequiredVersionArray[i])) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const openLink = async (url: string, checkUrl = true) => {
+  try {
+    let canOpenUrl = true;
+    if (checkUrl) {
+      canOpenUrl = await Linking.canOpenURL(url);
+    }
+    if (canOpenUrl) {
+      await Linking.openURL(url);
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };

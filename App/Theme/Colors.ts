@@ -5,7 +5,7 @@ const ThemeColor = {
   light: '#DAE1E7',
   dark: '#444',
   black: '#000',
-  gray: '#8e8e93',
+  gray: '#999999',
   gray2: '#636366',
   gray3: '#48484a',
   gray4: '#3a3a3c',
@@ -18,6 +18,7 @@ const ThemeColor = {
   lightGray5: '#e5e5ea',
   lightGray6: '#f2f2f7',
   gradient: ['#1FA2FF', '#12D8FA'],
+  overlay: 'rgba(0,0,0,0.7)',
 };
 
 export default ThemeColor;
