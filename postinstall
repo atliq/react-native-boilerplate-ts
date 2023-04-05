@@ -5,3 +5,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 node ./moduleResolver.js
+node ./env.config/env.config.js

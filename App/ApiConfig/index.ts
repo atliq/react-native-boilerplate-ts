@@ -9,23 +9,17 @@ const ENVIRONMENT = {
   DEV: 'DEV',
 };
 
-const currentEnv = ENVIRONMENT.DEV;
+const currentEnv = Config.ENVIRONMENT || 'DEV';
 
 const baseUrl =
   (currentEnv === ENVIRONMENT.PROD && productionUrl) || developmentUrl;
 
 const baseUrlApi = `${baseUrl}api/`;
 
-let ApiConfig: {
-  baseUrl: string;
-  baseUrlApi: string;
-  token: null | string;
-  login: string;
-  user: string;
-} = {
+let ApiConfig = {
   baseUrl,
   baseUrlApi,
-  token: null,
+  token: null as string | null,
   login: `${baseUrlApi}login`,
   user: `${baseUrlApi}users`,
 };
