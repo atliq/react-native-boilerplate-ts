@@ -95,7 +95,6 @@ const IsAlertModal = ({
                 styles.title,
                 {
                   color: appTheme.text,
-                  //  ...fonts.Regular
                 },
                 titleStyle,
               ]}>
@@ -108,7 +107,6 @@ const IsAlertModal = ({
                   styles.subTitle,
                   {
                     color: appTheme.gray,
-                    //  ...fonts.Regular
                   },
                   subTitleStyle && subTitleStyle,
                 ]}>
@@ -129,7 +127,6 @@ const IsAlertModal = ({
                         styles.deleteStyle,
                         {
                           color: appTheme.themeColor,
-                          //   ...fonts.Bold,
                         },
                       ]}>
                       {'DELETE '}
@@ -230,7 +227,6 @@ const styles = StyleSheet.create({
     width: '80%',
     marginVertical: 10,
     alignSelf: 'center',
-    // ...fonts.Regular,
   },
   bottomBtn: {
     flexDirection: 'row',

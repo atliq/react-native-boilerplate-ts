@@ -28,17 +28,15 @@ const Home = () => {
 
   const checkMinimumVersion = async () => {
     try {
-      // if (appConfig.serviceConfig) {
       let shouldUpdate = compareAppVersions({
         version,
-        minimumVersion: 'v1.0.0',
+        minimumVersion: 'v1.0.0', // Wrap whole try block in if condition with apiConfig.serviceConfig and pass minimumVersion from api response
       });
       if (shouldUpdate) {
         setIsUpdate(true);
         return;
       }
       return;
-      // }
     } catch (e: any) {
       console.log(e);
     }

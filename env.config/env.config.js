@@ -31,7 +31,7 @@ const main = async () => {
   ).trim();
   let env = config[currentBranch];
   if (!env) {
-    env = config.dev;
+    env = config.develop;
   }
   const path = `./env.config/${env}`;
   await runCommand('cp', [path, './.env']);
