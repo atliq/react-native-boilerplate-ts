@@ -1,5 +1,4 @@
 const { spawn } = require('child_process');
-const { log } = require('console');
 
 const config = {
   stage: '.env.stage',
