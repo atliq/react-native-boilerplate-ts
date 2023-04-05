@@ -1,4 +1,5 @@
 const { spawn } = require('child_process');
+const { log } = require('console');
 
 const config = {
   stage: '.env.stage',
@@ -26,10 +27,8 @@ function runCommand(command, args, options = undefined) {
 }
 
 const main = async () => {
-  const currentBranch = (
-    await runCommand('git', ['branch', '--show-current'])
-  ).trim();
-  let env = config[currentBranch];
+  const currentBranch = await runCommand('git', ['branch', '--show-current']);
+  let env = config[currentBranch.trim()];
   if (!env) {
     env = config.develop;
   }
