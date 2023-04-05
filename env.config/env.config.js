@@ -27,7 +27,7 @@ function runCommand(command, args, options = undefined) {
 
 const main = async () => {
   const currentBranch = await runCommand('git', ['branch', '--show-current']);
-  let env = config[currentBranch.trim()];
+  let env = config[currentBranch];
   if (!env) {
     env = config.develop;
   }
