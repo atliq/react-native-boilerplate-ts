@@ -15,7 +15,7 @@ const Search = () => {
         { backgroundColor: appTheme.background },
       ]}>
       <CustomText xlarge style={{ color: appTheme.text }}>
-        Search Tab
+        {'Search Tab'}
       </CustomText>
     </SafeAreaView>
   );

@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent';
 import AppImages from '@Theme/AppImages';
-import { BottomView, GradientButton } from '@SubComponents';
+import { BottomView, ButtonComponent } from '@SubComponents';
 import { setItemInStorage } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
 import { goToNextScreen } from '@Utils/Helper';
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   marginTop: {
     marginTop: 50,
+    minWidth: 160,
   },
   flexDirection: {
     flexDirection: 'row',
@@ -163,13 +164,15 @@ const Login = () => {
             </Pressable>
           </View>
           <CustomText style={[btnText, { color: appTheme.lightText }]}>
-            Forgot Password?
+            {'Forgot Password?'}
           </CustomText>
-          <GradientButton
+          <ButtonComponent
             title={'Log in'}
             isProcessing={isProcessing}
+            isGradient
             onPress={onLogin}
-            exStyle={marginTop}
+            style={marginTop}
+            borderRadius={28}
           />
           <BottomView
             title={'Need to create an account?'}

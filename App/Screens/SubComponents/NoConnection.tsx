@@ -54,7 +54,6 @@ const NoConnection = (props: CustomProps) => {
         </CustomText>
         <ButtonComponent
           title={'Retry'}
-          icon={'refresh'}
           onPress={retryConnection}
           style={btnStyle}
         />
