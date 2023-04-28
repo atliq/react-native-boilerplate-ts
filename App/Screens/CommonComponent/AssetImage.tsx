@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   ActivityIndicator,
@@ -7,7 +7,7 @@ import {
   StyleSheet,
   ImageStyle,
   Image,
-} from "react-native";
+} from 'react-native';
 
 interface AssetImageProps {
   imageStyle?: StyleProp<ImageStyle> | any;
@@ -15,7 +15,7 @@ interface AssetImageProps {
   source: any;
   placeholder?: string;
   errorImage?: string;
-  resizeMode?: "contain" | "cover" | "stretch" | "center" | "repeat" | any;
+  resizeMode?: 'contain' | 'cover' | 'stretch' | 'center' | 'repeat' | any;
 }
 
 const AssetImage = (props: AssetImageProps) => {
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
   container: { height: 50, width: 50 },
   imageStyle: { height: 50, width: 50 },
   loadingContainer: {
-    position: "absolute",
+    position: 'absolute',
     height: 50,
     width: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
