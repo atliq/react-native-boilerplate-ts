@@ -62,7 +62,7 @@ const CustomTextInput = forwardRef(
       editable = true,
       ...props
     }: CustomTextInputProps,
-    ref: any,
+    ref: React.LegacyRef<TextInput>,
   ) => {
     const { appTheme } = useContext(AppContext);
     const [textValue, setTextValue] = useState(value);
