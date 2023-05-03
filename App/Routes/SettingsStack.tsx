@@ -23,7 +23,7 @@ const SettingsStack = () => {
         presentation: 'card',
       })}>
       <Stack.Screen
-        name={'Settings'}
+        name="Settings"
         component={Settings}
         options={{
           title: translations.SETTINGS,

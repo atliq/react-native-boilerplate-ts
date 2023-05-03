@@ -53,7 +53,7 @@ const NoConnection = (props: CustomProps) => {
           {'No Internet Connection!\n Check your connection.'}
         </CustomText>
         <ButtonComponent
-          title={'Retry'}
+          title="Retry"
           onPress={retryConnection}
           style={btnStyle}
         />

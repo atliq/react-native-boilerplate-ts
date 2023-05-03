@@ -124,12 +124,20 @@ export const compareAppVersions = ({
   }
   const currentVersionArray = currentVersion.split('.');
   const minRequiredVersionArray = minRequiredVersion.split('.');
+
+  let isVersionValid = false;
   for (let i = 0; i < currentVersionArray.length; i++) {
     if (Number(currentVersionArray[i]) < Number(minRequiredVersionArray[i])) {
-      return true;
+      isVersionValid = true;
+      break;
+    } else if (
+      Number(currentVersionArray[i]) > Number(minRequiredVersionArray[i])
+    ) {
+      isVersionValid = false;
+      break;
     }
   }
-  return false;
+  return isVersionValid;
 };
 
 export const openLink = async (url: string, checkUrl = true) => {

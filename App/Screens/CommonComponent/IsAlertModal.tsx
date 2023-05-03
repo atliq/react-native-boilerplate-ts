@@ -131,7 +131,7 @@ const IsAlertModal = ({
                       ]}>
                       {'DELETE '}
                     </CustomText>
-                    <CustomText>{'to confirm.'}</CustomText>
+                    <CustomText>to confirm.</CustomText>
                   </View>
                 }
               />
@@ -144,9 +144,9 @@ const IsAlertModal = ({
                 onTextChange={text => {
                   setDeleteTextInput!(text);
                 }}
-                placeholder={'Type here...'}
+                placeholder="Type here..."
                 value={deleteTextInput}
-                label={''}
+                label=""
               />
             )) ||
               null}
@@ -198,7 +198,7 @@ const IsAlertModal = ({
     <Modal
       visible={visible}
       transparent={true}
-      animationType={'none'}
+      animationType="none"
       onRequestClose={onClose}>
       {renderModal()}
     </Modal>

@@ -80,7 +80,7 @@ const BottomModalContainer = (props: React.PropsWithChildren<CustomProps>) => {
             )}
             <Pressable style={styles.closeBtn} onPress={() => props.onClose()}>
               <Image
-                resizeMode={'contain'}
+                resizeMode="contain"
                 source={{ uri: AppImages.icClose }}
                 style={styles.closeImg}
               />

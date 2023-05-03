@@ -96,7 +96,7 @@ const ShowFooter = (props: FooterProps) => {
       <View style={styles.footer}>
         <ActivityIndicator
           animating={true}
-          size={'small'}
+          size="small"
           color={appTheme.themeColor}
         />
         <CustomText

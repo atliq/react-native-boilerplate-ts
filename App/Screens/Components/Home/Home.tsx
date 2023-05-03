@@ -56,20 +56,20 @@ const Home = () => {
 
   return (
     <Layout title="Widgets" padding={20}>
-      <CustomText large>{'Home screen'}</CustomText>
+      <CustomText large>Home screen</CustomText>
       <ButtonComponent
         onPress={() => {
           setShowModal(true);
         }}
         backColor={appTheme.themeColor}
-        title={'Show Modal'}
+        title="Show Modal"
         borderRadius={10}
       />
       <BottomModalContainer
-        title={'Modal'}
+        title="Modal"
         onClose={() => setShowModal(false)}
         show={isShowModal}>
-        <CustomText large>{'Modal'}</CustomText>
+        <CustomText large>Modal</CustomText>
       </BottomModalContainer>
       <IsAlertModal
         visible={isUpdate}
