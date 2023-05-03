@@ -117,7 +117,7 @@ const CustomTextInput = forwardRef(
             ref={ref}
             editable={editable}
             maxLength={maxLength}
-            autoCapitalize={'none'}
+            autoCapitalize="none"
             secureTextEntry={isSecure && isShowPassword}
             keyboardType={keyboardType}
             onSubmitEditing={onSubmitEditing}
@@ -137,7 +137,7 @@ const CustomTextInput = forwardRef(
                   borderBottomColor: appTheme.border,
                 }}>
                 <AssetImage
-                  resizeMode={'contain'}
+                  resizeMode="contain"
                   source={
                     (isShowPassword && AppImages.passwordOpen) ||
                     AppImages.passwordClosed
