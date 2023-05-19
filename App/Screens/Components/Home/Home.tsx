@@ -83,7 +83,8 @@ const Home = () => {
             backgroundColor: appTheme.themeColor,
             borderRadius: 0,
             marginVertical: 0,
-            width: width * 0.9,
+            width: width * 0.8,
+            marginHorizontal: width * 0.05,
           },
           textColor: appTheme.tint,
         }}
