@@ -1,22 +1,12 @@
-import React, { useState, useContext, useEffect } from 'react';
-import {
-  SafeAreaView,
-  Alert,
-  DeviceEventEmitter,
-  EmitterSubscription,
-  StyleSheet,
-} from 'react-native';
-import { useDispatch } from 'react-redux';
+import React, { useState, useContext } from 'react';
+import { SafeAreaView, Alert, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CommonStyle from '@Theme/CommonStyle';
 import { AppContext } from '@AppContext';
-import { userLogout } from '@Actions/UserActions';
 import { SettingHeader, SettingRow } from '@SubComponents';
-import { removeStoreItem } from '@Utils/Storage';
-import { Route } from '@Routes/AppRoutes';
-import { getVersionName, goToNextScreen } from '@Utils/Helper';
+import { getVersionName, onLogout } from '@Utils/Helper';
 import { CustomText } from '@CommonComponent';
-import { Authentication, ThemeEnums } from '@Utils/Enums';
+import { ThemeEnums } from '@Utils/Enums';
 
 const LANGUAGES = [
   { title: 'Hindi', value: 'hi' },
@@ -38,11 +28,8 @@ const Settings = () => {
     useContext(AppContext);
   const [darkMode, setDarkMode] = useState(appTheme.type === 'dark');
   const navigation = useNavigation();
-  const dispatch = useDispatch();
 
   const { versionText } = styles;
-
-  let isLogout: EmitterSubscription | null = null;
 
   const onValueChange = () => {
     setAppTheme((!darkMode && ThemeEnums.DARK) || ThemeEnums.LIGHT);
@@ -61,34 +48,16 @@ const Settings = () => {
         {
           text: 'Yes',
           style: 'destructive',
-          onPress: onLogout,
+          onPress: () => onLogout(navigation),
         },
       ],
       { cancelable: true },
     );
   };
 
-  const onLogout = async () => {
-    goToNextScreen(navigation, Route.LoginScreen);
-    dispatch(userLogout());
-    await removeStoreItem(Authentication.TOKEN);
-  };
-
   const onSelectLanguage = (value?: any) => {
     setAppLanguage(value);
   };
-
-  useEffect(() => {
-    // getAppVersion();
-    if (isLogout) {
-      isLogout.remove();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    isLogout = DeviceEventEmitter.addListener(
-      Authentication.REDIRECT_LOGIN,
-      onLogout,
-    );
-  }, []);
 
   return (
     <SafeAreaView

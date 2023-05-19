@@ -58,6 +58,9 @@ const CommonStyle = StyleSheet.create({
   alignSelfEnd: {
     alignSelf: 'flex-end',
   },
+  row: {
+    flexDirection: 'row',
+  },
 });
 
 export default CommonStyle;

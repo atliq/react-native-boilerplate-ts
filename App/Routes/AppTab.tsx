@@ -75,7 +75,7 @@ const AppTab = () => {
                 // eslint-disable-next-line react/no-unstable-nested-components
                 tabBarIcon: ({ focused, size }) => (
                   <AssetImage
-                    resizeMode={'contain'}
+                    resizeMode="contain"
                     source={tab.icon}
                     imageStyle={{
                       height: size,

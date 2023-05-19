@@ -1,16 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { DeviceEventEmitter, EmitterSubscription, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { isLoggedIn } from '@Services/UserService';
 import { Route } from '@Routes/AppRoutes';
-import { goToNextScreen } from '@Utils/Helper';
+import { goToNextScreen, onLogout } from '@Utils/Helper';
+import { Authentication } from '@Utils/Enums';
 
 const Initial = () => {
   const navigation = useNavigation();
 
+  let isLogout: EmitterSubscription | null = null;
+
   useEffect(() => {
     isUserLogin();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (isLogout) {
+      isLogout.remove();
+    }
+    isLogout = DeviceEventEmitter.addListener(
+      Authentication.REDIRECT_LOGIN,
+      () => onLogout(navigation),
+    );
   }, []);
 
   const isUserLogin = async () => {

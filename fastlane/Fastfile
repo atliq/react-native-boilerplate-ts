@@ -30,8 +30,17 @@ platform :ios do |options|
 
     certificates
     cocoapods( podfile: "./ios/Podfile", use_bundle_exec: false)
-    increment_version_number(xcodeproj: ENV['IOS_PROJECT_PATH'])
-    increment_build_number(xcodeproj: ENV['IOS_PROJECT_PATH'])
+    versions = sh('cat ./VERSION')
+    versionName = versions.split('#')[0]
+    versionCode = versions.split('#')[1]
+    version = get_version_number(xcodeproj: ENV['IOS_PROJECT_PATH'], 'target': ENV['PROJECTNAME'])
+    build_no = get_build_number(xcodeproj: ENV['IOS_PROJECT_PATH'])
+    if versionName.to_s != version.to_s
+      ios_set_version(xcodeproj: ENV['IOS_PROJECT_PATH'], version: versionName.to_s)
+    end
+    if versionCode.to_s != build_no.to_s
+      ios_set_build_number(xcodeproj: ENV['IOS_PROJECT_PATH'], build_number: versionCode.to_i)
+    end
     Dir.mkdir('./output') unless Dir.exist?('./output')
     sh('npm run bundle-ios')
 
@@ -58,7 +67,7 @@ platform :ios do |options|
     appcenter_upload(
       api_token: ENV["TEST_APPCENTER_API_TOKEN"],
       owner_name: ENV["TEST_APPCENTER_OWNER_NAME"],
-      app_name: "APP_NAME-iOS",
+      app_name:ENV["TEST_APPCENTER_APP_NAME_IOS"],
       ipa: ENV["IOS_IPA_PATH"],
       destinations: ENV["TEST_APPCENTER_DISTRIBUTE_GROUP"],
       release_notes: sh("cat #{ENV['TEST_APPCENTER_DISTRIBUTE_RELEASE_NOTES_PATH']}")
@@ -82,7 +91,7 @@ platform :ios do |options|
     commit_version_bump(
       xcodeproj: ENV['IOS_PROJECT_PATH'],
       force: true,
-      message: "Fastlane #{git_tag} ios build - Version: " + version + " - Build: " + build_no
+      message: "Released: Fastlane #{git_tag} ios build - Version: " + version + " - Build: " + build_no
     )
 
     add_git_tag(tag: git_tag)
@@ -100,9 +109,22 @@ platform :android do |options|
 
   desc 'Build the Android application.'
   lane :build do |options|
-    increment_version_name(app_project_dir: ENV['ANDROID_PROJECT_PATH'], bump_type: 'patch')
-    increment_version_code(app_project_dir: ENV['ANDROID_PROJECT_PATH'])
+    versions = sh('cat ./VERSION')
+    versionName = versions.split('#')[0]
+    versionCode = versions.split('#')[1]
+    version = get_version_name(app_project_dir: ENV['ANDROID_PROJECT_PATH'])
+    build_no = get_version_code(app_project_dir: ENV['ANDROID_PROJECT_PATH'])
+    if versionName.to_s != version.to_s
+      android_set_version_name(gradle_file: ENV['ANDROID_GRADLE_PATH'], version_name: versionName.to_s)
+    end
+    if versionCode.to_s != build_no.to_s
+      android_set_version_code(gradle_file: ENV['ANDROID_GRADLE_PATH'], version_code: versionCode.to_i)
+    end
+
     gradle(task: 'clean', project_dir: 'android/')
+    if !Dir.exist?(ENV['ANDROID_ASSET_PATH'])
+      sh("mkdir #{ENV['ANDROID_ASSET_PATH']}")
+    end
     sh('npm run bundle-android')
     gradle(task: 'assemble', build_type: 'Release', project_dir: 'android/')
   end
@@ -140,7 +162,7 @@ platform :android do |options|
 
     git_commit(
       path: ['./android/app/build.gradle', './*'],
-      message: "#{ENV['COMMIT_ENV_NAME']} Fastlane android build - Version: " + version + " - Build: " + build_no
+      message: "Released: #{ENV['COMMIT_ENV_NAME']} Fastlane android build - Version: " + version + " - Build: " + build_no
     )
 
     # Tag the submit
@@ -155,4 +177,123 @@ platform :android do |options|
     puts "Copying apk... #{sh("cp .#{ENV['ANDROID_APK_PATH']} ../output/apk/#{ENV['ENV_NAME']}#{version}_#{build_no}.apk")}"
   end
 
+end
+
+platform :changelog do |options|
+
+  desc "Get new version name."
+  private_lane :get_new_version_names do |options|
+    if !options[:bump_type]
+      bump_type = UI.select("Select version increment option: ", ["major", "minor", "patch"])
+    else
+      bump_type = options[:bump_type]
+    end
+    UI.success("Selected bump type: #{bump_type}")
+    bump_type
+  end
+
+  desc 'Build the Changelog File.'
+  lane :build_changelog do |options|
+    bump_type = get_new_version_names(options)
+    versionFile = sh('cat ./VERSION')
+    versions = versionFile.strip.split('#')
+    versionName = versions[0]
+    versionCode = versions[1]
+    majorVersion = versionName.split('.')[0]
+    minorVersion = versionName.split('.')[1]
+    patchVersion = versionName.split('.')[2]
+
+    if bump_type == 'patch'
+      patchVersion = patchVersion.to_i + 1
+    elsif bump_type == 'minor'
+      patchVersion = 0
+      minorVersion = minorVersion.to_i + 1
+    elsif bump_type == 'major'
+      patchVersion = 0
+      minorVersion = 0
+      majorVersion = majorVersion.to_i + 1
+    end
+    
+    versionCode = versionCode.to_i + 1
+    newVersion = "#{majorVersion}.#{minorVersion}.#{patchVersion}"
+    newVersionFile = newVersion.to_s.strip + '#'.strip + versionCode.to_s.strip
+
+    sh("echo #{newVersionFile.strip} > ./VERSION")
+
+    time = Time.now.strftime("%d-%m-%y %H:%M")
+    file1 = sh('cat ./lastCommit')
+    fromCommit = file1.strip
+    changelog = changelog_from_git_commits(
+      between: [fromCommit, "HEAD"],
+      pretty: "# %s \n\n",
+      date_format: "short",
+      merge_commit_filtering: "exclude_merges",
+    )
+    addedStrings = '### Added 🎁'
+    fixedStrings = '### Fixed 🛠'
+    removedStrings = '### Removed 🚫'
+    changedStrings = '### Changed 🔁'
+    deprecatedStrings = '### Deprecated ❗️'
+    securityStrings = '### Security 🔒'
+    haveAdded = false
+    haveFixed = false
+    haveRemoved = false
+    haveChanged = false
+    haveDeprecated = false
+    haveSecurity = false
+    changelogStrings = changelog.split("#")
+
+    for i in changelogStrings do
+      i = i.strip
+      if i.include?("Added: ")
+        addedStrings = addedStrings + "\n" + "- " + i.delete_prefix("Added:") + "\n"
+        haveAdded = true
+      elsif i.include?("Fixed: ")
+        fixedStrings = fixedStrings + "\n" + "- " + i.delete_prefix("Fixed:") + "\n"
+        haveFixed = true
+      elsif i.include?("Removed: ")
+        removedStrings =removedStrings + "\n" + "- " + i.delete_prefix("Removed:") + "\n"
+        haveRemoved = true
+      elsif i.include?("Changed: ")
+        changedStrings = changedStrings + "\n" + "- " + i.delete_prefix("Changed:") + "\n"
+        haveChanged = true
+      elsif i.include?("Deprecated: ")
+        deprecatedStrings = deprecatedStrings + "\n" + "- " + i.delete_prefix("Deprecated:") + "\n"
+        haveDeprecated = true
+      elsif i.include?("Security: ")
+        securityStrings = securityStrings + "\n" + "- " + i.delete_prefix("Security:") + "\n"
+        haveSecurity = true
+      else
+        next
+      end
+    end
+
+    changelog = '## ' + newVersion.to_s.strip + ' (' + versionCode.to_s.strip + ')' + ' (' + time + ')' + "\n"
+    if haveAdded
+      changelog = changelog + addedStrings + "\n"
+    end
+    if haveFixed
+      changelog = changelog + fixedStrings + "\n"
+    end
+    if haveRemoved
+      changelog = changelog + removedStrings + "\n"
+    end
+    if haveChanged
+      changelog = changelog + changedStrings + "\n"
+    end
+    if haveDeprecated
+      changelog = changelog + deprecatedStrings + "\n"
+    end
+    if haveSecurity
+      changelog = changelog + securityStrings + "\n"
+    end
+    
+    newLastCommit = last_git_commit
+    newHash = newLastCommit[:abbreviated_commit_hash]
+    sh("echo '#{newHash}' > ./lastcommit")
+    
+    previousChangelog = sh("cat ../CHANGELOG.md")
+    previousChange = previousChangelog.split("# Changelog")
+    File.write("../CHANGELOG.md","\# Changelog \n #{changelog}\n#{previousChange[1]}", mode: "w")
+  end
 end

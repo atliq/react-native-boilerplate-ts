@@ -25,3 +25,10 @@ export const fontSizes = {
   xxlarge: 25,
   xxxlarge: 32,
 };
+
+export const alertData = {
+  updateVersion: {
+    title: 'New updates available',
+    subTitle: 'To continue to use the BoilerPlate,\nyou must update your app.',
+  },
+};

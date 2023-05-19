@@ -13,7 +13,6 @@ interface AssetImageProps {
   imageStyle?: StyleProp<ImageStyle> | any;
   containerStyle?: StyleProp<ViewStyle> | any;
   source: any;
-  showLoading?: boolean;
   placeholder?: string;
   errorImage?: string;
   resizeMode?: 'contain' | 'cover' | 'stretch' | 'center' | 'repeat' | any;

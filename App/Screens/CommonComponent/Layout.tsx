@@ -71,7 +71,12 @@ const Layout = (props: LayoutProps) => {
         CommonStyle.flex1,
         { backgroundColor: backgroundColor || appTheme.background },
       ]}>
-      <StatusBar backgroundColor={appTheme.themeColor} barStyle="default" />
+      <StatusBar
+        backgroundColor={appTheme.themeColor}
+        barStyle={
+          (appTheme.type === 'dark' && 'light-content') || 'dark-content'
+        }
+      />
       <KeyboardAvoidingView
         behavior="padding"
         style={styles.keyboardView}

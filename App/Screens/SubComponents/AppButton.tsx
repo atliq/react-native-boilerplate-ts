@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import {
-  View,
   StyleSheet,
   Pressable,
   ActivityIndicator,
@@ -13,128 +12,85 @@ import { CustomText } from '@CommonComponent';
 import { AppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
-  outer: {
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    borderRadius: 5,
-    borderWidth: 1,
-    ...CommonStyle.center,
-    marginVertical: 5,
-    minWidth: 100,
-  },
   gradientBtn: {
     height: 56,
-    borderRadius: 28,
     paddingHorizontal: 25,
-    minWidth: 160,
+    minWidth: 100,
+    borderWidth: 1,
     ...CommonStyle.center,
   },
   alignSelf: {
     alignSelf: 'center',
   },
-  pressableContainer: {
-    overflow: 'hidden',
-    padding: 0,
-    paddingHorizontal: 0,
-    paddingVertical: 0,
-  },
+  marginVertical: { marginVertical: 5 },
 });
 
 interface GradientButtonProps {
   title: string | JSX.Element;
   onPress: () => void;
-  exStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
   isProcessing?: boolean;
   textOnly?: boolean;
-}
-const GradientButton = (props: GradientButtonProps) => {
-  const {
-    title,
-    onPress,
-    exStyle,
-    isProcessing = false,
-    textOnly = false,
-  } = props;
-  const { appTheme } = useContext(AppContext);
-  const { gradientBtn, alignSelf } = styles;
-  return (
-    <View
-      style={[
-        alignSelf,
-        { opacity: (isProcessing && 0.6) || 1 },
-        CommonStyle.overFlowHidden,
-        exStyle && exStyle,
-      ]}>
-      <Pressable
-        onPress={() => onPress()}
-        disabled={isProcessing}
-        style={CommonStyle.overFlowHidden}
-        android_ripple={CommonStyle.androidRipple}>
-        <LinearGradient colors={appTheme.gradient} style={gradientBtn}>
-          {((!isProcessing || textOnly) && (
-            <CustomText large style={[{ color: appTheme.tint }]}>
-              {title}
-            </CustomText>
-          )) || <ActivityIndicator color={appTheme.tint} />}
-        </LinearGradient>
-      </Pressable>
-    </View>
-  );
-};
-
-interface ButtonComponentProps {
-  title: string | JSX.Element;
-  onPress?: () => void;
-  style?: StyleProp<ViewStyle>;
-  border?: string;
   backColor?: string;
+  colors?: (string | number)[];
+  isGradient?: boolean;
   textColor?: string;
-  isProcessing?: boolean;
-  icon?: string;
   borderRadius?: number;
-  numberOfLines?: number;
+  border?: string;
+  outerStyle?: StyleProp<ViewStyle>;
 }
-const ButtonComponent = (props: ButtonComponentProps) => {
+const ButtonComponent = (props: GradientButtonProps) => {
   const {
     title,
     onPress,
     style,
-    border,
+    isProcessing = false,
+    textOnly = false,
     backColor,
+    colors,
     textColor,
-    isProcessing,
     borderRadius = 10,
-    numberOfLines,
+    border,
+    outerStyle,
+    isGradient = false,
   } = props;
-  const { outer } = styles;
   const { appTheme } = useContext(AppContext);
+  const { gradientBtn, alignSelf, marginVertical } = styles;
   return (
-    <View style={styles.pressableContainer}>
-      <Pressable
-        onPress={() => onPress!()}
-        disabled={isProcessing}
-        android_ripple={CommonStyle.androidRipple}
+    <Pressable
+      onPress={() => onPress()}
+      disabled={isProcessing}
+      style={[marginVertical, outerStyle]}
+      android_ripple={CommonStyle.androidRipple}>
+      <LinearGradient
+        colors={
+          (!isGradient &&
+            ((backColor && [backColor, backColor]) || [
+              appTheme.themeColor,
+              appTheme.themeColor,
+            ])) ||
+          (colors && colors) ||
+          appTheme.gradient
+        }
         style={[
-          outer,
+          alignSelf,
+          gradientBtn,
           {
-            backgroundColor: backColor || appTheme.themeColor,
-            borderColor: border || appTheme.border,
+            opacity: (isProcessing && 0.6) || 1,
             borderRadius: borderRadius,
+            borderColor: border || appTheme.transparent,
           },
           CommonStyle.overFlowHidden,
-          style,
+          style && style,
         ]}>
-        {(!isProcessing && (
-          <CustomText
-            large
-            numberOfLines={numberOfLines}
-            style={{ color: textColor || appTheme.tint }}>
+        {((!isProcessing || textOnly) && (
+          <CustomText large style={[{ color: textColor || appTheme.tint }]}>
             {title}
           </CustomText>
-        )) || <ActivityIndicator color={textColor || appTheme.tint} />}
-      </Pressable>
-    </View>
+        )) || <ActivityIndicator color={appTheme.tint} />}
+      </LinearGradient>
+    </Pressable>
   );
 };
 
-export { GradientButton, ButtonComponent };
+export { ButtonComponent };

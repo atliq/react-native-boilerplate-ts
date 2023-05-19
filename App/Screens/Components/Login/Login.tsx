@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent';
 import AppImages from '@Theme/AppImages';
-import { BottomView, GradientButton } from '@SubComponents';
+import { BottomView, ButtonComponent } from '@SubComponents';
 import { setItemInStorage } from '@Utils/Storage';
 import { Route } from '@Routes/AppRoutes';
 import { goToNextScreen } from '@Utils/Helper';
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   marginTop: {
     marginTop: 50,
+    minWidth: 160,
   },
   flexDirection: {
     flexDirection: 'row',
@@ -95,12 +96,12 @@ const Login = () => {
     });
   };
 
-  const onLogin = async () => {
+  const onLogin = () => {
     try {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
       goToNextScreen(navigation, Route.HomeScreen);
-      await setItemInStorage(Authentication.TOKEN, 'set login token');
+      setItemInStorage(Authentication.TOKEN, 'set login token');
     } catch (error) {
       manageProcessing(false);
     }
@@ -117,13 +118,13 @@ const Login = () => {
           <TextInput
             onChangeText={(text: string) => onChangeText(text, 'email')}
             value={email}
-            autoCapitalize={'none'}
-            placeholder={'Email'}
+            autoCapitalize="none"
+            placeholder="Email"
             style={inputStyle}
             placeholderTextColor={appTheme.lightText}
             underlineColorAndroid={appTheme.transparent}
-            keyboardType={'email-address'}
-            returnKeyType={'next'}
+            keyboardType="email-address"
+            returnKeyType="next"
             ref={refEmail}
             onSubmitEditing={() => onSubmitEditing('refPassword')}
           />
@@ -131,13 +132,13 @@ const Login = () => {
             <TextInput
               onChangeText={(text: string) => onChangeText(text, 'password')}
               value={password}
-              autoCapitalize={'none'}
-              placeholder={'Password'}
+              autoCapitalize="none"
+              placeholder="Password"
               style={[inputStyle, flex]}
               placeholderTextColor={appTheme.lightText}
               underlineColorAndroid={appTheme.transparent}
               secureTextEntry={isSecureTextEntry}
-              returnKeyType={'done'}
+              returnKeyType="done"
               ref={refPassword}
               onSubmitEditing={onLogin}
             />
@@ -151,7 +152,7 @@ const Login = () => {
                   borderBottomColor: appTheme.border,
                 }}>
                 <Image
-                  resizeMode={'contain'}
+                  resizeMode="contain"
                   source={{
                     uri:
                       (isSecureTextEntry && AppImages.passwordOpen) ||
@@ -165,15 +166,17 @@ const Login = () => {
           <CustomText style={[btnText, { color: appTheme.lightText }]}>
             Forgot Password?
           </CustomText>
-          <GradientButton
-            title={'Log in'}
+          <ButtonComponent
+            title="Log in"
             isProcessing={isProcessing}
+            isGradient
             onPress={onLogin}
-            exStyle={marginTop}
+            style={marginTop}
+            borderRadius={28}
           />
           <BottomView
-            title={'Need to create an account?'}
-            subTitle={'Sign up here'}
+            title="Need to create an account?"
+            subTitle="Sign up here"
             onSubTitle={() => console.log('go to signup')}
           />
         </View>

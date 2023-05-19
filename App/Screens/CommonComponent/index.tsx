@@ -8,4 +8,4 @@ export * from '@CommonComponent/Loading';
 export * from '@CommonComponent/NavigationBar';
 export * from '@CommonComponent/NetworkImage';
 export * from '@CommonComponent/TouchableText';
-export * from '@CommonComponent/Simmer';
+export * from '@CommonComponent/IsAlertModal';
