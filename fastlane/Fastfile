@@ -10,13 +10,47 @@ platform :ios do |options|
   end
 
   desc 'Send Notification to Team!'
-  private_lane :notify_slack do
-    slack(
-      message: "#{ENV['COMMIT_ENV_NAME']} ios app successfully released!",
-      channel: "#mobile-app",
-      success: true,
-      slack_url: ENV['SLACK_WEBHOOK_URL']
-    )
+  private_lane :notify_teams do
+    lane_name = ARGV[1]
+    git_last_commit_message = sh("git log -1 --pretty=%B")
+    git_user_name = sh("git config user.name")
+    git_user_email = sh("git config user.email")
+    git_last_commit_hash = sh("git rev-parse --short HEAD")
+    git_branch_name = sh("git rev-parse --abbrev-ref HEAD")
+    json = "{
+      \"@type\": \"MessageCard\",
+      \"@context\": \"http://schema.org/extensions\",
+      \"themeColor\": \"0076D7\",
+      \"summary\": \"Larry Bryant created a new task\",
+      \"sections\": [{
+          \"activityTitle\": \"🚀 #{ENV['COMMIT_ENV_NAME']} ios app successfully released!\",
+          \"facts\": [{
+              \"name\": \"Git Commit\",
+              \"value\": \"#{git_last_commit_message}\"
+          }, {
+              \"name\": \"Git Branch\",
+              \"value\": \"#{git_branch_name}\"
+          }, {
+              \"name\": \"Git Author\",
+              \"value\": \"#{git_user_name}\"
+          }, {
+              \"name\": \"Git Author Email\",
+              \"value\": \"#{git_user_email}\"
+          }, {
+              \"name\": \"Git Commit Hash\",
+              \"value\": \"#{git_last_commit_hash}\"
+          }, {
+              \"name\": \"Lane\",
+              \"value\": \"#{lane_name}\"
+          }, {
+              \"name\": \"Success\",
+              \"value\": \"true\" 
+          }
+        ],
+          \"markdown\": true
+      }]
+  }"
+    sh("sh ./notify.sh -j '#{json}' -u '#{ENV['TEAMS_WEBHOOK_URL']}'")
   end
 
   desc 'Build the iOS application.'
@@ -97,7 +131,7 @@ platform :ios do |options|
     add_git_tag(tag: git_tag)
     push_to_git_remote
 
-    notify_slack
+    notify_teams
 
     Dir.mkdir('../output/ipa') unless Dir.exist?('../output/ipa')
     Dir.mkdir("../output/ipa/#{ENV['ENV_NAME']}") unless Dir.exist?("../output/ipa/#{ENV['ENV_NAME']}")
@@ -142,13 +176,47 @@ platform :android do |options|
   end
 
   desc 'Send Notification to Team!'
-  private_lane :notify_slack do
-    slack(
-      message: "#{ENV['COMMIT_ENV_NAME']} android app successfully released!",
-      channel: "#mobile-app",
-      success: true,
-      slack_url: ENV['SLACK_WEBHOOK_URL']
-    )
+  private_lane :notify_teams do
+    lane_name = ARGV[1]
+    git_last_commit_message = sh("git log -1 --pretty=%B")
+    git_user_name = sh("git config user.name")
+    git_user_email = sh("git config user.email")
+    git_last_commit_hash = sh("git rev-parse --short HEAD")
+    git_branch_name = sh("git rev-parse --abbrev-ref HEAD")
+    json = "{
+      \"@type\": \"MessageCard\",
+      \"@context\": \"http://schema.org/extensions\",
+      \"themeColor\": \"0076D7\",
+      \"summary\": \"Larry Bryant created a new task\",
+      \"sections\": [{
+          \"activityTitle\": \"🚀 #{ENV['COMMIT_ENV_NAME']} ios app successfully released!\",
+          \"facts\": [{
+              \"name\": \"Git Commit\",
+              \"value\": \"#{git_last_commit_message}\"
+          }, {
+              \"name\": \"Git Branch\",
+              \"value\": \"#{git_branch_name}\"
+          }, {
+              \"name\": \"Git Author\",
+              \"value\": \"#{git_user_name}\"
+          }, {
+              \"name\": \"Git Author Email\",
+              \"value\": \"#{git_user_email}\"
+          }, {
+              \"name\": \"Git Commit Hash\",
+              \"value\": \"#{git_last_commit_hash}\"
+          }, {
+              \"name\": \"Lane\",
+              \"value\": \"#{lane_name}\"
+          }, {
+              \"name\": \"Success\",
+              \"value\": \"true\" 
+          }
+        ],
+          \"markdown\": true
+      }]
+  }"
+    sh("sh ./notify.sh -j '#{json}' -u '#{ENV['TEAMS_WEBHOOK_URL']}'")
   end
 
   desc 'Ship to App Center Beta.'
@@ -169,7 +237,7 @@ platform :android do |options|
     git_tag = "#{ENV['COMMIT_ENV_NAME']}-android-" + version + "-" + build_no
     add_git_tag(tag: git_tag)
     push_to_git_remote
-    notify_slack
+    notify_teams
     Dir.mkdir('../output') unless Dir.exist?('../output')
     Dir.mkdir('../output/apk') unless Dir.exist?('../output/apk')
     Dir.mkdir("../output/apk/#{ENV['ENV_NAME']}") unless Dir.exist?("../output/apk/#{ENV['ENV_NAME']}")
