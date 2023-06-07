@@ -189,7 +189,7 @@ platform :android do |options|
       \"themeColor\": \"0076D7\",
       \"summary\": \"Larry Bryant created a new task\",
       \"sections\": [{
-          \"activityTitle\": \"🚀 #{ENV['COMMIT_ENV_NAME']} ios app successfully released!\",
+          \"activityTitle\": \"🚀 #{ENV['COMMIT_ENV_NAME']} android app successfully released!\",
           \"facts\": [{
               \"name\": \"Git Commit\",
               \"value\": \"#{git_last_commit_message}\"
