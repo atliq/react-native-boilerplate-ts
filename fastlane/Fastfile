@@ -21,7 +21,7 @@ platform :ios do |options|
       \"@type\": \"MessageCard\",
       \"@context\": \"http://schema.org/extensions\",
       \"themeColor\": \"0076D7\",
-      \"summary\": \"Larry Bryant created a new task\",
+      \"summary\": \"New build generated\",
       \"sections\": [{
           \"activityTitle\": \"🚀 #{ENV['COMMIT_ENV_NAME']} ios app successfully released!\",
           \"facts\": [{
@@ -187,7 +187,7 @@ platform :android do |options|
       \"@type\": \"MessageCard\",
       \"@context\": \"http://schema.org/extensions\",
       \"themeColor\": \"0076D7\",
-      \"summary\": \"Larry Bryant created a new task\",
+      \"summary\": \"New build generated\",
       \"sections\": [{
           \"activityTitle\": \"🚀 #{ENV['COMMIT_ENV_NAME']} android app successfully released!\",
           \"facts\": [{
