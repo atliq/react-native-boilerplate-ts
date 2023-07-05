@@ -19,7 +19,7 @@ interface CustomProps {
   xxxlarge?: boolean;
   style?: StyleProp<TextStyle>;
   children: JSX.Element | string;
-  numberOfLines?: number | undefined;
+  numberOfLines?: number;
   onPress?: (event: GestureResponderEvent) => void;
   maxLength?: number;
 }
@@ -40,7 +40,7 @@ const CustomText = (props: CustomProps) => {
   } = props;
 
   const getFontSize = () => {
-    let fontSize = size || fontSizes.medium;
+    let fontSize = size ?? fontSizes.medium;
     if (xsmall) {
       fontSize = fontSizes.xsmall;
     } else if (small) {
@@ -73,7 +73,7 @@ const CustomText = (props: CustomProps) => {
     <Text
       {...props}
       numberOfLines={numberOfLines}
-      style={[getFontSize(), { color: appTheme.text }, style && style]}>
+      style={[getFontSize(), { color: appTheme.text }, style]}>
       {renderChildren()}
     </Text>
   );

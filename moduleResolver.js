@@ -1,6 +1,6 @@
-var fs = require('fs');
+let fs = require('fs');
 
-var { modules, root, base } = JSON.parse(
+let { modules, root, base } = JSON.parse(
   fs.readFileSync('./modules.json', 'utf8'),
 );
 let tsConf = JSON.parse(fs.readFileSync('./tsconfig.json', 'utf8'));

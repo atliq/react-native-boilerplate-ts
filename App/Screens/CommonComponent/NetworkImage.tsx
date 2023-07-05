@@ -8,16 +8,19 @@ import {
   ImageStyle,
   Image,
 } from 'react-native';
-import FastImage from 'react-native-fast-image';
+import FastImage, { FastImageProps } from 'react-native-fast-image';
 
 interface NetworkImageProps {
-  imageStyle?: StyleProp<ImageStyle> | any;
-  containerStyle?: StyleProp<ViewStyle> | any;
+  imageStyle?:
+    | StyleProp<ImageStyle>
+    | StyleProp<ViewStyle>
+    | FastImageProps['style'];
+  containerStyle?: StyleProp<ViewStyle> | StyleProp<ImageStyle>;
   source: any;
   showLoading?: boolean;
   placeholder?: string;
   errorImage?: string;
-  resizeMode?: 'contain' | 'cover' | 'stretch' | 'center' | 'repeat' | any;
+  resizeMode?: FastImageProps['resizeMode'];
 }
 
 const NetworkImage = (props: NetworkImageProps) => {
@@ -28,7 +31,7 @@ const NetworkImage = (props: NetworkImageProps) => {
     if (props.placeholder) {
       return (
         <Image
-          style={[styles.imageStyle, props.imageStyle]}
+          style={[styles.imageStyle, props.imageStyle as StyleProp<ImageStyle>]}
           source={{ uri: props.placeholder }}
         />
       );
@@ -41,7 +44,10 @@ const NetworkImage = (props: NetworkImageProps) => {
     if (props.errorImage) {
       return (
         <FastImage
-          style={[styles.imageStyle, props.imageStyle]}
+          style={[
+            styles.imageStyle,
+            props.imageStyle as FastImageProps['style'],
+          ]}
           source={{ uri: props.errorImage }}
         />
       );
@@ -68,7 +74,7 @@ const NetworkImage = (props: NetworkImageProps) => {
   return (
     <View style={[styles.container, props.imageStyle, props.containerStyle]}>
       <FastImage
-        style={[styles.imageStyle, props.imageStyle]}
+        style={[styles.imageStyle, props.imageStyle as FastImageProps['style']]}
         source={{
           uri: props.source,
         }}

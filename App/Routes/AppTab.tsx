@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useContext } from 'react';
 import {
   BottomTabNavigationOptions,
@@ -72,7 +73,6 @@ const AppTab = () => {
             options={(): BottomTabNavigationOptions => {
               return {
                 headerShown: false,
-                // eslint-disable-next-line react/no-unstable-nested-components
                 tabBarIcon: ({ focused, size }) => (
                   <AssetImage
                     resizeMode="contain"

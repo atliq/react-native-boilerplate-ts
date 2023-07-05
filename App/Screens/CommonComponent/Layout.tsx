@@ -69,7 +69,7 @@ const Layout = (props: LayoutProps) => {
     <SafeAreaView
       style={[
         CommonStyle.flex1,
-        { backgroundColor: backgroundColor || appTheme.background },
+        { backgroundColor: backgroundColor ?? appTheme.background },
       ]}>
       <StatusBar
         backgroundColor={appTheme.themeColor}

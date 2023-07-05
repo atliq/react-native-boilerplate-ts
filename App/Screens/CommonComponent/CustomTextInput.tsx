@@ -8,10 +8,7 @@ import {
   StyleProp,
   TextStyle,
   TouchableOpacity,
-  KeyboardTypeOptions,
-  NativeSyntheticEvent,
-  TextInputSubmitEditingEventData,
-  TextInputFocusEventData,
+  TextInputProps,
 } from 'react-native';
 import AppImages from '@Theme/AppImages';
 import { CustomText, AssetImage } from '@CommonComponent';
@@ -23,19 +20,15 @@ interface CustomTextInputProps {
   containerStyle?: StyleProp<TextStyle>;
   onTextChange: (text: string) => void;
   error?: string;
-  value?: string | undefined;
+  value?: string;
   placeholder?: string;
   isSecure?: boolean;
   label: string;
-  keyboardType?: KeyboardTypeOptions | undefined;
+  keyboardType?: TextInputProps['keyboardType'];
   multiline?: boolean;
   hideLabel?: boolean;
-  onFocus?:
-    | ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void)
-    | undefined;
-  onSubmitEditing?:
-    | ((e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => void)
-    | undefined;
+  onFocus?: TextInputProps['onFocus'];
+  onSubmitEditing?: TextInputProps['onSubmitEditing'];
   maxChar?: number;
   maxLength?: number;
   editable?: boolean;
@@ -110,10 +103,7 @@ const CustomTextInput = forwardRef(
             ]}
             multiline={multiline}
             numberOfLines={5}
-            placeholder={
-              (placeholder && placeholder) ||
-              `Enter your ${label.toLowerCase()}`
-            }
+            placeholder={placeholder ?? `Enter your ${label.toLowerCase()}`}
             ref={ref}
             editable={editable}
             maxLength={maxLength}
@@ -159,10 +149,10 @@ const CustomTextInput = forwardRef(
             medium
             style={{
               color:
-                ((textValue?.length || 0) > maxChar && appTheme.red) ||
+                ((textValue?.length ?? 0) > maxChar && appTheme.red) ||
                 appTheme.textBorder,
               margin: 5,
-            }}>{`${textValue?.length || 0}/${maxChar} character.`}</CustomText>
+            }}>{`${textValue?.length ?? 0}/${maxChar} character.`}</CustomText>
         )) ||
           null}
       </View>

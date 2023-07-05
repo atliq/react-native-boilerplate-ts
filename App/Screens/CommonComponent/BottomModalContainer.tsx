@@ -7,6 +7,7 @@ import {
   Image,
   Pressable,
   ViewStyle,
+  ModalProps,
 } from 'react-native';
 import React, { useContext } from 'react';
 import { CustomText, Loading } from '@CommonComponent';
@@ -21,7 +22,7 @@ interface CustomProps {
   title: string;
   modalContainerStyle?: StyleProp<ViewStyle>;
   mainContainerStyle?: StyleProp<ViewStyle>;
-  animationType?: 'none' | 'slide' | 'fade' | undefined;
+  animationType?: ModalProps['animationType'];
   secondaryBtn?: {
     onPress: () => void;
     title: string;
@@ -86,7 +87,7 @@ const BottomModalContainer = (props: React.PropsWithChildren<CustomProps>) => {
               />
             </Pressable>
           </View>
-          {(props.children && props.children) || null}
+          {props.children ?? null}
         </View>
       </View>
     </Modal>

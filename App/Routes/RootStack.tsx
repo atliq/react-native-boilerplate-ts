@@ -35,7 +35,7 @@ const RootStack = () => {
   return (
     <Stack.Navigator
       initialRouteName={isUserLogin()}
-      screenOptions={({}) => ({
+      screenOptions={() => ({
         headerShown: true,
         cardOverlayEnabled: true,
         headerBackTitleVisible: false,

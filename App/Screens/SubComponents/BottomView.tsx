@@ -50,7 +50,7 @@ const BottomView = (props: BottomViewProps) => {
   const { outer, flexDirection, paddingVertical, padding } = styles;
   const { appTheme } = useContext(AppContext);
   return (
-    <View style={[outer, exStyle && exStyle]}>
+    <View style={[outer, exStyle]}>
       <View style={flexDirection}>
         <CustomText
           large
