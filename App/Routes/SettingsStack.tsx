@@ -9,7 +9,7 @@ const SettingsStack = () => {
   const { appTheme, translations } = useContext(AppContext);
   return (
     <Stack.Navigator
-      screenOptions={({}) => ({
+      screenOptions={() => ({
         headerShown: true,
         cardOverlayEnabled: true,
         headerBackTitleVisible: false,

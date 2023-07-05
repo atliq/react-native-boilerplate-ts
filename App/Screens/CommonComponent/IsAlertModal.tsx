@@ -27,7 +27,7 @@ interface CustomProps {
   };
   rightBtn?: {
     title: string;
-    onPress: () => void;
+    onPress: (() => void) | (() => Promise<void>);
     style: StyleProp<ViewStyle>;
     textColor?: string;
   };
@@ -108,7 +108,7 @@ const IsAlertModal = ({
                   {
                     color: appTheme.gray,
                   },
-                  subTitleStyle && subTitleStyle,
+                  subTitleStyle,
                 ]}>
                 {subTitle}
               </CustomText>

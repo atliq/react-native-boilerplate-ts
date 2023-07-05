@@ -1,4 +1,11 @@
-import React, { Context, createContext, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {
+  Context,
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Appearance } from 'react-native';
 import { omit } from 'lodash';
 import * as RNLocalize from 'react-native-localize';
@@ -43,8 +50,8 @@ export const AppContextProvider = (props: CustomProps) => {
 
   const setInitialLoad = async () => {
     if (isInit) {
-      await initializeAppTheme();
-      await initializeAppLanguage();
+      initializeAppTheme();
+      initializeAppLanguage();
       setIsInit(false);
     }
   };
@@ -89,7 +96,7 @@ export const AppContextProvider = (props: CustomProps) => {
     const currentTheme = getItemFromStorage(APP_THEME);
     if (!currentTheme && !themeType) {
       const colorScheme = Appearance.getColorScheme();
-      setAppTheme((colorScheme && colorScheme) || DEFAULT_THEME);
+      setAppTheme(colorScheme ?? DEFAULT_THEME);
     } else {
       if (themeType) {
         setAppTheme(themeType);
@@ -100,18 +107,20 @@ export const AppContextProvider = (props: CustomProps) => {
     }
   };
 
+  const value = useMemo(
+    () => ({
+      translations: omit(translations, ['_props', '_opts']) as Translation,
+      setAppLanguage: setLanguage,
+      appLanguage,
+      initializeAppLanguage,
+      appTheme: Theme[appTheme as keyof ThemeType],
+      setAppTheme: setTheme,
+      initializeAppTheme,
+    }),
+    [],
+  );
+
   return (
-    <AppContext.Provider
-      value={{
-        translations: omit(translations, ['_props', '_opts']) as Translation,
-        setAppLanguage: setLanguage,
-        appLanguage,
-        initializeAppLanguage,
-        appTheme: Theme[appTheme as keyof ThemeType],
-        setAppTheme: setTheme,
-        initializeAppTheme,
-      }}>
-      {props.children}
-    </AppContext.Provider>
+    <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );
 };

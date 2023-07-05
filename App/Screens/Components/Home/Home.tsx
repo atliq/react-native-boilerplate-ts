@@ -42,12 +42,12 @@ const Home = () => {
     }
   };
 
-  const updateApp = () => {
+  const updateApp = async () => {
     try {
       if (isIOS) {
-        openLink('');
+        await openLink('');
       } else {
-        openLink('');
+        await openLink('');
       }
     } catch (e: any) {
       console.log(e);

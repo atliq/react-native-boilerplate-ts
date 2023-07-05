@@ -1,4 +1,47 @@
 # Changelog 
+ ## 1.0.3 (3) (22-06-23 12:44) (master)
+### Added 🎁
+-  forwardref hook for accepting ref in component
+
+### Fixed 🛠
+-  lint issues
+
+-  branch name trim at using as object key
+
+-  force update modal
+
+-  lint issues
+
+-  pipeline failure issues
+
+-  husky warnings
+
+-  env.config.js for pipeline failure
+
+-  PR issues
+
+-  fastlane issues
+
+### Removed 🚫
+-  unnecessary prop from the interface
+
+### Changed 🔁
+-  summary text
+
+-  Fastlane build success notifier webhook call from slack to teams
+
+-  object string to string
+
+-  object string to string
+
+-  Ref Type and object string to string
+
+-  merged gradient and normal button
+
+-  ApiConfig url environment variable from env
+
+
+ 
  ## 1.0.2 (2) (04-04-23 17:16)
 ### Added 🎁
 -  Force update Changed async storage with MMKV storage fixed dark theme and token expiry issues. Removed Simmer

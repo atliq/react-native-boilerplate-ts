@@ -64,7 +64,7 @@ const NavigationBar = (props: NavigationBarProps) => {
     customSubmitComponent,
     submitImage,
     submitImageStyle,
-  } = submit || {};
+  } = submit ?? {};
 
   const navigation = useNavigation();
 
@@ -77,9 +77,9 @@ const NavigationBar = (props: NavigationBarProps) => {
         styles.title,
         !titleCenter && showBack && styles.marginLeft,
         !titleCenter && CommonStyle.flex1,
-        titleTextStyle && titleTextStyle,
+        titleTextStyle,
       ]}>
-      {title || ''}
+      {title ?? ''}
     </CustomText>
   );
 
@@ -149,8 +149,8 @@ const NavigationBar = (props: NavigationBarProps) => {
       style={[
         styles.container,
         { paddingHorizontal },
-        { backgroundColor: backgroundColor || appTheme.background },
-        exStyle && exStyle,
+        { backgroundColor: backgroundColor ?? appTheme.background },
+        exStyle,
       ]}>
       {(showBack && (
         <Pressable

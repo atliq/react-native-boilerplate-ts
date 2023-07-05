@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
 import { CommonActions } from '@react-navigation/native';
@@ -22,13 +23,12 @@ export const getVersionName = () => {
 
 export const isValidEmail = (email: string) => {
   const format =
-    // eslint-disable-next-line no-useless-escape
-    /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return format.test(email);
 };
 
 export const isValidUserName = (email: string) => {
-  const format = /^[0-9a-zA-Z_]{5,}$/;
+  const format = /^\w{5,}$/;
   return format.test(email);
 };
 
@@ -41,14 +41,14 @@ export const validatePhoneNumber = (phoneNumber: string) =>
 
 export const configureUrl = (url: string) => {
   let authUrl = url;
-  if (url && url[url.length - 1] === '/') {
+  if (url?.endsWith('/')) {
     authUrl = url.substring(0, url.length - 1);
   }
   return authUrl;
 };
 
 export const getErrorMessage = (error: any) => {
-  if (error && error.response && error.response.data && error.response.data) {
+  if (error?.response?.data) {
     if (error.response.data.errors) {
       return error.response.data.errors.join('\n');
     }
@@ -56,7 +56,7 @@ export const getErrorMessage = (error: any) => {
       return error.response.data.message;
     }
   }
-  if (error && error.message) {
+  if (error?.message) {
     return error.message;
   }
   return 'Something went wrong!';

@@ -78,13 +78,13 @@ const ButtonComponent = (props: GradientButtonProps) => {
           {
             opacity: (isProcessing && 0.6) || 1,
             borderRadius: borderRadius,
-            borderColor: border || appTheme.transparent,
+            borderColor: border ?? appTheme.transparent,
           },
           CommonStyle.overFlowHidden,
-          style && style,
+          style,
         ]}>
         {((!isProcessing || textOnly) && (
-          <CustomText large style={[{ color: textColor || appTheme.tint }]}>
+          <CustomText large style={[{ color: textColor ?? appTheme.tint }]}>
             {title}
           </CustomText>
         )) || <ActivityIndicator color={appTheme.tint} />}

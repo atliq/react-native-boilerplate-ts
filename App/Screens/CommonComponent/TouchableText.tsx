@@ -1,11 +1,13 @@
 import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
 import {
   TouchableOpacity,
   GestureResponderEvent,
   StyleProp,
   TextStyle,
   ViewStyle,
+  View,
+  Image,
+  StyleSheet,
 } from 'react-native';
 import { CustomText } from '@CommonComponent';
 

@@ -7,15 +7,16 @@ import {
   StyleSheet,
   ImageStyle,
   Image,
+  ImageProps,
 } from 'react-native';
 
 interface AssetImageProps {
-  imageStyle?: StyleProp<ImageStyle> | any;
-  containerStyle?: StyleProp<ViewStyle> | any;
+  imageStyle?: StyleProp<ImageStyle> | StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle> | StyleProp<ImageStyle>;
   source: any;
   placeholder?: string;
   errorImage?: string;
-  resizeMode?: 'contain' | 'cover' | 'stretch' | 'center' | 'repeat' | any;
+  resizeMode?: ImageProps['resizeMode'];
 }
 
 const AssetImage = (props: AssetImageProps) => {
@@ -26,7 +27,7 @@ const AssetImage = (props: AssetImageProps) => {
     if (props.placeholder) {
       return (
         <Image
-          style={[styles.imageStyle, props.imageStyle]}
+          style={[styles.imageStyle, props.imageStyle as StyleProp<ImageStyle>]}
           source={{ uri: props.placeholder }}
         />
       );
@@ -39,7 +40,7 @@ const AssetImage = (props: AssetImageProps) => {
     if (props.errorImage) {
       return (
         <Image
-          style={[styles.imageStyle, props.imageStyle]}
+          style={[styles.imageStyle, props.imageStyle as StyleProp<ImageStyle>]}
           source={{ uri: props.errorImage }}
         />
       );
@@ -66,7 +67,7 @@ const AssetImage = (props: AssetImageProps) => {
   return (
     <View style={[styles.container, props.imageStyle, props.containerStyle]}>
       <Image
-        style={[styles.imageStyle, props.imageStyle]}
+        style={[styles.imageStyle, props.imageStyle as StyleProp<ImageStyle>]}
         source={{ uri: props.source }}
         resizeMode={props.resizeMode}
         onLoadStart={() => {

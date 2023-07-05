@@ -289,6 +289,7 @@ platform :changelog do |options|
     sh("echo #{newVersionFile.strip} > ./VERSION")
 
     time = Time.now.strftime("%d-%m-%y %H:%M")
+    git_branch_name = sh("git rev-parse --abbrev-ref HEAD")
     file1 = sh('cat ./lastCommit')
     fromCommit = file1.strip
     changelog = changelog_from_git_commits(
@@ -336,7 +337,7 @@ platform :changelog do |options|
       end
     end
 
-    changelog = '## ' + newVersion.to_s.strip + ' (' + versionCode.to_s.strip + ')' + ' (' + time + ')' + "\n"
+    changelog = '## ' + newVersion.to_s.strip + ' (' + versionCode.to_s.strip + ')' + ' (' + time + ')' + ' (' + git_branch_name.strip + ')' + "\n"
     if haveAdded
       changelog = changelog + addedStrings + "\n"
     end

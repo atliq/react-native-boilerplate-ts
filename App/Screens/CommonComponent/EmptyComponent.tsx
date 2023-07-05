@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleProp, TextStyle, View, ViewStyle } from 'react-native';
-import { CustomText } from '@CommonComponent';
+import { CustomText, Loading } from '@CommonComponent';
 import CommonStyle from '@Theme/CommonStyle';
-import { Loading } from '@CommonComponent';
 
 interface CustomProps {
   isLoading?: boolean;
@@ -12,7 +11,7 @@ interface CustomProps {
 }
 const EmptyComponent = (props: CustomProps) => {
   const { isLoading = false, textStyle, style } = props;
-  const text = props.text || 'No Data Found';
+  const text = props.text ?? 'No Data Found';
   return (
     <View style={[CommonStyle.flex1, CommonStyle.center, style]}>
       {(!isLoading && <CustomText style={textStyle}>{text}</CustomText>) || (
