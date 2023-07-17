@@ -10,8 +10,8 @@ import {
   ViewStyle,
   TextStyle,
   ImageStyle,
+  ScrollView,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import { isIOS } from '@Utils/Constant';
 import { AppContext } from '@AppContext';
 import { NavigationBar } from '@CommonComponent';
