@@ -117,7 +117,7 @@ export const AppContextProvider = (props: CustomProps) => {
       setAppTheme: setTheme,
       initializeAppTheme,
     }),
-    [],
+    [appLanguage, appTheme],
   );
 
   return (
