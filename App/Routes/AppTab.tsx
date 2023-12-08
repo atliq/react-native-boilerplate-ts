@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useContext } from 'react';
+import { Image } from 'react-native';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
@@ -11,7 +12,6 @@ import SettingsStack from '@Routes/SettingsStack';
 import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext';
 import ThemeColor from '@Theme/Colors';
-import { AssetImage } from '@CommonComponent';
 
 const Tab = createBottomTabNavigator();
 
@@ -74,10 +74,10 @@ const AppTab = () => {
               return {
                 headerShown: false,
                 tabBarIcon: ({ focused, size }) => (
-                  <AssetImage
+                  <Image
                     resizeMode="contain"
-                    source={tab.icon}
-                    imageStyle={{
+                    source={{ uri: tab.icon }}
+                    style={{
                       height: size,
                       width: size,
                       tintColor:

@@ -9,9 +9,10 @@ import {
   TextStyle,
   TouchableOpacity,
   TextInputProps,
+  Image,
 } from 'react-native';
 import AppImages from '@Theme/AppImages';
-import { CustomText, AssetImage } from '@CommonComponent';
+import { CustomText } from '@CommonComponent';
 import { AppContext } from '@AppContext';
 import { fontSizes } from '@Utils/Constant';
 
@@ -126,13 +127,14 @@ const CustomTextInput = forwardRef(
                 style={{
                   borderBottomColor: appTheme.border,
                 }}>
-                <AssetImage
+                <Image
                   resizeMode="contain"
-                  source={
-                    (isShowPassword && AppImages.passwordOpen) ||
-                    AppImages.passwordClosed
-                  }
-                  imageStyle={style.inputImg}
+                  source={{
+                    uri:
+                      (isShowPassword && AppImages.passwordOpen) ||
+                      AppImages.passwordClosed,
+                  }}
+                  style={style.inputImg}
                 />
               </View>
             </TouchableOpacity>
