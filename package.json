@@ -33,7 +33,7 @@
     "axios": "^1.2.6",
     "lodash": "^4.17.21",
     "react": "18.2.0",
-    "react-native": "0.73.0",
+    "react-native": "0.73.1",
     "react-native-config": "^1.5.0",
     "react-native-device-info": "^10.3.0",
     "react-native-gesture-handler": "^2.14.0",
