@@ -86,16 +86,16 @@ root
 <table>
   <tr><td colspan=2><strong>iOS</strong></td></tr>
   <tr>
-    <td><p align="center"><img src="https://iili.io/H1D2Q6v.png"  width="200" height="400"/></p></td>
+    <td><p align="center"><img src="https://iili.io/JAd7gzg.md.png"  width="200" height="400"/></p></td>
     <td><p align="center"><img src="https://iili.io/HE9k7RV.png" width="200" height="400"/></p></td>
-    <td><p align="center"><img src="https://iili.io/H1DFNrx.png" width="200" height="400"/></p></td>
+    <td><p align="center"><img src="https://iili.io/JAd7SmF.md.png" width="200" height="400"/></p></td>
     <td><p align="center"><img src="https://iili.io/HEH6Q2t.png" width="200" height="400"/></p></td>
   </tr>
   <tr><td colspan=2><strong>Android</strong></td></tr>
   <tr>
-     <td><p align="center"><img src="https://iili.io/HEJxT8B.png"  width="200" height="400"/></p></td>
+    <td><p align="center"><img src="https://iili.io/JAdYzEx.md.png"  width="200" height="400"/></p></td>
     <td><p align="center"><img src="https://iili.io/HEJxWut.png" width="200" height="400"/></p></td>
-    <td><p align="center"><img src="https://iili.io/HEJxvcl.png" width="200" height="400"/></p></td>
+    <td><p align="center"><img src="https://iili.io/JAdYIrQ.md.png" width="200" height="400"/></p></td>
     <td><p align="center"><img src="https://iili.io/HEJxgA7.png" width="200" height="400"/></p></td>
   </tr>  
   </tr>
