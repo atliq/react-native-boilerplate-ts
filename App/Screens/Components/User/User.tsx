@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import CommonStyle from '@Theme/CommonStyle';
-import AppImages from '@Theme/AppImages';
 import { AppContext } from '@AppContext';
-import { AssetImage, CustomText, NetworkImage } from '@CommonComponent';
+import { CustomText } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
 
 const styles = StyleSheet.create({
@@ -56,8 +55,6 @@ const Users = () => {
         style={btnBorder}
         onPress={() => null}
       />
-      <NetworkImage source="https://iili.io/H1D3eDX.jpg" />
-      <AssetImage source={AppImages.search} />
     </SafeAreaView>
   );
 };

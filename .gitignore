@@ -64,3 +64,6 @@ yarn-error.log
 .metro-health-check*
 .scannerwork
 sonar-project.properties
+
+# testing
+/coverage
