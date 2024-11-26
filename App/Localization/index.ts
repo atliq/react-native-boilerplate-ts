@@ -1,11 +1,10 @@
 import * as RNLocalize from 'react-native-localize';
 import I18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import { en } from '@Localization/en';
 import { de } from '@Localization/de';
 import { hi } from '@Localization/hi';
-import { initReactI18next } from 'react-i18next';
 import { getItemFromStorage } from '@Utils';
-// var memoize = require('lodash.memoize');
 
 export const APP_LANGUAGE = 'appLanguage';
 
