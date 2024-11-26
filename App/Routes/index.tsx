@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StatusBar, StatusBarStyle, View } from 'react-native';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext';
-import { ThemeEnums } from '@Utils/Enums';
+import { CommonStyle } from '@Theme';
+import { useAppContext } from '@AppContext';
+import { ThemeEnums } from '@Utils';
 import { RootStack } from '@Routes/RootStack';
 
 const App = () => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   return (
     <View style={CommonStyle.flexContainer}>
       <StatusBar

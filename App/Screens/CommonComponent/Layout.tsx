@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   KeyboardAvoidingView,
   StatusBar,
@@ -12,13 +12,12 @@ import {
   ImageStyle,
   ScrollView,
 } from 'react-native';
-import { isIOS } from '@Utils/Constant';
-import { AppContext } from '@AppContext';
+import { isIOS } from '@Utils';
+import { useAppContext } from '@AppContext';
 import { NavigationBar } from '@CommonComponent';
-import CommonStyle from '@Theme/CommonStyle';
+import { CommonStyle } from '@Theme';
 
 interface LayoutProps {
-  children: React.ReactNode;
   title?: string;
   titleCenter?: boolean;
   titleTextStyle?: StyleProp<TextStyle>;
@@ -46,8 +45,8 @@ interface LayoutProps {
   removeContainerView?: boolean;
 }
 
-const Layout = (props: LayoutProps) => {
-  const { appTheme } = useContext(AppContext);
+const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
+  const { appTheme } = useAppContext();
   const {
     children,
     title,

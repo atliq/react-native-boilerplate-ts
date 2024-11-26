@@ -10,4 +10,4 @@ const AppImages = {
   icClose: 'ic_close',
 };
 
-export default AppImages;
+export { AppImages };

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext';
+import { CommonStyle } from '@Theme';
+import { useAppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
 
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 const Users = () => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const { btnTitle, btnBorder } = styles;
 
   return (

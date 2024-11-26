@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -6,11 +6,11 @@ import {
   ActivityIndicator,
   StyleProp,
   ViewStyle,
-  TextProps,
+  TextStyle,
 } from 'react-native';
-import CommonStyle from '@Theme/CommonStyle';
+import { CommonStyle } from '@Theme';
 import { CustomText } from '@CommonComponent';
-import { AppContext } from '@AppContext';
+import { useAppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
   outer: {
@@ -43,12 +43,12 @@ interface BottomViewProps {
   subTitle: string | JSX.Element;
   onSubTitle: () => void;
   exStyle?: StyleProp<ViewStyle>;
-  exTextStyle?: StyleProp<TextProps>;
+  exTextStyle?: StyleProp<TextStyle>;
 }
 const BottomView = (props: BottomViewProps) => {
+  const { appTheme } = useAppContext();
   const { title, subTitle, onSubTitle, exStyle, exTextStyle = {} } = props;
   const { outer, flexDirection, paddingVertical, padding } = styles;
-  const { appTheme } = useContext(AppContext);
   return (
     <View style={[outer, exStyle]}>
       <View style={flexDirection}>
@@ -89,7 +89,7 @@ interface FooterProps {
   page: number;
 }
 const ShowFooter = (props: FooterProps) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const { isPageCalling, events, page } = props;
   if (isPageCalling && events.length && page !== 1) {
     return (

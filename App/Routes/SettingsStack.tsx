@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Settings from '@Components/Settings/Settings';
-import { AppContext } from '@AppContext';
+import { useAppContext } from '@AppContext';
+import { I18n } from '@Localization';
 
 const Stack = createStackNavigator();
 
 const SettingsStack = () => {
-  const { appTheme, translations } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   return (
     <Stack.Navigator
       screenOptions={() => ({
@@ -26,7 +27,7 @@ const SettingsStack = () => {
         name="Settings"
         component={Settings}
         options={{
-          title: translations.SETTINGS,
+          title: I18n.t('SETTINGS'),
           headerShown: true,
         }}
       />

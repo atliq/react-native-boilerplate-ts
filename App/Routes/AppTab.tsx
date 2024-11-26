@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useContext } from 'react';
+import React from 'react';
 import { Image } from 'react-native';
 import {
   BottomTabNavigationOptions,
@@ -9,9 +9,8 @@ import Home from '@Components/Home/Home';
 import Search from '@Components/Search/Search';
 import Users from '@Components/User/User';
 import SettingsStack from '@Routes/SettingsStack';
-import AppImages from '@Theme/AppImages';
-import { AppContext } from '@AppContext';
-import ThemeColor from '@Theme/Colors';
+import { AppImages } from '@Theme';
+import { useAppContext } from '@AppContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,13 +49,13 @@ const TABS = [
 ];
 
 const AppTab = () => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarHideOnKeyboard: true,
         headerShown: false,
-        tabBarInactiveTintColor: ThemeColor.gray,
+        tabBarInactiveTintColor: appTheme.gray,
         tabBarStyle: {
           backgroundColor: appTheme.tab,
         },

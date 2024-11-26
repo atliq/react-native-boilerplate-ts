@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   SafeAreaView,
@@ -7,16 +7,14 @@ import {
   Pressable,
   Image,
 } from 'react-native';
-import CommonStyle from '@Theme/CommonStyle';
 import { useNavigation } from '@react-navigation/native';
-import { AppContext } from '@AppContext';
-import { CustomText } from '@CommonComponent';
-import AppImages from '@Theme/AppImages';
+import { AppImages, CommonStyle } from '@Theme';
+import { Authentication, goToNextScreen, setItemInStorage } from '@Utils';
 import { BottomView, ButtonComponent } from '@SubComponents';
-import { setItemInStorage } from '@Utils/Storage';
+import { CustomText } from '@CommonComponent';
 import { Route } from '@Routes/AppRoutes';
-import { goToNextScreen } from '@Utils/Helper';
-import { Authentication } from '@Utils/Enums';
+import { useAppContext } from '@AppContext';
+import { I18n } from '@Localization';
 
 const styles = StyleSheet.create({
   outer: {
@@ -46,7 +44,7 @@ const styles = StyleSheet.create({
 });
 
 const Login = () => {
-  const { appTheme, translations } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const navigation = useNavigation();
   const [state, setState] = useState({
     email: '',
@@ -113,7 +111,7 @@ const Login = () => {
       <View style={[flexContainer, center]}>
         <View style={outer}>
           <CustomText xxlarge style={[title, { color: appTheme.text }]}>
-            {translations.SIGN_IN}
+            {I18n.t('SIGN_IN')}
           </CustomText>
           <TextInput
             onChangeText={(text: string) => onChangeText(text, 'email')}

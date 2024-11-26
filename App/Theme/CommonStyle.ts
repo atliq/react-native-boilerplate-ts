@@ -51,7 +51,6 @@ const CommonStyle = StyleSheet.create({
   },
   androidRipple: {
     color: 'white',
-    foreground: true,
   },
   flex1: { flex: 1 },
   overFlowHidden: { overflow: 'hidden' },
@@ -63,4 +62,4 @@ const CommonStyle = StyleSheet.create({
   },
 });
 
-export default CommonStyle;
+export { CommonStyle };

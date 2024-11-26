@@ -6,7 +6,7 @@ import Reducer from '@Reducers';
 import rootSaga from '@Sagas';
 import DefaultState from '@Default';
 import { LOG_OUT } from '@Keys';
-import { storage } from '@Utils/Storage';
+import { storage } from '@Utils';
 
 export const reduxStorage: Storage = {
   setItem: (key, value) => {

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext';
+import { CommonStyle } from '@Theme';
+import { useAppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
 
@@ -36,7 +36,7 @@ interface CustomProps {
   retryConnection: () => void;
 }
 const NoConnection = (props: CustomProps) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const { textAlign, btnStyle, inner, outer, subTitle } = styles;
   const { retryConnection } = props;
   return (
