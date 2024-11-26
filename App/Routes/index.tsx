@@ -3,7 +3,7 @@ import { StatusBar, StatusBarStyle, View } from 'react-native';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { CommonStyle } from '@Theme';
 import { useAppContext } from '@AppContext';
-import { ThemeEnums } from '@Utils';
+import { fonts, ThemeEnums } from '@Utils';
 import { RootStack } from '@Routes/RootStack';
 
 const App = () => {
@@ -20,6 +20,12 @@ const App = () => {
           colors: {
             ...DefaultTheme.colors,
             background: appTheme.background,
+          },
+          fonts: {
+            bold: { ...fonts.Bold, fontWeight: 'bold' },
+            medium: { ...fonts.Medium, fontWeight: 'normal' },
+            regular: { ...fonts.Regular, fontWeight: 'normal' },
+            heavy: { ...fonts.Bold, fontWeight: 'bold' },
           },
         }}>
         <RootStack />
