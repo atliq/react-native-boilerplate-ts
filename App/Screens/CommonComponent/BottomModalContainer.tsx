@@ -9,11 +9,10 @@ import {
   ViewStyle,
   ModalProps,
 } from 'react-native';
-import React, { useContext } from 'react';
+import React from 'react';
 import { CustomText, Loading } from '@CommonComponent';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext';
-import AppImages from '@Theme/AppImages';
+import { CommonStyle, AppImages } from '@Theme';
+import { useAppContext } from '@AppContext';
 
 interface CustomProps {
   show: boolean;
@@ -32,7 +31,7 @@ interface CustomProps {
   };
 }
 const BottomModalContainer = (props: React.PropsWithChildren<CustomProps>) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
 
   return (
     <Modal

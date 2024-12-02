@@ -1,14 +1,13 @@
 /* eslint-disable no-useless-escape */
+import { Linking } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
 import { CommonActions } from '@react-navigation/native';
 import { ApiConfig } from '@ApiConfig';
-import { getItemFromStorage, removeStoreItem } from '@Utils/Storage';
-import { Authentication } from '@Utils/Enums';
+import { getItemFromStorage, removeStoreItem, Authentication } from '@Utils';
 import { Route } from '@Routes/AppRoutes';
 import { store } from '@Stores';
-import { userLogout } from '@Actions/UserActions';
-import { Linking } from 'react-native';
+import { userLogout } from '@Actions';
 
 export const isValidPhoneNo = (phoneNo: string) => {
   const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;

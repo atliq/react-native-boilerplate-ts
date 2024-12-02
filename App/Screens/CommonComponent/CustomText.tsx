@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { PropsWithChildren } from 'react';
 import {
   GestureResponderEvent,
   StyleProp,
   Text,
+  TextProps,
   TextStyle,
 } from 'react-native';
-import { fontSizes } from '@Utils/Constant';
-import { AppContext } from '@AppContext';
+import { fontSizes } from '@Utils';
+import { useAppContext } from '@AppContext';
 
-interface CustomProps {
+interface CustomProps extends TextProps {
   size?: number;
   small?: boolean;
   xsmall?: boolean;
@@ -18,13 +19,12 @@ interface CustomProps {
   xxlarge?: boolean;
   xxxlarge?: boolean;
   style?: StyleProp<TextStyle>;
-  children: JSX.Element | string;
   numberOfLines?: number;
   onPress?: (event: GestureResponderEvent) => void;
   maxLength?: number;
 }
-const CustomText = (props: CustomProps) => {
-  const { appTheme } = useContext(AppContext);
+const CustomText = (props: PropsWithChildren<CustomProps>) => {
+  const { appTheme } = useAppContext();
 
   const {
     size,

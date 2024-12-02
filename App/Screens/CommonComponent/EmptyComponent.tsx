@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleProp, TextStyle, View, ViewStyle } from 'react-native';
 import { CustomText, Loading } from '@CommonComponent';
-import CommonStyle from '@Theme/CommonStyle';
+import { CommonStyle } from '@Theme';
 
 interface CustomProps {
   isLoading?: boolean;

@@ -1,5 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Image,
   ImageStyle,
@@ -10,13 +9,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import AppImages from '@Theme/AppImages';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext';
-import { CustomText } from '@CommonComponent/CustomText';
+import { useNavigation } from '@react-navigation/native';
+import { AppImages, CommonStyle } from '@Theme';
+import { useAppContext } from '@AppContext';
+import { CustomText } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
-import { width } from '@Utils/Constant';
-import { getSize } from '@Utils/Helper';
+import { width, getSize } from '@Utils';
 
 interface NavigationBarProps {
   title?: string;
@@ -41,7 +39,7 @@ interface NavigationBarProps {
 }
 
 const NavigationBar = (props: NavigationBarProps) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const {
     title,
     titleMaxLength,

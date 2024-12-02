@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ActivityIndicator,
   ColorValue,
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import { AppContext } from '@AppContext';
+import { useAppContext } from '@AppContext';
 
 interface LoadingProps {
   size?: ActivityIndicator['props']['size'];
@@ -14,7 +14,7 @@ interface LoadingProps {
 }
 
 const Loading = (props: LoadingProps) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
 
   const { size, style, color } = props;
 

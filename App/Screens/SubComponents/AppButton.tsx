@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Pressable,
@@ -7,22 +7,25 @@ import {
   ViewStyle,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import CommonStyle from '@Theme/CommonStyle';
+import { CommonStyle } from '@Theme';
 import { CustomText } from '@CommonComponent';
-import { AppContext } from '@AppContext';
+import { useAppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
   gradientBtn: {
     height: 56,
-    paddingHorizontal: 25,
-    minWidth: 100,
     borderWidth: 1,
     ...CommonStyle.center,
   },
   alignSelf: {
     alignSelf: 'center',
   },
-  marginVertical: { marginVertical: 5 },
+  marginVertical: {
+    marginVertical: 5,
+  },
+  marginHorizontal: {
+    marginHorizontal: 25,
+  },
 });
 
 interface GradientButtonProps {
@@ -54,8 +57,8 @@ const ButtonComponent = (props: GradientButtonProps) => {
     outerStyle,
     isGradient = false,
   } = props;
-  const { appTheme } = useContext(AppContext);
-  const { gradientBtn, alignSelf, marginVertical } = styles;
+  const { appTheme } = useAppContext();
+  const { gradientBtn, alignSelf, marginVertical, marginHorizontal } = styles;
   return (
     <Pressable
       onPress={() => onPress()}
@@ -84,10 +87,14 @@ const ButtonComponent = (props: GradientButtonProps) => {
           style,
         ]}>
         {((!isProcessing || textOnly) && (
-          <CustomText large style={[{ color: textColor ?? appTheme.tint }]}>
+          <CustomText
+            large
+            style={[{ color: textColor ?? appTheme.tint }, marginHorizontal]}>
             {title}
           </CustomText>
-        )) || <ActivityIndicator color={appTheme.tint} />}
+        )) || (
+          <ActivityIndicator color={appTheme.tint} style={marginHorizontal} />
+        )}
       </LinearGradient>
     </Pressable>
   );

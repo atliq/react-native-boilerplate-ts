@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useContext, useState, useEffect, forwardRef } from 'react';
+import React, { useState, useEffect, forwardRef, ForwardedRef } from 'react';
 import {
   TextInput,
   StyleSheet,
@@ -11,12 +11,12 @@ import {
   TextInputProps,
   Image,
 } from 'react-native';
-import AppImages from '@Theme/AppImages';
+import { AppImages } from '@Theme';
 import { CustomText } from '@CommonComponent';
-import { AppContext } from '@AppContext';
-import { fontSizes } from '@Utils/Constant';
+import { fontSizes } from '@Utils';
+import { useAppContext } from '@AppContext';
 
-interface CustomTextInputProps {
+interface CustomTextInputProps extends TextInputProps {
   viewStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<TextStyle>;
   onTextChange: (text: string) => void;
@@ -56,9 +56,9 @@ const CustomTextInput = forwardRef(
       editable = true,
       ...props
     }: CustomTextInputProps,
-    ref: React.LegacyRef<TextInput>,
+    ref: ForwardedRef<TextInput>,
   ) => {
-    const { appTheme } = useContext(AppContext);
+    const { appTheme } = useAppContext();
     const [textValue, setTextValue] = useState(value);
     const [isShowPassword, setShowPassword] = useState(true);
 

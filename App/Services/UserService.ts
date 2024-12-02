@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { ApiConfig } from '@ApiConfig';
-import { getItemFromStorage } from '@Utils/Storage';
-import { Authentication } from '@Utils/Enums';
+import { getItemFromStorage, Authentication } from '@Utils';
 
 export const isLoggedIn = () => {
   const token = getItemFromStorage(Authentication.TOKEN);

@@ -1,12 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, Alert, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import CommonStyle from '@Theme/CommonStyle';
-import { AppContext } from '@AppContext';
-import { SettingHeader, SettingRow } from '@SubComponents';
-import { getVersionName, onLogout } from '@Utils/Helper';
+import { CommonStyle } from '@Theme';
 import { CustomText } from '@CommonComponent';
-import { ThemeEnums } from '@Utils/Enums';
+import { SettingHeader, SettingRow } from '@SubComponents';
+import { getVersionName, onLogout, setItemInStorage, ThemeEnums } from '@Utils';
+import { useAppContext } from '@AppContext';
+import { APP_LANGUAGE, I18n as i18n } from '@Localization';
 
 const LANGUAGES = [
   { title: 'Hindi', value: 'hi' },
@@ -24,10 +25,10 @@ const styles = StyleSheet.create({
 });
 
 const Settings = () => {
-  const { appTheme, setAppTheme, appLanguage, setAppLanguage, translations } =
-    useContext(AppContext);
+  const { appTheme, setAppTheme } = useAppContext();
   const [darkMode, setDarkMode] = useState(appTheme.type === 'dark');
   const navigation = useNavigation();
+  const { i18n: I18n } = useTranslation();
 
   const { versionText } = styles;
 
@@ -56,7 +57,8 @@ const Settings = () => {
   };
 
   const onSelectLanguage = (value?: any) => {
-    setAppLanguage(value);
+    I18n.changeLanguage(value);
+    setItemInStorage(APP_LANGUAGE, value);
   };
 
   return (
@@ -65,26 +67,26 @@ const Settings = () => {
         CommonStyle.flexContainer,
         { backgroundColor: appTheme.background },
       ]}>
-      <SettingHeader title={translations.THEME} />
+      <SettingHeader title={i18n.t('THEME')} />
       <SettingRow
         isSwitch={true}
-        title={translations.DARK_MODE}
+        title={i18n.t('DARK_MODE')}
         onPress={onValueChange}
         value={darkMode}
       />
-      <SettingHeader title={translations.LANGUAGE} />
+      <SettingHeader title={i18n.t('LANGUAGE')} />
       {LANGUAGES.map(obj => {
         return (
           <SettingRow
             {...obj}
             onPress={onSelectLanguage}
-            isSelected={appLanguage === obj.value}
+            isSelected={i18n.resolvedLanguage === obj.value}
             key={obj.value}
           />
         );
       })}
       <SettingRow
-        title={translations.LOG_OUT}
+        title={i18n.t('LOG_OUT')}
         onPress={logout}
         value={darkMode}
         textStyle={{ color: appTheme.red }}

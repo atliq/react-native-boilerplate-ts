@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { SafeAreaView } from 'react-native';
-import CommonStyle from '@Theme/CommonStyle';
+import { CommonStyle } from '@Theme';
 import { CustomText } from '@CommonComponent';
-import { AppContext } from '@AppContext';
+import { useAppContext } from '@AppContext';
 
 const Search = () => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
 
   return (
     <SafeAreaView

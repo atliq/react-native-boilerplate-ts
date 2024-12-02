@@ -13,3 +13,6 @@ export const Theme: ThemeType = {
 };
 
 export type AppThemeType = typeof LightTheme | typeof DarkTheme;
+
+export * from '@Theme/AppImages';
+export * from '@Theme/CommonStyle';

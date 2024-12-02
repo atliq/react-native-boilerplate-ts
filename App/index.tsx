@@ -10,12 +10,15 @@ import NetInfo, {
 import Routes from '@Routes';
 import { store, persistor } from '@Stores';
 import { ApiConfig } from '@ApiConfig';
-import { removeStoreItem } from '@Utils/Storage';
-import { configureUrl, getHeaders } from '@Utils/Helper';
+import {
+  configureUrl,
+  getHeaders,
+  removeStoreItem,
+  Authentication,
+} from '@Utils';
 import { AppContextProvider } from '@AppContext';
 import { NoConnection } from '@SubComponents';
-import CommonStyle from '@Theme/CommonStyle';
-import { Authentication } from '@Utils/Enums';
+import { CommonStyle } from '@Theme';
 
 axios.interceptors.request.use(
   config => {

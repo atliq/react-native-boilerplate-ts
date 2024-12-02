@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Modal,
   View,
@@ -9,12 +9,11 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import { AppContext } from '@AppContext/index';
-import { CustomText, CustomTextInput } from '@CommonComponent/index';
-import CommonStyle from '@Theme/CommonStyle';
-import { ButtonComponent } from '@SubComponents/AppButton';
-import { isIOS, width } from '@Utils/Constant';
-import { getSize } from '@Utils/Helper';
+import { useAppContext } from '@AppContext';
+import { CustomText, CustomTextInput } from '@CommonComponent';
+import { CommonStyle } from '@Theme';
+import { ButtonComponent } from '@SubComponents';
+import { isIOS, width, getSize } from '@Utils';
 
 interface CustomProps {
   visible: boolean;
@@ -61,7 +60,7 @@ const IsAlertModal = ({
   titleStyle,
   subTitleStyle,
 }: CustomProps) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
 
   if (!data) {
     return null;

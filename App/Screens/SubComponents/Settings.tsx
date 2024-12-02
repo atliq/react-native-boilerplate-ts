@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -9,10 +9,9 @@ import {
   ViewStyle,
   TextStyle,
 } from 'react-native';
-import AppImages from '@Theme/AppImages';
-import CommonStyle from '@Theme/CommonStyle';
+import { AppImages, CommonStyle } from '@Theme';
 import { CustomText } from '@CommonComponent';
-import { AppContext } from '@AppContext';
+import { useAppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
   outer: {
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
 });
 
 const SettingHeader = (props: { title: string | JSX.Element }) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const { title } = props;
   return (
     <CustomText style={[styles.header, { color: appTheme.lightText }]}>
@@ -55,7 +54,7 @@ interface CustomProps {
   isSelected?: boolean;
 }
 const SettingRow = (props: CustomProps) => {
-  const { appTheme } = useContext(AppContext);
+  const { appTheme } = useAppContext();
   const {
     title,
     style,
