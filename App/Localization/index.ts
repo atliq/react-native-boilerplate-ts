@@ -25,6 +25,7 @@ const fallback = {
 const { languageTag } = fallback;
 
 // Set translations and locale
+// eslint-disable-next-line react-hooks/rules-of-hooks
 I18n.use(initReactI18next).init({
   lng: languageTag, // if you're using a language detector, do not define the lng option
   debug: true,
