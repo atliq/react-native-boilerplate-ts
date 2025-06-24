@@ -1,15 +1,14 @@
 {
-  "root":".",
+  "root": ".",
   "base": "App",
   "modules": [
     "Actions",
-    "Actions/Keys",
+    "Actions/ThunkTypes",
     "ApiConfig",
     "AppContext",
     "Reducers",
     "Reducers/Default",
     "Routes",
-    "Sagas",
     "Screens/Components",
     "Screens/CommonComponent",
     "Screens/SubComponents",

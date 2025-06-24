@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState, useEffect, forwardRef, ForwardedRef } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import {
   TextInput,
   StyleSheet,
@@ -15,11 +15,12 @@ import { AppImages } from '@Theme';
 import { CustomText } from '@CommonComponent';
 import { fontSizes } from '@Utils';
 import { useAppContext } from '@AppContext';
+import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomTextInputProps extends TextInputProps {
   viewStyle?: StyleProp<TextStyle>;
   containerStyle?: StyleProp<TextStyle>;
-  onTextChange: (text: string) => void;
+  onChangeText: (text: string) => void;
   error?: string;
   value?: string;
   placeholder?: string;
@@ -35,12 +36,12 @@ interface CustomTextInputProps extends TextInputProps {
   editable?: boolean;
 }
 
-const CustomTextInput = forwardRef(
+const CustomTextInput = forwardRef<TextInput, CustomTextInputProps>(
   (
     {
       viewStyle,
       containerStyle,
-      onTextChange,
+      onChangeText,
       error,
       value,
       placeholder,
@@ -55,8 +56,8 @@ const CustomTextInput = forwardRef(
       maxLength = undefined,
       editable = true,
       ...props
-    }: CustomTextInputProps,
-    ref: ForwardedRef<TextInput>,
+    },
+    ref,
   ) => {
     const { appTheme } = useAppContext();
     const [textValue, setTextValue] = useState(value);
@@ -74,13 +75,14 @@ const CustomTextInput = forwardRef(
 
     return (
       <View style={[{ marginBottom: 5 }, viewStyle]}>
-        {!hideLabel && (
+        <ConditionalRender condition={!hideLabel}>
           <CustomText
             medium
-            style={{ color: appTheme.lightText, margin: 5, marginTop: 10 }}>
+            style={{ color: appTheme.lightText, margin: 5, marginTop: 10 }}
+          >
             {label}
           </CustomText>
-        )}
+        </ConditionalRender>
         <View
           style={[
             style.container,
@@ -90,7 +92,8 @@ const CustomTextInput = forwardRef(
               paddingTop: (multiline && 10) || 0,
             },
             containerStyle,
-          ]}>
+          ]}
+        >
           <TextInput
             {...props}
             style={[
@@ -115,18 +118,19 @@ const CustomTextInput = forwardRef(
             placeholderTextColor={appTheme.textBorder}
             onChangeText={text => {
               setTextValue(text);
-              onTextChange(text);
+              onChangeText(text);
             }}
             underlineColorAndroid={undefined}
             value={textValue}
             onFocus={onFocus}
           />
-          {isSecure && (
+          <ConditionalRender condition={isSecure}>
             <TouchableOpacity onPress={onShowPassword} activeOpacity={1}>
               <View
                 style={{
                   borderBottomColor: appTheme.border,
-                }}>
+                }}
+              >
                 <Image
                   resizeMode="contain"
                   source={{
@@ -138,15 +142,15 @@ const CustomTextInput = forwardRef(
                 />
               </View>
             </TouchableOpacity>
-          )}
+          </ConditionalRender>
         </View>
-        {(error && (
+        <ConditionalRender condition={!!error}>
           <CustomText
             medium
-            style={{ color: 'red', margin: 5 }}>{`${error}`}</CustomText>
-        )) ||
-          null}
-        {(maxChar && (
+            style={{ color: 'red', margin: 5 }}
+          >{`${error}`}</CustomText>
+        </ConditionalRender>
+        <ConditionalRender condition={!!maxChar}>
           <CustomText
             medium
             style={{
@@ -154,9 +158,9 @@ const CustomTextInput = forwardRef(
                 ((textValue?.length ?? 0) > maxChar && appTheme.red) ||
                 appTheme.textBorder,
               margin: 5,
-            }}>{`${textValue?.length ?? 0}/${maxChar} character.`}</CustomText>
-        )) ||
-          null}
+            }}
+          >{`${textValue?.length ?? 0}/${maxChar} character.`}</CustomText>
+        </ConditionalRender>
       </View>
     );
   },

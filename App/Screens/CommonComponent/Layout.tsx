@@ -16,6 +16,7 @@ import { isIOS } from '@Utils';
 import { useAppContext } from '@AppContext';
 import { NavigationBar } from '@CommonComponent';
 import { CommonStyle } from '@Theme';
+import ConditionalRender from './ConditionalRender';
 
 interface LayoutProps {
   title?: string;
@@ -30,7 +31,7 @@ interface LayoutProps {
     submitTitle?: string;
     submitBtnStyle?: StyleProp<ViewStyle>;
     onSubmitBtnType?: 'btn' | 'img' | 'text' | 'custom';
-    customSubmitComponent?: JSX.Element;
+    customSubmitComponent?: React.JSX.Element;
     submitImage?: string;
     submitImageStyle?: StyleProp<ImageStyle>;
   };
@@ -69,7 +70,8 @@ const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
       style={[
         CommonStyle.flex1,
         { backgroundColor: backgroundColor ?? appTheme.background },
-      ]}>
+      ]}
+    >
       <StatusBar
         backgroundColor={appTheme.themeColor}
         barStyle={
@@ -79,7 +81,8 @@ const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
       <KeyboardAvoidingView
         behavior="padding"
         style={styles.keyboardView}
-        keyboardVerticalOffset={isIOS ? 0 : -500}>
+        keyboardVerticalOffset={isIOS ? 0 : -500}
+      >
         <NavigationBar
           title={title}
           titleCenter={titleCenter}
@@ -92,7 +95,19 @@ const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
           paddingHorizontal={padding}
           submit={submit}
         />
-        {(scrollable && (
+        <ConditionalRender
+          condition={scrollable}
+          fallback={
+            <ConditionalRender
+              condition={removeContainerView}
+              fallback={
+                <View style={[CommonStyle.flex1, { padding }]}>{children}</View>
+              }
+            >
+              <View style={{ padding }}>{children}</View>
+            </ConditionalRender>
+          }
+        >
           <ScrollView
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="always"
@@ -106,15 +121,11 @@ const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
                 />
               )) ||
               undefined
-            }>
+            }
+          >
             {children}
           </ScrollView>
-        )) ||
-          (removeContainerView && (
-            <View style={{ padding }}>{children}</View>
-          )) || (
-            <View style={[CommonStyle.flex1, { padding }]}>{children}</View>
-          )}
+        </ConditionalRender>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

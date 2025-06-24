@@ -14,6 +14,7 @@ import { CustomText, CustomTextInput } from '@CommonComponent';
 import { CommonStyle } from '@Theme';
 import { ButtonComponent } from '@SubComponents';
 import { isIOS, width, getSize } from '@Utils';
+import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomProps {
   visible: boolean;
@@ -76,44 +77,39 @@ const IsAlertModal = ({
           CommonStyle.flexContainer,
           CommonStyle.center,
           { backgroundColor: appTheme.overlay },
-        ]}>
+        ]}
+      >
         <TouchableOpacity
           style={[
             CommonStyle.absoluteView,
             { backgroundColor: appTheme.transparent },
           ]}
           activeOpacity={1}
-          onPress={onClose}>
+          onPress={onClose}
+        >
           <View />
         </TouchableOpacity>
         <View style={[styles.card, { backgroundColor: appTheme.background }]}>
           <View style={styles.footer}>
             <CustomText
               xlarge
-              style={[
-                styles.title,
-                {
-                  color: appTheme.text,
-                },
-                titleStyle,
-              ]}>
+              style={[styles.title, { color: appTheme.text }, titleStyle]}
+            >
               {title}
             </CustomText>
-            {(subTitle && (
+            <ConditionalRender condition={!!subTitle}>
               <CustomText
                 large
                 style={[
                   styles.subTitle,
-                  {
-                    color: appTheme.gray,
-                  },
+                  { color: appTheme.gray },
                   subTitleStyle,
-                ]}>
+                ]}
+              >
                 {subTitle}
               </CustomText>
-            )) ||
-              null}
-            {(deleteAccount && (
+            </ConditionalRender>
+            <ConditionalRender condition={!!deleteAccount}>
               <CustomText
                 large
                 style={styles.deleteAccountText}
@@ -124,68 +120,58 @@ const IsAlertModal = ({
                       large
                       style={[
                         styles.deleteStyle,
-                        {
-                          color: appTheme.themeColor,
-                        },
-                      ]}>
+                        { color: appTheme.themeColor },
+                      ]}
+                    >
                       {'DELETE '}
                     </CustomText>
                     <CustomText>to confirm.</CustomText>
                   </View>
                 }
               />
-            )) ||
-              null}
-
-            {(deleteAccount && (
+            </ConditionalRender>
+            <ConditionalRender condition={!!deleteAccount}>
               <CustomTextInput
                 containerStyle={[styles.DeleteTextInput]}
-                onTextChange={text => {
-                  setDeleteTextInput!(text);
+                onChangeText={text => {
+                  setDeleteTextInput?.(text);
                 }}
                 placeholder="Type here..."
                 value={deleteTextInput}
                 label=""
               />
-            )) ||
-              null}
-
-            {(emailInput && (
+            </ConditionalRender>
+            <ConditionalRender condition={!!emailInput}>
               <View style={styles.textInput}>{emailInput}</View>
-            )) ||
-              null}
-            {(userNameInput && (
+            </ConditionalRender>
+            <ConditionalRender condition={!!userNameInput}>
               <View style={styles.textInput}>{userNameInput}</View>
-            )) ||
-              null}
-            {(error && (
+            </ConditionalRender>
+            <ConditionalRender condition={!!error}>
               <View style={styles.errorOuter}>
                 <CustomText style={{ color: appTheme.red }}>{error}</CustomText>
               </View>
-            )) ||
-              null}
+            </ConditionalRender>
             <View style={styles.bottomBtn}>
-              {(leftBtn && (
+              <ConditionalRender condition={!!leftBtn}>
                 <ButtonComponent
                   onPress={() => {
-                    leftBtn.onPress();
+                    leftBtn?.onPress && leftBtn.onPress();
                   }}
-                  title={leftBtn.title}
-                  textColor={leftBtn.textColor}
-                  style={[styles.btnOuter, leftBtn.style]}
+                  title={leftBtn?.title ?? ''}
+                  textColor={leftBtn?.textColor}
+                  style={[styles.btnOuter, leftBtn?.style]}
                 />
-              )) ||
-                null}
-              {(rightBtn && (
+              </ConditionalRender>
+              <ConditionalRender condition={!!rightBtn}>
                 <ButtonComponent
                   isProcessing={isProcessing}
-                  onPress={rightBtn.onPress}
-                  title={rightBtn.title}
-                  textColor={rightBtn.textColor}
-                  style={[styles.btnOuter, rightBtn.style]}
+                  onPress={rightBtn?.onPress ?? (() => {})}
+                  title={rightBtn?.title ?? ''}
+                  textColor={rightBtn?.textColor}
+                  style={[styles.btnOuter, rightBtn?.style]}
                 />
-              )) ||
-                null}
+              </ConditionalRender>
             </View>
           </View>
         </View>
@@ -198,7 +184,8 @@ const IsAlertModal = ({
       visible={visible}
       transparent={true}
       animationType="none"
-      onRequestClose={onClose}>
+      onRequestClose={onClose}
+    >
       {renderModal()}
     </Modal>
   );

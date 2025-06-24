@@ -1,9 +1,11 @@
-import { GET_USER, LOG_OUT } from '@Keys';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { userLogin } from '@Services/UserService';
+import { UserThunkTypes } from '@ThunkTypes';
 
-export const getUserDetail = () => ({
-  type: GET_USER,
-});
-
-export const userLogout = () => ({
-  type: LOG_OUT,
-});
+export const fetchUser = createAsyncThunk(
+  UserThunkTypes.USER_FETCH,
+  async params => {
+    const userData = await userLogin(params);
+    return userData;
+  },
+);

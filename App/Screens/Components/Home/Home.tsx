@@ -6,7 +6,8 @@ import {
   BottomModalContainer,
   IsAlertModal,
 } from '@CommonComponent';
-import { useIsFocused } from '@react-navigation/native';
+// import { useIsFocused } from '@react-navigation/native';
+const { useIsFocused } = require('@react-navigation/native');
 import { ButtonComponent } from '@SubComponents';
 import {
   compareAppVersions,
@@ -74,7 +75,8 @@ const Home = () => {
       <BottomModalContainer
         title="Modal"
         onClose={() => setShowModal(false)}
-        show={isShowModal}>
+        show={isShowModal}
+      >
         <CustomText large>Modal</CustomText>
       </BottomModalContainer>
       <IsAlertModal

@@ -9,12 +9,13 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+const { useNavigation } = require('@react-navigation/native');
 import { AppImages, CommonStyle } from '@Theme';
 import { useAppContext } from '@AppContext';
 import { CustomText } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
 import { width, getSize } from '@Utils';
+import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface NavigationBarProps {
   title?: string;
@@ -32,7 +33,7 @@ interface NavigationBarProps {
     submitTitle?: string;
     submitBtnStyle?: StyleProp<ViewStyle> | StyleProp<TextStyle>;
     onSubmitBtnType?: 'btn' | 'img' | 'text' | 'custom';
-    customSubmitComponent?: JSX.Element;
+    customSubmitComponent?: React.JSX.Element;
     submitImage?: string;
     submitImageStyle?: StyleProp<ImageStyle>;
   };
@@ -76,7 +77,8 @@ const NavigationBar = (props: NavigationBarProps) => {
         !titleCenter && showBack && styles.marginLeft,
         !titleCenter && CommonStyle.flex1,
         titleTextStyle,
-      ]}>
+      ]}
+    >
       {title ?? ''}
     </CustomText>
   );
@@ -111,7 +113,8 @@ const NavigationBar = (props: NavigationBarProps) => {
               style={[
                 titleCenter && CommonStyle.alignSelfEnd,
                 submitBtnStyle as StyleProp<TextStyle>,
-              ]}>
+              ]}
+            >
               {submitTitle}
             </CustomText>
           );
@@ -122,7 +125,8 @@ const NavigationBar = (props: NavigationBarProps) => {
                 titleCenter && CommonStyle.alignSelfEnd,
                 submitBtnStyle as StyleProp<ViewStyle>,
               ]}
-              onPress={onSubmit}>
+              onPress={onSubmit}
+            >
               <Image
                 resizeMode="contain"
                 source={{ uri: submitImage }}
@@ -149,31 +153,30 @@ const NavigationBar = (props: NavigationBarProps) => {
         { paddingHorizontal },
         { backgroundColor: backgroundColor ?? appTheme.background },
         exStyle,
-      ]}>
-      {(showBack && (
+      ]}
+    >
+      <ConditionalRender condition={!!showBack}>
         <Pressable
           style={styles.backBtn}
           android_ripple={CommonStyle.androidRipple}
-          onPress={() => navigation.goBack()}>
+          onPress={() => navigation.goBack()}
+        >
           <Image
             source={{ uri: AppImages.icBack }}
             style={[styles.icBack, { tintColor: appTheme.text }]}
             resizeMode="contain"
           />
         </Pressable>
-      )) ||
-        null}
-      {(titleCenter && (
+      </ConditionalRender>
+      <ConditionalRender condition={titleCenter} fallback={renderTitle()}>
         <View style={[styles.centerTitleView, { paddingHorizontal }]}>
           {renderTitle()}
         </View>
-      )) ||
-        renderTitle()}
+      </ConditionalRender>
 
-      {(titleCenter && (
+      <ConditionalRender condition={titleCenter} fallback={renderSubmit()}>
         <View style={[CommonStyle.flex1]}>{renderSubmit()}</View>
-      )) ||
-        renderSubmit()}
+      </ConditionalRender>
     </View>
   );
 };

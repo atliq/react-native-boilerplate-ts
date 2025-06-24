@@ -13,6 +13,7 @@ import React from 'react';
 import { CustomText, Loading } from '@CommonComponent';
 import { CommonStyle, AppImages } from '@Theme';
 import { useAppContext } from '@AppContext';
+import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomProps {
   show: boolean;
@@ -37,11 +38,13 @@ const BottomModalContainer = (props: React.PropsWithChildren<CustomProps>) => {
     <Modal
       transparent={true}
       animationType={props.animationType}
-      visible={props.show}>
+      visible={props.show}
+    >
       <View style={[styles.model1, props.mainContainerStyle]}>
         <Pressable
           style={CommonStyle.absoluteView}
-          onPress={() => props.onClose()}>
+          onPress={() => props.onClose()}
+        >
           <View />
         </Pressable>
         <View
@@ -49,35 +52,39 @@ const BottomModalContainer = (props: React.PropsWithChildren<CustomProps>) => {
             styles.modelContainer,
             { backgroundColor: appTheme.background },
             props.modalContainerStyle,
-          ]}>
+          ]}
+        >
           <View style={styles.titleContainer}>
             <CustomText xlarge style={[props.titleStyle, styles.title]}>
               {props.title}
             </CustomText>
-            {props.secondaryBtn && (
+            <ConditionalRender condition={!!props.secondaryBtn}>
               <Pressable
                 android_ripple={CommonStyle.androidRipple}
                 style={[
                   styles.secondBtn,
                   { backgroundColor: appTheme.text },
-                  props.secondaryBtn.style,
+                  props.secondaryBtn?.style,
                 ]}
-                onPress={() => props.secondaryBtn?.onPress()}>
-                {((props.secondaryBtn.isLoading || false) && (
+                onPress={() => props.secondaryBtn?.onPress()}
+              >
+                <ConditionalRender condition={!!props.secondaryBtn?.isLoading}>
                   <Loading color={appTheme.tint} />
-                )) || (
+                </ConditionalRender>
+                <ConditionalRender condition={!props.secondaryBtn?.isLoading}>
                   <CustomText
                     large
                     style={[
                       styles.boldFont,
                       { color: appTheme.tint },
                       props.secondaryBtn?.titleStyle,
-                    ]}>
+                    ]}
+                  >
                     {props.secondaryBtn?.title}
                   </CustomText>
-                )}
+                </ConditionalRender>
               </Pressable>
-            )}
+            </ConditionalRender>
             <Pressable style={styles.closeBtn} onPress={() => props.onClose()}>
               <Image
                 resizeMode="contain"

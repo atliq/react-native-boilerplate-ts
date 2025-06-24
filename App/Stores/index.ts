@@ -1,11 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
+import { Action, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-const createSagaMiddleware = require('redux-saga').default;
 import { persistStore, persistReducer, Storage } from 'redux-persist';
-import Reducer from '@Reducers';
-import rootSaga from '@Sagas';
+import Reducers from '@Reducers';
 import DefaultState from '@Default';
-import { LOG_OUT } from '@Keys';
+import { UserThunkTypes } from '@ThunkTypes';
 import { storage } from '@Utils';
 
 export const reduxStorage: Storage = {
@@ -28,28 +26,33 @@ const persistConfig = {
   storage: reduxStorage,
 };
 
-const rootReducer = (state: any, action: any) => {
-  if (action.type === LOG_OUT) {
+const rootReducer = (
+  state: typeof DefaultState | undefined,
+  action: Action,
+) => {
+  if (action.type === UserThunkTypes.LOG_OUT) {
     state = DefaultState;
   }
-  return Reducer(state, action);
+  return Reducers(state, action);
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const configureStore = () => {
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
-  sagaMiddleware.run(rootSaga);
-  return store;
-};
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+      thunk: true,
+    }),
+});
 
-const index = configureStore();
-const persistor = persistStore(index);
+const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof index.getState>;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-const useAppDispatch = () => useDispatch<typeof index.dispatch>();
+const useAppDispatch = () => useDispatch<AppDispatch>();
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-export { index as store, persistor, useAppSelector, useAppDispatch };
+export { store, persistor, useAppSelector, useAppDispatch };

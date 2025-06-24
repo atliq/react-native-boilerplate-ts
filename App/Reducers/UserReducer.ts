@@ -1,16 +1,35 @@
-import { SET_USER } from '@Keys';
-import DefaultState from '@Default';
-import { UserDefault } from '@Default/UserDefault';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserDefault } from '@Reducers/Default/UserDefault';
+import userDefault from '@Reducers/Default/UserDefault';
+import { fetchUser } from '@Actions';
 
-const INIT_STATE = DefaultState.user;
+const initialState: UserDefault = userDefault;
 
-const UserReducer = (state = INIT_STATE, action: any): UserDefault => {
-  switch (action.type) {
-    case SET_USER:
-      return { ...state, user: action.payload };
-    default:
-      return state;
-  }
-};
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    setUser(state, action: PayloadAction<any>) {
+      state.user = action.payload;
+    },
+    resetUser() {
+      return initialState;
+    },
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchUser.rejected, state => {
+      state.loading = false; // Optionally handle rejected state
+    });
+    builder.addCase(fetchUser.pending, state => {
+      // Optionally handle pending state if needed
+      state.loading = true;
+    });
+  },
+});
 
-export default UserReducer;
+export const { setUser, resetUser } = userSlice.actions;
+export default userSlice.reducer;

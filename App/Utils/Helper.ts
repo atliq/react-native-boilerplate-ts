@@ -2,12 +2,12 @@
 import { Linking } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
-import { CommonActions } from '@react-navigation/native';
+const { CommonActions } = require('@react-navigation/native');
 import { ApiConfig } from '@ApiConfig';
 import { getItemFromStorage, removeStoreItem, Authentication } from '@Utils';
 import { Route } from '@Routes/AppRoutes';
 import { store } from '@Stores';
-import { userLogout } from '@Actions';
+import { resetUser } from '@Reducers/UserReducer';
 
 export const isValidPhoneNo = (phoneNo: string) => {
   const phoneNumberPattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
@@ -105,7 +105,7 @@ export const getHeaders = () => {
 
 export const onLogout = (navigation: any) => {
   goToNextScreen(navigation, Route.LoginScreen);
-  store.dispatch(userLogout());
+  store.dispatch(resetUser());
   removeStoreItem(Authentication.TOKEN);
 };
 

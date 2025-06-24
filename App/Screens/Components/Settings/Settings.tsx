@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Alert, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+const { useNavigation } = require('@react-navigation/native');
 import { CommonStyle } from '@Theme';
 import { CustomText } from '@CommonComponent';
 import { SettingHeader, SettingRow } from '@SubComponents';
@@ -66,7 +66,8 @@ const Settings = () => {
       style={[
         CommonStyle.flexContainer,
         { backgroundColor: appTheme.background },
-      ]}>
+      ]}
+    >
       <SettingHeader title={i18n.t('THEME')} />
       <SettingRow
         isSwitch={true}

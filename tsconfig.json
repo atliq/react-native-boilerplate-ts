@@ -14,11 +14,11 @@
       "@Actions/*": [
         "./App/Actions/*"
       ],
-      "@Keys": [
-        "./App/Actions/Keys/index"
+      "@ThunkTypes": [
+        "./App/Actions/ThunkTypes/index"
       ],
-      "@Keys/*": [
-        "./App/Actions/Keys/*"
+      "@ThunkTypes/*": [
+        "./App/Actions/ThunkTypes/*"
       ],
       "@ApiConfig": [
         "./App/ApiConfig/index"
@@ -49,12 +49,6 @@
       ],
       "@Routes/*": [
         "./App/Routes/*"
-      ],
-      "@Sagas": [
-        "./App/Sagas/index"
-      ],
-      "@Sagas/*": [
-        "./App/Sagas/*"
       ],
       "@Components": [
         "./App/Screens/Components/index"

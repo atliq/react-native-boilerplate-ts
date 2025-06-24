@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleProp, TextStyle, View, ViewStyle } from 'react-native';
 import { CustomText, Loading } from '@CommonComponent';
 import { CommonStyle } from '@Theme';
+import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomProps {
   isLoading?: boolean;
@@ -14,9 +15,12 @@ const EmptyComponent = (props: CustomProps) => {
   const text = props.text ?? 'No Data Found';
   return (
     <View style={[CommonStyle.flex1, CommonStyle.center, style]}>
-      {(!isLoading && <CustomText style={textStyle}>{text}</CustomText>) || (
+      <ConditionalRender condition={!isLoading}>
+        <CustomText style={textStyle}>{text}</CustomText>
+      </ConditionalRender>
+      <ConditionalRender condition={isLoading}>
         <Loading />
-      )}
+      </ConditionalRender>
     </View>
   );
 };
