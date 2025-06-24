@@ -9,9 +9,8 @@ import {
   TextStyle,
 } from 'react-native';
 import { CommonStyle } from '@Theme';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { useAppContext } from '@AppContext';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 const styles = StyleSheet.create({
   outer: {

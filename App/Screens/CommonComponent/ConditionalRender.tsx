@@ -18,4 +18,4 @@ const ConditionalRender = ({
   );
 };
 
-export default ConditionalRender;
+export { ConditionalRender };

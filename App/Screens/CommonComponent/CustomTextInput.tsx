@@ -12,10 +12,9 @@ import {
   Image,
 } from 'react-native';
 import { AppImages } from '@Theme';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { fontSizes } from '@Utils';
 import { useAppContext } from '@AppContext';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomTextInputProps extends TextInputProps {
   viewStyle?: StyleProp<TextStyle>;

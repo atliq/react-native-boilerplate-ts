@@ -10,11 +10,14 @@ import {
   TextStyle,
 } from 'react-native';
 import { useAppContext } from '@AppContext';
-import { CustomText, CustomTextInput } from '@CommonComponent';
+import {
+  CustomText,
+  CustomTextInput,
+  ConditionalRender,
+} from '@CommonComponent';
 import { CommonStyle } from '@Theme';
 import { ButtonComponent } from '@SubComponents';
 import { isIOS, width, getSize } from '@Utils';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomProps {
   visible: boolean;

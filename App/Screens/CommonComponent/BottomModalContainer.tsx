@@ -10,10 +10,9 @@ import {
   ModalProps,
 } from 'react-native';
 import React from 'react';
-import { CustomText, Loading } from '@CommonComponent';
+import { CustomText, Loading, ConditionalRender } from '@CommonComponent';
 import { CommonStyle, AppImages } from '@Theme';
 import { useAppContext } from '@AppContext';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface CustomProps {
   show: boolean;

@@ -9,8 +9,7 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
-import { CustomText } from '@CommonComponent';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 
 interface TouchableTextProps {
   onPress: (event: GestureResponderEvent) => void;

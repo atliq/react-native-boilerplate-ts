@@ -8,9 +8,8 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { CommonStyle } from '@Theme';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { useAppContext } from '@AppContext';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 const styles = StyleSheet.create({
   gradientBtn: {

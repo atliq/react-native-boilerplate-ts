@@ -12,10 +12,9 @@ import {
 const { useNavigation } = require('@react-navigation/native');
 import { AppImages, CommonStyle } from '@Theme';
 import { useAppContext } from '@AppContext';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
 import { width, getSize } from '@Utils';
-import ConditionalRender from '@CommonComponent/ConditionalRender';
 
 interface NavigationBarProps {
   title?: string;

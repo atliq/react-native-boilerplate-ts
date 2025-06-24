@@ -14,10 +14,8 @@ import {
 } from 'react-native';
 import { isIOS } from '@Utils';
 import { useAppContext } from '@AppContext';
-import { NavigationBar } from '@CommonComponent';
+import { NavigationBar, ConditionalRender } from '@CommonComponent';
 import { CommonStyle } from '@Theme';
-import ConditionalRender from './ConditionalRender';
-
 interface LayoutProps {
   title?: string;
   titleCenter?: boolean;
