@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
+const createSagaMiddleware = require('redux-saga').default;
 import { persistStore, persistReducer, Storage } from 'redux-persist';
 import Reducer from '@Reducers';
 import rootSaga from '@Sagas';
