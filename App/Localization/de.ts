@@ -1,6 +1,4 @@
-import { Translation } from '@Localization';
-
-const de: Translation = {
+const de = {
   SETTINGS: 'die Einstellungen',
   LANGUAGE: 'SPRACHE',
   THEME: 'THEMA',
