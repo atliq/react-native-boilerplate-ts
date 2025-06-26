@@ -76,11 +76,6 @@ export const getRound = (size: number) => {
   };
 };
 
-export const navigateToNextScreen = (
-  navigation: any,
-  params: { name: string; params?: any },
-) => navigation.navigate(params);
-
 export const goToNextScreen = async (navigation: any, nextScreen: string) => {
   navigation.dispatch(
     CommonActions.reset({
