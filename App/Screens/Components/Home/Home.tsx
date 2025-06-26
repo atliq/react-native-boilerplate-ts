@@ -15,6 +15,7 @@ import {
   alertData,
   isIOS,
   width,
+  wrapAsync,
 } from '@Utils';
 import { useAppContext } from '@AppContext';
 import { useAppDispatch } from '@Stores';
@@ -35,35 +36,27 @@ const Home = () => {
       checkMinimumVersion();
       dispatch(fetchUser({ user: {}, loading: false }));
     }
-  }, [isFocused]);
-
-  const checkMinimumVersion = async () => {
-    try {
-      let shouldUpdate = compareAppVersions({
-        version,
-        minimumVersion: 'v1.0.0', // Wrap whole try block in if condition with apiConfig.serviceConfig and pass minimumVersion from api response
-      });
-      if (shouldUpdate) {
-        setIsUpdate(true);
-        return;
-      }
+  }, [isFocused]); // Original function wrapped with useTryCatch
+  const checkMinimumVersion = wrapAsync(async () => {
+    let shouldUpdate = compareAppVersions({
+      version,
+      minimumVersion: 'v1.0.0', // Wrap whole try block in if condition with apiConfig.serviceConfig and pass minimumVersion from api response
+    });
+    if (shouldUpdate) {
+      setIsUpdate(true);
       return;
-    } catch (e: any) {
-      console.log(e);
     }
-  };
+    return;
+  });
 
-  const updateApp = async () => {
-    try {
-      if (isIOS) {
-        await openLink('');
-      } else {
-        await openLink('');
-      }
-    } catch (e: any) {
-      console.log(e);
+  // Original function wrapped with useTryCatch
+  const updateApp = wrapAsync(async () => {
+    if (isIOS) {
+      await openLink(''); // React Native app for testing
+    } else {
+      await openLink('');
     }
-  };
+  });
 
   return (
     <Layout title="Widgets" padding={20}>
@@ -71,6 +64,7 @@ const Home = () => {
       <ButtonComponent
         onPress={() => {
           setShowModal(true);
+          updateApp();
         }}
         backColor={appTheme.themeColor}
         title="Show Modal"
