@@ -16,10 +16,10 @@ import { useAppContext } from '@AppContext';
 const Tab = createBottomTabNavigator<TabRouteType>();
 
 enum tabs {
-  HomeTab = 'Home',
-  SearchTab = 'Search',
-  UsersTab = 'Users',
-  SettingsTab = 'Settings',
+  HomeTab = 'HomeTab',
+  SearchTab = 'SearchTab',
+  UsersTab = 'UsersTab',
+  SettingsTab = 'SettingsTab',
 }
 
 const TABS = [
