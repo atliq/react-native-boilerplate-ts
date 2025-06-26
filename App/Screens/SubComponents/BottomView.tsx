@@ -9,7 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import { CommonStyle } from '@Theme';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { useAppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
 });
 
 interface BottomViewProps {
-  title: string | JSX.Element;
-  subTitle: string | JSX.Element;
+  title: string | React.JSX.Element;
+  subTitle: string | React.JSX.Element;
   onSubTitle: () => void;
   exStyle?: StyleProp<ViewStyle>;
   exTextStyle?: StyleProp<TextStyle>;
@@ -60,12 +60,14 @@ const BottomView = (props: BottomViewProps) => {
               color: appTheme.lightText,
             },
             exTextStyle,
-          ]}>
+          ]}
+        >
           {title}
         </CustomText>
         <Pressable
           onPress={() => onSubTitle()}
-          android_ripple={CommonStyle.androidRipple}>
+          android_ripple={CommonStyle.androidRipple}
+        >
           <CustomText
             large
             style={[
@@ -74,7 +76,8 @@ const BottomView = (props: BottomViewProps) => {
                 color: appTheme.themeColor,
               },
               exTextStyle,
-            ]}>
+            ]}
+          >
             {subTitle}
           </CustomText>
         </Pressable>
@@ -91,8 +94,8 @@ interface FooterProps {
 const ShowFooter = (props: FooterProps) => {
   const { appTheme } = useAppContext();
   const { isPageCalling, events, page } = props;
-  if (isPageCalling && events.length && page !== 1) {
-    return (
+  return (
+    <ConditionalRender condition={isPageCalling && events.length && page !== 1}>
       <View style={styles.footer}>
         <ActivityIndicator
           animating={true}
@@ -101,14 +104,13 @@ const ShowFooter = (props: FooterProps) => {
         />
         <CustomText
           style={[styles.space, { color: appTheme.lightText }]}
-          medium>
+          medium
+        >
           Loading Data...
         </CustomText>
       </View>
-    );
-  } else {
-    return null;
-  }
+    </ConditionalRender>
+  );
 };
 
 export { BottomView, ShowFooter };

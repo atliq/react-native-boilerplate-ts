@@ -9,7 +9,7 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 
 interface TouchableTextProps {
   onPress: (event: GestureResponderEvent) => void;
@@ -29,13 +29,14 @@ const TouchableText = (props: TouchableTextProps) => {
     <TouchableOpacity
       activeOpacity={0.9}
       style={[styles.container, props.btnStyle]}
-      onPress={onPress}>
+      onPress={onPress}
+    >
       <CustomText style={style}>{text}</CustomText>
-      {props.rightIcon && (
-        <View style={[styles.imageContainer, props.rightIcon.style]}>
-          <Image source={{ uri: props.rightIcon.uri }} style={styles.image} />
+      <ConditionalRender condition={!!props.rightIcon}>
+        <View style={[styles.imageContainer, props.rightIcon?.style]}>
+          <Image source={{ uri: props.rightIcon?.uri }} style={styles.image} />
         </View>
-      )}
+      </ConditionalRender>
     </TouchableOpacity>
   );
 };

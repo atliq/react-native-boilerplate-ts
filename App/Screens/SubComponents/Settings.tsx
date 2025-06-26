@@ -10,7 +10,7 @@ import {
   TextStyle,
 } from 'react-native';
 import { AppImages, CommonStyle } from '@Theme';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { useAppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SettingHeader = (props: { title: string | JSX.Element }) => {
+const SettingHeader = (props: { title: string | React.JSX.Element }) => {
   const { appTheme } = useAppContext();
   const { title } = props;
   return (
@@ -45,7 +45,7 @@ const SettingHeader = (props: { title: string | JSX.Element }) => {
 };
 
 interface CustomProps {
-  title: string | JSX.Element;
+  title: string | React.JSX.Element;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   onPress: (value: any) => void;
@@ -68,27 +68,27 @@ const SettingRow = (props: CustomProps) => {
   return (
     <Pressable
       onPress={() => onPress(value)}
-      android_ripple={CommonStyle.androidRipple}>
+      android_ripple={CommonStyle.androidRipple}
+    >
       <View
         style={[
           outer,
           { backgroundColor: appTheme.card, borderColor: appTheme.border },
           style,
-        ]}>
+        ]}
+      >
         <CustomText large style={[{ color: appTheme.text }, textStyle]}>
           {title}
         </CustomText>
-        {(isSwitch && (
+        <ConditionalRender condition={isSwitch}>
           <Switch onChange={() => onPress(value)} value={value} />
-        )) ||
-          null}
-        {(isSelected && (
+        </ConditionalRender>
+        <ConditionalRender condition={isSelected}>
           <Image
             source={{ uri: AppImages.tick }}
             style={[icon, { tintColor: appTheme.themeColor }]}
           />
-        )) ||
-          null}
+        </ConditionalRender>
       </View>
     </Pressable>
   );

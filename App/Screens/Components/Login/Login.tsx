@@ -1,20 +1,12 @@
 import React, { useRef, useState } from 'react';
-import {
-  View,
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  Pressable,
-  Image,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { AppImages, CommonStyle } from '@Theme';
-import { Authentication, goToNextScreen, setItemInStorage } from '@Utils';
+import { View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import { CustomText, CustomTextInput } from '@CommonComponent';
 import { BottomView, ButtonComponent } from '@SubComponents';
-import { CustomText } from '@CommonComponent';
+import { CommonStyle } from '@Theme';
+import { Authentication, goToNextScreen, setItemInStorage } from '@Utils';
 import { Route } from '@Routes/AppRoutes';
 import { useAppContext } from '@AppContext';
-import { I18n } from '@Localization';
+import { useAppNavigation } from '@Hooks';
 
 const styles = StyleSheet.create({
   outer: {
@@ -35,30 +27,24 @@ const styles = StyleSheet.create({
     marginTop: 50,
     minWidth: 160,
   },
-  flexDirection: {
-    flexDirection: 'row',
-  },
-  flex: {
-    flex: 1,
-  },
 });
 
 const Login = () => {
   const { appTheme } = useAppContext();
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   const [state, setState] = useState({
     email: '',
     password: '',
     isSecureTextEntry: true,
     isProcessing: false,
   });
-  const { email, password, isSecureTextEntry, isProcessing } = state;
+  const { email, password, isProcessing } = state;
 
-  const refEmail = useRef<any>();
-  const refPassword = useRef<any>();
+  const refEmail = useRef<TextInput>(null);
+  const refPassword = useRef<TextInput>(null);
 
-  const { outer, title, btnText, marginTop, flexDirection, flex } = styles;
-  const { input, flexContainer, center, inputIcon, inputImg } = CommonStyle;
+  const { outer, title, btnText, marginTop } = styles;
+  const { input, flexContainer, center } = CommonStyle;
   const inputStyle = [
     input,
     {
@@ -77,13 +63,6 @@ const Login = () => {
     setState({
       ...state,
       [type]: text,
-    });
-  };
-
-  const onShowPassword = () => {
-    setState({
-      ...state,
-      isSecureTextEntry: !isSecureTextEntry,
     });
   };
 
@@ -107,13 +86,14 @@ const Login = () => {
 
   return (
     <SafeAreaView
-      style={[flexContainer, { backgroundColor: appTheme.background }]}>
+      style={[flexContainer, { backgroundColor: appTheme.background }]}
+    >
       <View style={[flexContainer, center]}>
         <View style={outer}>
           <CustomText xxlarge style={[title, { color: appTheme.text }]}>
-            {I18n.t('SIGN_IN')}
+            Log in
           </CustomText>
-          <TextInput
+          <CustomTextInput
             onChangeText={(text: string) => onChangeText(text, 'email')}
             value={email}
             autoCapitalize="none"
@@ -125,42 +105,22 @@ const Login = () => {
             returnKeyType="next"
             ref={refEmail}
             onSubmitEditing={() => onSubmitEditing('refPassword')}
+            label="Email"
           />
-          <View style={flexDirection}>
-            <TextInput
-              onChangeText={(text: string) => onChangeText(text, 'password')}
-              value={password}
-              autoCapitalize="none"
-              placeholder="Password"
-              style={[inputStyle, flex]}
-              placeholderTextColor={appTheme.lightText}
-              underlineColorAndroid={appTheme.transparent}
-              secureTextEntry={isSecureTextEntry}
-              returnKeyType="done"
-              ref={refPassword}
-              onSubmitEditing={onLogin}
-            />
-            <Pressable
-              onPress={onShowPassword}
-              android_ripple={CommonStyle.androidRipple}>
-              <View
-                style={{
-                  ...center,
-                  ...inputIcon,
-                  borderBottomColor: appTheme.border,
-                }}>
-                <Image
-                  resizeMode="contain"
-                  source={{
-                    uri:
-                      (isSecureTextEntry && AppImages.passwordOpen) ||
-                      AppImages.passwordClosed,
-                  }}
-                  style={inputImg}
-                />
-              </View>
-            </Pressable>
-          </View>
+          <CustomTextInput
+            onChangeText={(text: string) => onChangeText(text, 'password')}
+            value={password}
+            autoCapitalize="none"
+            placeholder="Password"
+            style={inputStyle}
+            placeholderTextColor={appTheme.lightText}
+            underlineColorAndroid={appTheme.transparent}
+            label="Password"
+            returnKeyType="done"
+            ref={refPassword}
+            onSubmitEditing={onLogin}
+            isSecure
+          />
           <CustomText style={[btnText, { color: appTheme.lightText }]}>
             Forgot Password?
           </CustomText>

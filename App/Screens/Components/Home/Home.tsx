@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import {
   CustomText,
   Layout,
   BottomModalContainer,
   IsAlertModal,
 } from '@CommonComponent';
-import { useIsFocused } from '@react-navigation/native';
 import { ButtonComponent } from '@SubComponents';
 import {
   compareAppVersions,
@@ -17,18 +17,23 @@ import {
   width,
 } from '@Utils';
 import { useAppContext } from '@AppContext';
+import { useAppDispatch } from '@Stores';
+import { fetchUser } from '@Thunks';
 
 const Home = () => {
   const { appTheme } = useAppContext();
+  const isFocused = useIsFocused();
+  const dispatch = useAppDispatch();
+
   const [isShowModal, setShowModal] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   let version = getVersionName();
   const alertDetails = alertData.updateVersion;
-  const isFocused = useIsFocused();
 
   useEffect(() => {
     if (isFocused) {
       checkMinimumVersion();
+      dispatch(fetchUser({ user: {}, loading: false }));
     }
   }, [isFocused]);
 
@@ -74,7 +79,8 @@ const Home = () => {
       <BottomModalContainer
         title="Modal"
         onClose={() => setShowModal(false)}
-        show={isShowModal}>
+        show={isShowModal}
+      >
         <CustomText large>Modal</CustomText>
       </BottomModalContainer>
       <IsAlertModal

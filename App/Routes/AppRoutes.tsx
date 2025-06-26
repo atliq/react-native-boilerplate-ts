@@ -1,10 +1,21 @@
 import Login from '@Components/Login/Login';
-import { AppTab } from '@Routes/AppTab';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppTab, tabs } from '@Routes/AppTab';
 
 enum Route {
   LoginScreen = 'Login',
   HomeScreen = 'Home',
 }
+
+export type RouteType = {
+  [Route.LoginScreen]: undefined;
+  [Route.HomeScreen]: {
+    screen: tabs;
+    params?: any;
+  };
+};
+
+export type StackNavigation = StackNavigationProp<RouteType>;
 
 const Routes = [
   {

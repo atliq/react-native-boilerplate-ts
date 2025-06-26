@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { CommonStyle } from '@Theme';
-import { CustomText } from '@CommonComponent';
+import { CustomText, ConditionalRender } from '@CommonComponent';
 import { useAppContext } from '@AppContext';
 
 const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 });
 
 interface GradientButtonProps {
-  title: string | JSX.Element;
+  title: string | React.JSX.Element;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
   isProcessing?: boolean;
@@ -64,7 +64,8 @@ const ButtonComponent = (props: GradientButtonProps) => {
       onPress={() => onPress()}
       disabled={isProcessing}
       style={[marginVertical, outerStyle]}
-      android_ripple={CommonStyle.androidRipple}>
+      android_ripple={CommonStyle.androidRipple}
+    >
       <LinearGradient
         colors={
           (!isGradient &&
@@ -85,16 +86,21 @@ const ButtonComponent = (props: GradientButtonProps) => {
           },
           CommonStyle.overFlowHidden,
           style,
-        ]}>
-        {((!isProcessing || textOnly) && (
+        ]}
+      >
+        <ConditionalRender
+          condition={!isProcessing || textOnly}
+          fallback={
+            <ActivityIndicator color={appTheme.tint} style={marginHorizontal} />
+          }
+        >
           <CustomText
             large
-            style={[{ color: textColor ?? appTheme.tint }, marginHorizontal]}>
+            style={[{ color: textColor ?? appTheme.tint }, marginHorizontal]}
+          >
             {title}
           </CustomText>
-        )) || (
-          <ActivityIndicator color={appTheme.tint} style={marginHorizontal} />
-        )}
+        </ConditionalRender>
       </LinearGradient>
     </Pressable>
   );
