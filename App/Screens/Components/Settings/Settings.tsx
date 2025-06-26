@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Alert, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { CustomText } from '@CommonComponent';
 import { SettingHeader, SettingRow } from '@SubComponents';
 import { CommonStyle } from '@Theme';
 import { getVersionName, onLogout, ThemeEnums } from '@Utils';
 import { useAppContext } from '@AppContext';
+import { useAppNavigation } from '@Hooks';
 
 const Settings = () => {
   const { appTheme, setAppTheme } = useAppContext();
   const [darkMode, setDarkMode] = useState(appTheme.type === 'dark');
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   const { versionText } = styles;
 

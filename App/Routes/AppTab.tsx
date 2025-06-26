@@ -3,6 +3,7 @@ import React from 'react';
 import { Image } from 'react-native';
 import {
   BottomTabNavigationOptions,
+  BottomTabNavigationProp,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import Home from '@Components/Home/Home';
@@ -12,7 +13,7 @@ import SettingsStack from '@Routes/SettingsStack';
 import { AppImages } from '@Theme';
 import { useAppContext } from '@AppContext';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabRouteType>();
 
 enum tabs {
   HomeTab = 'Home',
@@ -26,27 +27,36 @@ const TABS = [
     title: tabs.HomeTab,
     icon: AppImages.home,
     screen: Home,
-    name: 'home',
+    name: tabs.HomeTab,
   },
   {
     title: tabs.SearchTab,
     icon: AppImages.search,
     screen: Search,
-    name: 'search',
+    name: tabs.SearchTab,
   },
   {
     title: tabs.UsersTab,
     icon: AppImages.user,
     screen: Users,
-    name: 'user',
+    name: tabs.UsersTab,
   },
   {
     title: tabs.SettingsTab,
     icon: AppImages.settings,
     screen: SettingsStack,
-    name: 'setting',
+    name: tabs.SettingsTab,
   },
 ];
+
+type TabRouteType = {
+  [tabs.HomeTab]: undefined;
+  [tabs.SearchTab]: undefined;
+  [tabs.UsersTab]: undefined;
+  [tabs.SettingsTab]: undefined;
+};
+
+export type BottomTabNavigation = BottomTabNavigationProp<TabRouteType>;
 
 const AppTab = () => {
   const { appTheme } = useAppContext();
@@ -60,9 +70,7 @@ const AppTab = () => {
           backgroundColor: appTheme.tab,
         },
       }}
-      sceneContainerStyle={{
-        backgroundColor: appTheme.background,
-      }}>
+    >
       {TABS.map(tab => {
         return (
           <Tab.Screen

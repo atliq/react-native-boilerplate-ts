@@ -20,6 +20,12 @@
       "@AppContext/*": [
         "./App/AppContext/*"
       ],
+      "@Hooks": [
+        "./App/Hooks/index"
+      ],
+      "@Hooks/*": [
+        "./App/Hooks/*"
+      ],
       "@Routes": [
         "./App/Routes/index"
       ],

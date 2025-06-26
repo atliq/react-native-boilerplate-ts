@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { DeviceEventEmitter, EmitterSubscription } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Route, Routes } from '@Routes/AppRoutes';
+import { Route, Routes, RouteType } from '@Routes/AppRoutes';
 import { isLoggedIn } from '@Services';
 import { Authentication, onLogout } from '@Utils';
+import { useAppNavigation } from '@Hooks';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RouteType>();
 
 const RootStack = () => {
   let isLogout: EmitterSubscription | null = null;
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   const isUserLogin = () => {
     const isUserLoggedIn = isLoggedIn();
@@ -39,7 +39,8 @@ const RootStack = () => {
         cardOverlayEnabled: true,
         headerBackTitleVisible: false,
         presentation: 'card',
-      })}>
+      })}
+    >
       {Routes.map(route => {
         return (
           <Stack.Screen

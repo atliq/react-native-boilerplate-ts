@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { CustomText, CustomTextInput } from '@CommonComponent';
 import { BottomView, ButtonComponent } from '@SubComponents';
 import { CommonStyle } from '@Theme';
 import { Authentication, goToNextScreen, setItemInStorage } from '@Utils';
 import { Route } from '@Routes/AppRoutes';
 import { useAppContext } from '@AppContext';
+import { useAppNavigation } from '@Hooks';
 
 const styles = StyleSheet.create({
   outer: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
 const Login = () => {
   const { appTheme } = useAppContext();
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
   const [state, setState] = useState({
     email: '',
     password: '',

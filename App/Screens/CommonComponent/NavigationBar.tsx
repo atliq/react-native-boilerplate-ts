@@ -9,12 +9,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { CustomText, ConditionalRender } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
 import { AppImages, CommonStyle } from '@Theme';
 import { useAppContext } from '@AppContext';
 import { width, getSize } from '@Utils';
+import { useAppNavigation } from '@Hooks';
 
 interface NavigationBarProps {
   title?: string;
@@ -40,7 +40,7 @@ interface NavigationBarProps {
 
 const NavigationBar = (props: NavigationBarProps) => {
   const { appTheme } = useAppContext();
-  const navigation = useNavigation();
+  const navigation = useAppNavigation();
 
   const {
     title,

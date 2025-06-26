@@ -4,6 +4,7 @@
   "modules": [
     "ApiConfig",
     "AppContext",
+    "Hooks",
     "Routes",
     "Screens/CommonComponent",
     "Screens/Components",
