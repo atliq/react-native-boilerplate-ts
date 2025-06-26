@@ -122,7 +122,8 @@ export const wrapAsync = <T extends any[], R>(
     } catch (error) {
       if (onError) {
         onError(error);
-      } else if (defaultErrorHandling) {
+      }
+      if (defaultErrorHandling) {
         defaultErrorHandler(error, fn.name);
       }
       return undefined;
@@ -186,7 +187,8 @@ export const wrapSync = <T extends any[], R>(
     } catch (error) {
       if (onError) {
         onError(error);
-      } else if (defaultErrorHandling) {
+      }
+      if (defaultErrorHandling) {
         defaultErrorHandler(error, fn.name);
       }
       return undefined;
