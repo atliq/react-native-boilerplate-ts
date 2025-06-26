@@ -1,14 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
-const { useNavigation } = require('@react-navigation/native');
-import { CustomTextInput } from '@CommonComponent';
+import { useNavigation } from '@react-navigation/native';
+import { CustomText, CustomTextInput } from '@CommonComponent';
+import { BottomView, ButtonComponent } from '@SubComponents';
 import { CommonStyle } from '@Theme';
 import { Authentication, goToNextScreen, setItemInStorage } from '@Utils';
-import { BottomView, ButtonComponent } from '@SubComponents';
-import { CustomText } from '@CommonComponent';
 import { Route } from '@Routes/AppRoutes';
 import { useAppContext } from '@AppContext';
-import { I18n } from '@Localization';
 
 const styles = StyleSheet.create({
   outer: {
@@ -93,7 +91,7 @@ const Login = () => {
       <View style={[flexContainer, center]}>
         <View style={outer}>
           <CustomText xxlarge style={[title, { color: appTheme.text }]}>
-            {I18n.t('SIGN_IN')}
+            Log in
           </CustomText>
           <CustomTextInput
             onChangeText={(text: string) => onChangeText(text, 'email')}

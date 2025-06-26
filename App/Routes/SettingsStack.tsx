@@ -2,7 +2,6 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Settings from '@Components/Settings/Settings';
 import { useAppContext } from '@AppContext';
-import { I18n } from '@Localization';
 
 const Stack = createStackNavigator();
 
@@ -22,14 +21,12 @@ const SettingsStack = () => {
           backgroundColor: appTheme.tab,
         },
         presentation: 'card',
-      })}>
+      })}
+    >
       <Stack.Screen
         name="Settings"
         component={Settings}
-        options={{
-          title: I18n.t('SETTINGS'),
-          headerShown: true,
-        }}
+        options={{ headerShown: true }}
       />
     </Stack.Navigator>
   );

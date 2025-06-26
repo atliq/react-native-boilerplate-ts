@@ -9,11 +9,11 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-const { useNavigation } = require('@react-navigation/native');
-import { AppImages, CommonStyle } from '@Theme';
-import { useAppContext } from '@AppContext';
+import { useNavigation } from '@react-navigation/native';
 import { CustomText, ConditionalRender } from '@CommonComponent';
 import { ButtonComponent } from '@SubComponents';
+import { AppImages, CommonStyle } from '@Theme';
+import { useAppContext } from '@AppContext';
 import { width, getSize } from '@Utils';
 
 interface NavigationBarProps {
@@ -40,6 +40,8 @@ interface NavigationBarProps {
 
 const NavigationBar = (props: NavigationBarProps) => {
   const { appTheme } = useAppContext();
+  const navigation = useNavigation();
+
   const {
     title,
     titleMaxLength,
@@ -63,8 +65,6 @@ const NavigationBar = (props: NavigationBarProps) => {
     submitImage,
     submitImageStyle,
   } = submit ?? {};
-
-  const navigation = useNavigation();
 
   const renderTitle = () => (
     <CustomText

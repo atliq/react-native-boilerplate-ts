@@ -2,20 +2,19 @@
   "root": ".",
   "base": "App",
   "modules": [
-    "Actions",
-    "Actions/ThunkTypes",
     "ApiConfig",
     "AppContext",
-    "Reducers",
-    "Reducers/Default",
     "Routes",
-    "Screens/Components",
     "Screens/CommonComponent",
+    "Screens/Components",
     "Screens/SubComponents",
+    "Services",
+    "Slices",
+    "Slices/Default",
     "Stores",
     "Theme",
-    "Services",
-    "Utils",
-    "Localization"
+    "Thunks",
+    "Thunks/ThunkTypes",
+    "Utils"
   ]
 }

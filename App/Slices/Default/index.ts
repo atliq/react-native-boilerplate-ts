@@ -1,4 +1,4 @@
-import userDefault from '@Reducers/Default/UserDefault';
+import userDefault from '@Default/UserDefault';
 
 const appDefaultReducer = {
   user: userDefault,

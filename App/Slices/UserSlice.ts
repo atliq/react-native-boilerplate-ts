@@ -1,19 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserDefault } from '@Reducers/Default/UserDefault';
-import userDefault from '@Reducers/Default/UserDefault';
-import { fetchUser } from '@Actions';
+import userDefault, { UserDefault } from '@Default/UserDefault';
+import { fetchUser } from '@Thunks';
 
 const initialState: UserDefault = userDefault;
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<any>) {
-      state.user = action.payload;
-    },
-    resetUser() {
-      return initialState;
+    // Logout action to reset. Handled in the store index file
+    logout() {},
+    setUser: (state, action: PayloadAction<{ abc: string }>) => {
+      state.user = action.payload.abc; // Assuming 'abc' is a property in UserDefault
     },
   },
   extraReducers: builder => {
@@ -31,5 +29,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, resetUser } = userSlice.actions;
-export default userSlice.reducer;
+export const { logout, setUser } = userSlice.actions;
+
+export const userReducer = userSlice.reducer;

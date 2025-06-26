@@ -8,18 +8,6 @@
       "redux": [
         "./node_modules/redux"
       ],
-      "@Actions": [
-        "./App/Actions/index"
-      ],
-      "@Actions/*": [
-        "./App/Actions/*"
-      ],
-      "@ThunkTypes": [
-        "./App/Actions/ThunkTypes/index"
-      ],
-      "@ThunkTypes/*": [
-        "./App/Actions/ThunkTypes/*"
-      ],
       "@ApiConfig": [
         "./App/ApiConfig/index"
       ],
@@ -32,29 +20,11 @@
       "@AppContext/*": [
         "./App/AppContext/*"
       ],
-      "@Reducers": [
-        "./App/Reducers/index"
-      ],
-      "@Reducers/*": [
-        "./App/Reducers/*"
-      ],
-      "@Default": [
-        "./App/Reducers/Default/index"
-      ],
-      "@Default/*": [
-        "./App/Reducers/Default/*"
-      ],
       "@Routes": [
         "./App/Routes/index"
       ],
       "@Routes/*": [
         "./App/Routes/*"
-      ],
-      "@Components": [
-        "./App/Screens/Components/index"
-      ],
-      "@Components/*": [
-        "./App/Screens/Components/*"
       ],
       "@CommonComponent": [
         "./App/Screens/CommonComponent/index"
@@ -62,11 +32,35 @@
       "@CommonComponent/*": [
         "./App/Screens/CommonComponent/*"
       ],
+      "@Components": [
+        "./App/Screens/Components/index"
+      ],
+      "@Components/*": [
+        "./App/Screens/Components/*"
+      ],
       "@SubComponents": [
         "./App/Screens/SubComponents/index"
       ],
       "@SubComponents/*": [
         "./App/Screens/SubComponents/*"
+      ],
+      "@Services": [
+        "./App/Services/index"
+      ],
+      "@Services/*": [
+        "./App/Services/*"
+      ],
+      "@Slices": [
+        "./App/Slices/index"
+      ],
+      "@Slices/*": [
+        "./App/Slices/*"
+      ],
+      "@Default": [
+        "./App/Slices/Default/index"
+      ],
+      "@Default/*": [
+        "./App/Slices/Default/*"
       ],
       "@Stores": [
         "./App/Stores/index"
@@ -80,45 +74,25 @@
       "@Theme/*": [
         "./App/Theme/*"
       ],
-      "@Services": [
-        "./App/Services/index"
+      "@Thunks": [
+        "./App/Thunks/index"
       ],
-      "@Services/*": [
-        "./App/Services/*"
+      "@Thunks/*": [
+        "./App/Thunks/*"
+      ],
+      "@ThunkTypes": [
+        "./App/Thunks/ThunkTypes/index"
+      ],
+      "@ThunkTypes/*": [
+        "./App/Thunks/ThunkTypes/*"
       ],
       "@Utils": [
         "./App/Utils/index"
       ],
       "@Utils/*": [
         "./App/Utils/*"
-      ],
-      "@Localization": [
-        "./App/Localization/index"
-      ],
-      "@Localization/*": [
-        "./App/Localization/*"
       ]
-    },
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "resolveJsonModule": true,
-    "jsx": "react-native",
-    "lib": [
-      "es2017"
-    ],
-    "module": "Node16",
-    "moduleResolution": "node16",
-    "noEmit": true,
-    "strict": true,
-    "target": "esnext"
+    }
   },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ],
   "extends": "@react-native/typescript-config"
 }

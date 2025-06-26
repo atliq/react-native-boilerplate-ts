@@ -1,7 +1,7 @@
 import { Action, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistStore, persistReducer, Storage } from 'redux-persist';
-import Reducers from '@Reducers';
+import Reducers from '@Slices';
 import DefaultState from '@Default';
 import { UserThunkTypes } from '@ThunkTypes';
 import { storage } from '@Utils';
@@ -42,6 +42,7 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
+      immutableCheck: __DEV__, // Disable immutable check in production for performance
       serializableCheck: false,
       thunk: true,
     }),
