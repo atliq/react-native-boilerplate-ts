@@ -1,5 +1,5 @@
 #!/bin/bash
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint:fix
-
+bun lint:fix
+bun test
