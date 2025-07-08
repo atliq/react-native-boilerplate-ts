@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
-import { CustomText, CustomTextInput } from '@CommonComponent';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { CustomText, CustomTextInput, Layout } from '@CommonComponent';
 import { BottomView, ButtonComponent } from '@SubComponents';
 import { CommonStyle } from '@Theme';
 import {
@@ -93,9 +93,7 @@ const Login = () => {
   );
 
   return (
-    <SafeAreaView
-      style={[flexContainer, { backgroundColor: appTheme.background }]}
-    >
+    <Layout>
       <View style={[flexContainer, center]}>
         <View style={outer}>
           <CustomText xxlarge style={[title, { color: appTheme.text }]}>
@@ -147,7 +145,7 @@ const Login = () => {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </Layout>
   );
 };
 

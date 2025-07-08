@@ -4,7 +4,6 @@ import {
   StatusBar,
   StyleSheet,
   View,
-  SafeAreaView,
   RefreshControl,
   StyleProp,
   ViewStyle,
@@ -16,6 +15,7 @@ import { isIOS } from '@Utils';
 import { useAppContext } from '@AppContext';
 import { NavigationBar, ConditionalRender } from '@CommonComponent';
 import { CommonStyle } from '@Theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 interface LayoutProps {
   title?: string;
   titleCenter?: boolean;
@@ -63,11 +63,14 @@ const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
     removeContainerView = false,
   } = props;
 
+  const { top, bottom } = useSafeAreaInsets();
+
   return (
-    <SafeAreaView
+    <View
       style={[
         CommonStyle.flex1,
         { backgroundColor: backgroundColor ?? appTheme.background },
+        { paddingTop: top, paddingBottom: bottom },
       ]}
     >
       <StatusBar
@@ -125,7 +128,7 @@ const Layout = (props: React.PropsWithChildren<LayoutProps>) => {
           </ScrollView>
         </ConditionalRender>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </View>
   );
 };
 
