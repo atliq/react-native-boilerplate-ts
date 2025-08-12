@@ -1,90 +1,92 @@
 import Config from 'react-native-config';
 import { MMKV } from 'react-native-mmkv';
+import { wrapSync } from '@Utils/TryCatchWrapper';
 
 export const storage = new MMKV({
   id: Config.STORAGE_ID ?? 'react-native-boilerplate-ts',
   encryptionKey: Config.STORAGE_KEY ?? '',
 });
 
-export const setItemInStorage = (
-  key: string,
-  data: string | number | boolean,
-) => {
-  try {
-    return storage.set(key, data);
-  } catch (error) {
-    return null;
-  }
-};
+const onError = () => null;
 
-export const getItemFromStorage = (key: string) => {
-  try {
+export const setItemInStorage = wrapSync(
+  (key: string, data: string | number | boolean) => {
+    return storage.set(key, data);
+  },
+  {
+    onError,
+  },
+);
+
+export const getItemFromStorage = wrapSync(
+  (key: string) => {
     const value = storage.getString(key);
     if (value) {
       return value;
     }
     return null;
-  } catch (error) {
-    return null;
-  }
-};
+  },
+  {
+    onError,
+  },
+);
 
-export const getNumberFromStorage = (key: string) => {
-  try {
+export const getNumberFromStorage = wrapSync(
+  (key: string) => {
     const value = storage.getNumber(key);
     if (value) {
       return value;
     }
     return null;
-  } catch (error) {
-    return null;
-  }
-};
+  },
+  {
+    onError,
+  },
+);
 
-export const getBoolFromStorage = (key: string) => {
-  try {
+export const getBoolFromStorage = wrapSync(
+  (key: string) => {
     const value = storage.getBoolean(key);
     if (value) {
       return value;
     }
     return null;
-  } catch (error) {
-    return null;
-  }
-};
+  },
+  {
+    onError,
+  },
+);
 
-export const removeStoreItem = (key: string) => {
-  try {
+export const removeStoreItem = wrapSync(
+  (key: string) => {
     return storage.delete(key);
-  } catch (error) {
-    return null;
-  }
-};
+  },
+  { onError },
+);
 
-export const setObjectInStore = (key: string, data: any) => {
-  try {
+export const setObjectInStore = wrapSync(
+  (key: string, data: any) => {
     return storage.set(key, JSON.stringify(data));
-  } catch (error) {
-    return null;
-  }
-};
+  },
+  { onError },
+);
 
-export const getObjectFromStore = (key: string) => {
-  try {
+export const getObjectFromStore = wrapSync(
+  (key: string) => {
     const value = storage.getString(key);
     if (value) {
       return JSON.parse(value);
     }
     return null;
-  } catch (error) {
-    return null;
-  }
-};
+  },
+  { onError },
+);
 
-export const clearStorage = () => {
-  try {
+export const clearStorage = wrapSync(
+  () => {
     return storage.clearAll();
-  } catch (error: any) {
-    return null;
-  }
-};
+  },
+  {
+    onError,
+  },
+);

@@ -4,7 +4,9 @@ import { CommonActions } from '@react-navigation/native';
 import DeviceInfo from 'react-native-device-info';
 import { AxiosHeaders } from 'axios';
 import { ApiConfig } from '@ApiConfig';
-import { getItemFromStorage, removeStoreItem, Authentication } from '@Utils';
+import { getItemFromStorage, removeStoreItem } from '@Utils/Storage';
+import { Authentication } from '@Utils/Enums';
+import { wrapAsync } from '@Utils/TryCatchWrapper';
 import { Route } from '@Routes/AppRoutes';
 import { store } from '@Stores';
 import { logout } from '@Slices/UserSlice';
@@ -86,7 +88,7 @@ export const goToNextScreen = async (navigation: any, nextScreen: string) => {
 };
 
 export const getHeaders = () => {
-  let token: string | null = ApiConfig.token;
+  let token: string | null | undefined = ApiConfig.token;
   if (!token) {
     token = getItemFromStorage(Authentication.TOKEN);
   }
@@ -134,16 +136,12 @@ export const compareAppVersions = ({
   return isVersionValid;
 };
 
-export const openLink = async (url: string, checkUrl = true) => {
-  try {
-    let canOpenUrl = true;
-    if (checkUrl) {
-      canOpenUrl = await Linking.canOpenURL(url);
-    }
-    if (canOpenUrl) {
-      await Linking.openURL(url);
-    }
-  } catch (e) {
-    console.log(e);
+export const openLink = wrapAsync(async (url: string, checkUrl = true) => {
+  let canOpenUrl = true;
+  if (checkUrl) {
+    canOpenUrl = await Linking.canOpenURL(url);
   }
-};
+  if (canOpenUrl) {
+    await Linking.openURL(url);
+  }
+});

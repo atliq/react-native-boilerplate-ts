@@ -1,9 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { View, SafeAreaView, StyleSheet, TextInput } from 'react-native';
-import { CustomText, CustomTextInput } from '@CommonComponent';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { CustomText, CustomTextInput, Layout } from '@CommonComponent';
 import { BottomView, ButtonComponent } from '@SubComponents';
 import { CommonStyle } from '@Theme';
-import { Authentication, goToNextScreen, setItemInStorage } from '@Utils';
+import {
+  Authentication,
+  goToNextScreen,
+  setItemInStorage,
+  wrapAsync,
+} from '@Utils';
 import { Route } from '@Routes/AppRoutes';
 import { useAppContext } from '@AppContext';
 import { useAppNavigation } from '@Hooks';
@@ -73,21 +78,22 @@ const Login = () => {
     });
   };
 
-  const onLogin = () => {
-    try {
+  const onLogin = wrapAsync(
+    async () => {
       // Field Validation
       // Make api call ans store user in redux and token in Storage
       goToNextScreen(navigation, Route.HomeScreen);
       setItemInStorage(Authentication.TOKEN, 'set login token');
-    } catch (error) {
-      manageProcessing(false);
-    }
-  };
+    },
+    {
+      onError: () => {
+        manageProcessing(false);
+      },
+    },
+  );
 
   return (
-    <SafeAreaView
-      style={[flexContainer, { backgroundColor: appTheme.background }]}
-    >
+    <Layout>
       <View style={[flexContainer, center]}>
         <View style={outer}>
           <CustomText xxlarge style={[title, { color: appTheme.text }]}>
@@ -139,7 +145,7 @@ const Login = () => {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </Layout>
   );
 };
 
